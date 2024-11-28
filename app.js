@@ -132,7 +132,7 @@ const TableWithCheckboxes = ({ title, items, colspan }) => (
                           <label className="mr-2">{detailField}:</label>
                           <input
                             type="text"
-                            value={traumaDetails[itemName]?.[detailField] || ''}
+                            value={traumaDetails[itemName] && traumaDetails[itemName][detailField] || ''}
                             onChange={(e) => handleDetailChange(itemName, e.target.value, detailField)}
                             className="border-b border-black p-1 w-32"
                           />
