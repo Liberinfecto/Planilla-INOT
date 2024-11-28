@@ -374,4 +374,4 @@ const TableWithCheckboxes = ({ title, items, colspan }) => (
   );
 };
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<INOTForm />);
+ReactDOM.render(<INOTForm />, document.getElementById('root'));
