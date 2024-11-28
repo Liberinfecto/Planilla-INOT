@@ -11,6 +11,7 @@ const INOTForm = () => {
     fe: '',
   });
 
+  const [traumaDetails, setTraumaDetails] = useState({});
   // Estado para manejar los radio buttons
   const [radioSelections, setRadioSelections] = useState({});
 
@@ -21,7 +22,13 @@ const INOTForm = () => {
       [name]: value
     }));
   };
-
+const handleDetailChange = (itemName, value, subfield = null) => {
+  setTraumaDetails(prev => ({
+    ...prev,
+    [itemName]: subfield ? { ...prev[itemName], [subfield]: value } : value
+  }));
+};
+  
   // Función para manejar los clicks en los radio buttons
   const handleRadioClick = (name, value) => {
     setRadioSelections(prev => {
@@ -42,21 +49,21 @@ const INOTForm = () => {
   const studies = ['Rx', 'Centellograma', 'Tomografía', 'Punción articular', 'Otros'];
 
   const traumaHistory = [
-    { name: 'Fractura', detail: 'Hueso: ___________' },
-    { name: 'Cerrada', detail: ['Desplazada: ____', 'Simple: ____'] },
-    { name: 'Expuesta', detail: 'Gustilo: _____' },
-    { name: 'EE', detail: 'Permanencia: _____' },
-    { name: 'EEM', detail: '' },
-    { name: 'Osteosíntesis', detail: '' },
-    { name: 'Prótesis', detail: ['Lugar: ____', 'Fecha: ____'] },
-    { name: 'Recambio de Prótesis', detail: '' },
-    { name: 'Clavo', detail: '' },
-    { name: 'ISQ Previas', detail: '' },
-    { name: 'Aislamiento de MO Previo', detail: '' },
-    { name: 'LQ Previas', detail: '' },
-    { name: 'Retiro de implante', detail: 'Fecha: _____' },
-    { name: 'Exposición a ATB en 3 meses previos', detail: 'Cuales: _____' }
-  ];
+  { name: 'Fractura', detail: 'Hueso' },
+  { name: 'Cerrada', detail: ['Desplazada', 'Simple'] },
+  { name: 'Expuesta', detail: 'Gustilo' },
+  { name: 'EE', detail: 'Permanencia' },
+  { name: 'EEM', detail: '' },
+  { name: 'Osteosíntesis', detail: '' },
+  { name: 'Prótesis', detail: ['Lugar', 'Fecha'] },
+  { name: 'Recambio de Prótesis', detail: '' },
+  { name: 'Clavo', detail: '' },
+  { name: 'ISQ Previas', detail: '' },
+  { name: 'Aislamiento de MO Previo', detail: '' },
+  { name: 'LQ Previas', detail: '' },
+  { name: 'Retiro de implante', detail: 'Fecha' },
+  { name: 'Exposición a ATB en 3 meses previos', detail: 'Cuales' }
+];
 
   const riskFactors = [
     'Diabetes', 'Tabaquismo', 'IMC>30', 'Obesidad', 'AR', 'ERC',
@@ -80,7 +87,7 @@ const INOTForm = () => {
     'Limitación funcional', 'Fístula', 'Pseudoartrosis', 'Defecto cutáneo'
   ];
 
-  const TableWithCheckboxes = ({ title, items, colspan }) => (
+const TableWithCheckboxes = ({ title, items, colspan }) => (
     <table className="w-full border-collapse">
       <thead>
         <tr>
@@ -102,7 +109,7 @@ const INOTForm = () => {
                 <input
                   type="radio"
                   checked={radioSelections[radioName] === 'yes'}
-                  onChange={() => {}} // Necesario para React controlled components
+                  onChange={() => {}}
                   onClick={() => handleRadioClick(radioName, 'yes')}
                   className="w-4 h-4 cursor-pointer"
                 />
@@ -111,14 +118,38 @@ const INOTForm = () => {
                 <input
                   type="radio"
                   checked={radioSelections[radioName] === 'no'}
-                  onChange={() => {}} // Necesario para React controlled components
+                  onChange={() => {}}
                   onClick={() => handleRadioClick(radioName, 'no')}
                   className="w-4 h-4 cursor-pointer"
                 />
               </td>
-              {colspan && (
+              {colspan && item.detail && (
                 <td className="border border-gray-800 p-2" colSpan={colspan}>
-                  {typeof item === 'object' && item.detail}
+                  {Array.isArray(item.detail) ? (
+                    <div className="flex gap-4">
+                      {item.detail.map((detailField, index) => (
+                        <div key={index} className="flex-1">
+                          <label className="mr-2">{detailField}:</label>
+                          <input
+                            type="text"
+                            value={traumaDetails[itemName]?.[detailField] || ''}
+                            onChange={(e) => handleDetailChange(itemName, e.target.value, detailField)}
+                            className="border-b border-black p-1 w-32"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ) : item.detail ? (
+                    <div className="flex items-center">
+                      <label className="mr-2">{item.detail}:</label>
+                      <input
+                        type="text"
+                        value={traumaDetails[itemName] || ''}
+                        onChange={(e) => handleDetailChange(itemName, e.target.value)}
+                        className="border-b border-black p-1 flex-1"
+                      />
+                    </div>
+                  ) : null}
                 </td>
               )}
             </tr>
