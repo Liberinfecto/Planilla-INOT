@@ -381,5 +381,5 @@ const INOTForm = () => {
   );
 };
 
-export default INOTForm;
+ReactDOM.render(<INOTForm />, document.getElementById('root'));
 
