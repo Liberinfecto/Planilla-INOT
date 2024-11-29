@@ -15,11 +15,24 @@ function Form() {
         fracturaHueso: ''
     });
 
-    const handleInputChange = (fieldName, value) => {
-        setFormData(prevData => ({
-            ...prevData,
-            [fieldName]: value
-        }));
+const handleInputChange = (fieldName, value) => {
+        setFormData(prevData => {
+            // Si es un radio button (si/no)
+            if (value === 'si' || value === 'no') {
+                // Si el valor actual es igual al nuevo valor, lo limpiamos
+                if (prevData[fieldName] === value) {
+                    return {
+                        ...prevData,
+                        [fieldName]: ''  // Limpia la selección
+                    };
+                }
+            }
+            // Para todos los demás casos, comportamiento normal
+            return {
+                ...prevData,
+                [fieldName]: value
+            };
+        });
     };
 
     const styles = {
