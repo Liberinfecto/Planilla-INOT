@@ -6,79 +6,18 @@
     <title>Planilla INOT</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <!-- Reemplazamos cdn.tailwindcss.com por el CDN de la versión compilada -->
-    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"></script>
     <style>
-        /* Estilos básicos para asegurar que el formulario se vea bien */
         body {
             margin: 0;
             padding: 0;
             font-family: system-ui, -apple-system, sans-serif;
         }
-        input {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
     </style>
 </head>
 <body>
     <div id="root"></div>
-    <script>
-        const container = document.getElementById('root');
-        const root = ReactDOM.createRoot(container);
-        
-        function Form() {
-            return React.createElement('div', { style: { maxWidth: '1024px', margin: '0 auto', padding: '1rem' } },
-                // Header
-                React.createElement('h1', { style: { fontSize: '1.25rem', fontWeight: 'bold', textAlign: 'center' } }, 
-                    'CATEDRA DE ENFERMEDADES INFECCIOSAS'
-                ),
-                React.createElement('h2', { style: { fontSize: '1rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '1rem' } }, 
-                    'ASISTENCIA DE PACIENTES EN INOT'
-                ),
-                
-                // Formulario
-                React.createElement('div', { style: { border: '1px solid #333', padding: '1rem' } },
-                    React.createElement('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' } },
-                        // Campo Nombre
-                        React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
-                            React.createElement('span', { style: { fontWeight: 'bold', minWidth: '100px' } }, 'Nombre:'),
-                            React.createElement('input', { 
-                                type: 'text',
-                                style: { flex: 1, borderBottom: '1px solid black' }
-                            })
-                        ),
-                        // Campo Piso/Cama
-                        React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
-                            React.createElement('span', { style: { fontWeight: 'bold', minWidth: '100px' } }, 'Piso/Cama:'),
-                            React.createElement('input', { 
-                                type: 'text',
-                                style: { flex: 1, borderBottom: '1px solid black' }
-                            })
-                        ),
-                        // Campo CI
-                        React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
-                            React.createElement('span', { style: { fontWeight: 'bold', minWidth: '100px' } }, 'CI:'),
-                            React.createElement('input', { 
-                                type: 'text',
-                                style: { flex: 1, borderBottom: '1px solid black' }
-                            })
-                        ),
-                        // Campo Edad
-                        React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
-                            React.createElement('span', { style: { fontWeight: 'bold', minWidth: '100px' } }, 'Edad:'),
-                            React.createElement('input', { 
-                                type: 'text',
-                                style: { flex: 1, borderBottom: '1px solid black' }
-                            })
-                        )
-                    )
-                )
-            );
-        }
-
-        root.render(React.createElement(Form));
-    </script>
+    <script src="app.js"></script>
+</body>
+</html>
 </body>
 </html>
