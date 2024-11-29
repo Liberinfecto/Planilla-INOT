@@ -239,17 +239,7 @@ function Form() {
         React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
             React.createElement('table', { style: styles.table },
                 // Cabecera de la tabla
-                React.createElement('thead', null,
-                    React.createElement('tr', null,
-                        React.createElement('th', { style: styles.tableHeader }, 'Antecedentes Traumatológicos'),
-                        React.createElement('th', { style: styles.tableHeader }, 'SI'),
-                        React.createElement('th', { style: styles.tableHeader }, 'NO'),
-                        React.createElement('th', { style: styles.tableHeader }, 'Detalles')
-                    )
-                ),
-                // Cuerpo de la tabla
-                React.createElement('tbody', null,
-                    // Fractura
+// Fractura
                     React.createElement('tr', null,
                         React.createElement('td', { style: styles.tableCell }, 'Fractura'),
                         React.createElement('td', { style: styles.tableCell },
@@ -257,8 +247,9 @@ function Form() {
                                 type: 'radio',
                                 name: 'fractura',
                                 style: styles.radio,
-                                checked: formData.fractura === 'si',
-                                onChange: (e) => handleInputChange('fractura', 'si')
+                                checked: radioSelections['fractura'] === 'si',
+                                onChange: () => {},
+                                onClick: () => handleRadioClick('fractura', 'si')
                             })
                         ),
                         React.createElement('td', { style: styles.tableCell },
@@ -266,8 +257,9 @@ function Form() {
                                 type: 'radio',
                                 name: 'fractura',
                                 style: styles.radio,
-                                checked: formData.fractura === 'no',
-                                onChange: (e) => handleInputChange('fractura', 'no')
+                                checked: radioSelections['fractura'] === 'no',
+                                onChange: () => {},
+                                onClick: () => handleRadioClick('fractura', 'no')
                             })
                         ),
                         React.createElement('td', { style: styles.tableCell },
@@ -285,5 +277,4 @@ function Form() {
         )
     );
 }
-
 root.render(React.createElement(Form));
