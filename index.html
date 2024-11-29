@@ -13,23 +13,51 @@
     <script>
         const container = document.getElementById('root');
         const root = ReactDOM.createRoot(container);
-        
-        // Crear el componente del formulario
+
         function Form() {
-            const element = React.createElement('div', { className: 'max-w-5xl mx-auto p-4' },
+            return React.createElement('div', { className: 'max-w-5xl mx-auto p-4' },
+                // Header
                 React.createElement('h1', { className: 'text-lg font-bold text-center' }, 'CATEDRA DE ENFERMEDADES INFECCIOSAS'),
                 React.createElement('h2', { className: 'text-base font-bold text-center mb-4' }, 'ASISTENCIA DE PACIENTES EN INOT'),
-                React.createElement('input', { 
-                    type: 'text',
-                    placeholder: 'Nombre del paciente',
-                    className: 'w-full border p-2 mb-2'
-                })
+                
+                // Formulario
+                React.createElement('div', { className: 'border border-gray-800 p-4' },
+                    React.createElement('div', { className: 'grid grid-cols-2 gap-4' },
+                        // Campo Nombre
+                        React.createElement('div', { className: 'flex items-center gap-2' },
+                            React.createElement('span', { className: 'font-bold min-w-[100px]' }, 'Nombre:'),
+                            React.createElement('input', { 
+                                type: 'text',
+                                className: 'flex-1 border-b border-black p-1'
+                            })
+                        ),
+                        // Campo Piso/Cama
+                        React.createElement('div', { className: 'flex items-center gap-2' },
+                            React.createElement('span', { className: 'font-bold min-w-[100px]' }, 'Piso/Cama:'),
+                            React.createElement('input', { 
+                                type: 'text',
+                                className: 'flex-1 border-b border-black p-1'
+                            })
+                        ),
+                        // Campo CI
+                        React.createElement('div', { className: 'flex items-center gap-2' },
+                            React.createElement('span', { className: 'font-bold min-w-[100px]' }, 'CI:'),
+                            React.createElement('input', { 
+                                type: 'text',
+                                className: 'flex-1 border-b border-black p-1'
+                            })
+                        ),
+                        // Campo Edad
+                        React.createElement('div', { className: 'flex items-center gap-2' },
+                            React.createElement('span', { className: 'font-bold min-w-[100px]' }, 'Edad:'),
+                            React.createElement('input', { 
+                                type: 'text',
+                                className: 'flex-1 border-b border-black p-1'
+                            })
+                        )
+                    )
+                )
             );
-            return element;
         }
 
-        // Renderizar el formulario
         root.render(React.createElement(Form));
-    </script>
-</body>
-</html>
