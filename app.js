@@ -20,7 +20,7 @@ function Form() {
         }));
     };
 
-    const styles = {
+const styles = {
         container: {
             maxWidth: '1024px',
             margin: '0 auto',
@@ -90,9 +90,26 @@ function Form() {
             flex: 1,
             padding: '0.25rem',
             borderBottom: '1px solid black'
+        },
+        // Nuevos estilos aquí
+        sectionTitle: {
+            backgroundColor: '#f3f4f6',
+            padding: '0.5rem',
+            fontWeight: 'bold',
+            borderBottom: '1px solid #333',
+            marginBottom: '1rem'
+        },
+        checkboxGroup: {
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
+            marginBottom: '0.5rem'
+        },
+        checkbox: {
+            width: '1rem',
+            height: '1rem'
         }
     };
-
     return React.createElement('div', { style: styles.container },
         // Header
         React.createElement('h1', { style: styles.header }, 
