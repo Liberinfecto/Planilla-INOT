@@ -206,6 +206,31 @@ const styles = {
                         style: styles.dateInput
                     })
                 )
+            ),
+                    React.createElement('div', { style: { marginTop: '2rem' } },
+                // Título de la sección
+                React.createElement('div', { style: styles.sectionTitle }, 
+                    'Antecedentes Traumatológicos'
+                ),
+                // Fractura
+                React.createElement('div', { style: styles.checkboxGroup },
+                    React.createElement('label', { style: styles.checkboxGroup },
+                        React.createElement('input', {
+                            type: 'checkbox',
+                            style: styles.checkbox,
+                            checked: formData.fractura || false,
+                            onChange: (e) => handleInputChange('fractura', e.target.checked)
+                        }),
+                        'Fractura',
+                        React.createElement('input', {
+                            type: 'text',
+                            placeholder: 'Hueso',
+                            style: { ...styles.input, marginLeft: '1rem' },
+                            value: formData.fracturaHueso || '',
+                            onChange: (e) => handleInputChange('fracturaHueso', e.target.value)
+                        })
+                    )
+                )
             )
         )
     );
