@@ -10,7 +10,9 @@ function Form() {
         origin: '',
         fi: '',
         fConsult: '',
-        fe: ''
+        fe: '',
+        fractura: '',
+        fracturaHueso: ''
     });
 
     const handleInputChange = (fieldName, value) => {
@@ -20,7 +22,7 @@ function Form() {
         }));
     };
 
-const styles = {
+    const styles = {
         container: {
             maxWidth: '1024px',
             margin: '0 auto',
@@ -91,25 +93,33 @@ const styles = {
             padding: '0.25rem',
             borderBottom: '1px solid black'
         },
-        // Nuevos estilos aquí
-        sectionTitle: {
+        // Nuevos estilos para la tabla
+        table: {
+            width: '100%',
+            borderCollapse: 'collapse',
+            marginTop: '1rem'
+        },
+        tableHeader: {
             backgroundColor: '#f3f4f6',
+            border: '1px solid #333',
             padding: '0.5rem',
-            fontWeight: 'bold',
-            borderBottom: '1px solid #333',
-            marginBottom: '1rem'
+            textAlign: 'center',
+            fontWeight: 'bold'
         },
-        checkboxGroup: {
+        tableCell: {
+            border: '1px solid #333',
+            padding: '0.5rem'
+        },
+        radioGroup: {
             display: 'flex',
-            alignItems: 'center',
-            gap: '1rem',
-            marginBottom: '0.5rem'
+            justifyContent: 'center',
+            gap: '1rem'
         },
-        checkbox: {
-            width: '1rem',
-            height: '1rem'
+        radio: {
+            cursor: 'pointer'
         }
     };
+
     return React.createElement('div', { style: styles.container },
         // Header
         React.createElement('h1', { style: styles.header }, 
@@ -119,7 +129,7 @@ const styles = {
             'ASISTENCIA DE PACIENTES EN INOT'
         ),
         
-        // Formulario
+        // Formulario principal (datos del paciente)
         React.createElement('div', { style: styles.formContainer },
             // Campos en grid
             React.createElement('div', { style: styles.grid },
@@ -163,7 +173,7 @@ const styles = {
                         style: styles.input
                     })
                 ),
-                // Campo Procedencia (ancho completo)
+                // Campo Procedencia
                 React.createElement('div', { style: { ...styles.inputGroup, ...styles.fullWidth } },
                     React.createElement('span', { style: styles.label }, 'Procedencia:'),
                     React.createElement('input', { 
@@ -206,29 +216,53 @@ const styles = {
                         style: styles.dateInput
                     })
                 )
-            ),
-                    React.createElement('div', { style: { marginTop: '2rem' } },
-                // Título de la sección
-                React.createElement('div', { style: styles.sectionTitle }, 
-                    'Antecedentes Traumatológicos'
+            )
+        ),
+        
+        // Sección de Antecedentes Traumatológicos (nuevo contenedor separado)
+        React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
+            React.createElement('table', { style: styles.table },
+                // Cabecera de la tabla
+                React.createElement('thead', null,
+                    React.createElement('tr', null,
+                        React.createElement('th', { style: styles.tableHeader }, 'Antecedentes Traumatológicos'),
+                        React.createElement('th', { style: styles.tableHeader }, 'SI'),
+                        React.createElement('th', { style: styles.tableHeader }, 'NO'),
+                        React.createElement('th', { style: styles.tableHeader }, 'Detalles')
+                    )
                 ),
-                // Fractura
-                React.createElement('div', { style: styles.checkboxGroup },
-                    React.createElement('label', { style: styles.checkboxGroup },
-                        React.createElement('input', {
-                            type: 'checkbox',
-                            style: styles.checkbox,
-                            checked: formData.fractura || false,
-                            onChange: (e) => handleInputChange('fractura', e.target.checked)
-                        }),
-                        'Fractura',
-                        React.createElement('input', {
-                            type: 'text',
-                            placeholder: 'Hueso',
-                            style: { ...styles.input, marginLeft: '1rem' },
-                            value: formData.fracturaHueso || '',
-                            onChange: (e) => handleInputChange('fracturaHueso', e.target.value)
-                        })
+                // Cuerpo de la tabla
+                React.createElement('tbody', null,
+                    // Fractura
+                    React.createElement('tr', null,
+                        React.createElement('td', { style: styles.tableCell }, 'Fractura'),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'fractura',
+                                style: styles.radio,
+                                checked: formData.fractura === 'si',
+                                onChange: (e) => handleInputChange('fractura', 'si')
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'fractura',
+                                style: styles.radio,
+                                checked: formData.fractura === 'no',
+                                onChange: (e) => handleInputChange('fractura', 'no')
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'text',
+                                placeholder: 'Hueso',
+                                style: styles.input,
+                                value: formData.fracturaHueso || '',
+                                onChange: (e) => handleInputChange('fracturaHueso', e.target.value)
+                            })
+                        )
                     )
                 )
             )
