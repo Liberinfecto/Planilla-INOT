@@ -235,7 +235,7 @@ function Form() {
             )
         ),
         
-        // Sección de Antecedentes Traumatológicos (nuevo contenedor separado)
+      // Sección de Antecedentes Traumatológicos (nuevo contenedor separado)
         React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
             React.createElement('table', { style: styles.table },
                 // Cabecera de la tabla
@@ -247,9 +247,8 @@ function Form() {
                         React.createElement('th', { style: styles.tableHeader }, 'Detalles')
                     )
                 ),
-                // Cuerpo de la tabla
                 React.createElement('tbody', null,
-                    // Fractura
+                    // FRACTURA - Nivel 1
                     React.createElement('tr', null,
                         React.createElement('td', { style: styles.tableCell }, 'Fractura'),
                         React.createElement('td', { style: styles.tableCell },
@@ -273,14 +272,205 @@ function Form() {
                             })
                         ),
                         React.createElement('td', { style: styles.tableCell },
-                            React.createElement('input', {
-                                type: 'text',
-                                placeholder: 'Hueso',
-                                style: styles.input,
+                            React.createElement('select', {
+                                style: { ...styles.input, width: '200px' },
                                 value: formData.fracturaHueso || '',
-                                onChange: (e) => handleInputChange('fracturaHueso', e.target.value)
-                            })
+                                onChange: (e) => handleInputChange('fracturaHueso', e.target.value),
+                                disabled: radioSelections['fractura'] !== 'si'
+                            },
+                                React.createElement('option', { value: '' }, 'Seleccionar hueso...'),
+                                // Miembro Superior
+                                React.createElement('optgroup', { label: 'Miembro Superior' },
+                                    React.createElement('option', { value: 'humero' }, 'Húmero'),
+                                    React.createElement('option', { value: 'radio' }, 'Radio'),
+                                    React.createElement('option', { value: 'cubito' }, 'Cúbito'),
+                                    React.createElement('option', { value: 'clavicula' }, 'Clavícula'),
+                                    React.createElement('option', { value: 'escapula' }, 'Escápula'),
+                                    React.createElement('option', { value: 'carpo' }, 'Carpo')
+                                ),
+                                // Cadera/Pelvis - Expandida
+                                React.createElement('optgroup', { label: 'Cadera/Pelvis' },
+                                    React.createElement('option', { value: 'pelvis' }, 'Pelvis'),
+                                    React.createElement('option', { value: 'acetabulo' }, 'Acetábulo'),
+                                    React.createElement('option', { value: 'cabeza_femoral' }, 'Cabeza Femoral'),
+                                    React.createElement('option', { value: 'cuello_femoral' }, 'Cuello Femoral'),
+                                    React.createElement('option', { value: 'intertrocanterica' }, 'Intertrocantérica'),
+                                    React.createElement('option', { value: 'subtrocanterica' }, 'Subtrocantérica'),
+                                    React.createElement('option', { value: 'iliaco' }, 'Ilíaco'),
+                                    React.createElement('option', { value: 'isquion' }, 'Isquion'),
+                                    React.createElement('option', { value: 'pubis' }, 'Pubis'),
+                                    React.createElement('option', { value: 'sacro' }, 'Sacro')
+                                ),
+                                // Miembro Inferior
+                                React.createElement('optgroup', { label: 'Miembro Inferior' },
+                                    React.createElement('option', { value: 'femur' }, 'Fémur'),
+                                    React.createElement('option', { value: 'rotula' }, 'Rótula'),
+                                    React.createElement('option', { value: 'tibia' }, 'Tibia'),
+                                    React.createElement('option', { value: 'pilon_tibial' }, 'Pilón Tibial'),
+                                    React.createElement('option', { value: 'perone' }, 'Peroné'),
+                                    React.createElement('option', { value: 'tobillo' }, 'Tobillo'),
+                                    React.createElement('option', { value: 'calcaneo' }, 'Calcáneo'),
+                                    React.createElement('option', { value: 'tarso' }, 'Tarso')
+                                )
+                            )
                         )
+                    ),
+                    // Cerrada - Nivel 2
+                    React.createElement('tr', null,
+                        React.createElement('td', { 
+                            style: { 
+                                ...styles.tableCell,
+                                paddingLeft: '2rem'
+                            } 
+                        }, '↳ Cerrada'),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'cerrada',
+                                style: styles.radio,
+                                checked: radioSelections['cerrada'] === 'si',
+                                onChange: () => {},
+                                onClick: () => handleRadioClick('cerrada', 'si'),
+                                disabled: radioSelections['fractura'] !== 'si'
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'cerrada',
+                                style: styles.radio,
+                                checked: radioSelections['cerrada'] === 'no',
+                                onChange: () => {},
+                                onClick: () => handleRadioClick('cerrada', 'no'),
+                                disabled: radioSelections['fractura'] !== 'si'
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell })
+                    ),
+                    // Desplazada/Simple - Nivel 3
+                    React.createElement('tr', null,
+                        React.createElement('td', { 
+                            style: { 
+                                ...styles.tableCell,
+                                paddingLeft: '3rem'
+                            } 
+                        }, '↳ Tipo:'),
+                        React.createElement('td', { colSpan: 3, style: styles.tableCell },
+                            React.createElement('div', { style: { display: 'flex', gap: '2rem', alignItems: 'center' } },
+                                // Radio button para Desplazada
+                                React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '0.5rem' } },
+                                    React.createElement('input', {
+                                        type: 'radio',
+                                        name: 'cerradaTipo',
+                                        value: 'desplazada',
+                                        style: styles.radio,
+                                        checked: radioSelections['cerradaTipo'] === 'desplazada',
+                                        onChange: () => {},
+                                        onClick: () => handleRadioClick('cerradaTipo', 'desplazada'),
+                                        disabled: radioSelections['cerrada'] !== 'si'
+                                    }),
+                                    React.createElement('span', null, 'Desplazada')
+                                ),
+                                // Radio button para Simple
+                                React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '0.5rem' } },
+                                    React.createElement('input', {
+                                        type: 'radio',
+                                        name: 'cerradaTipo',
+                                        value: 'simple',
+                                        style: styles.radio,
+                                        checked: radioSelections['cerradaTipo'] === 'simple',
+                                        onChange: () => {},
+                                        onClick: () => handleRadioClick('cerradaTipo', 'simple'),
+                                        disabled: radioSelections['cerrada'] !== 'si'
+                                    }),
+                                    React.createElement('span', null, 'Simple')
+                                )
+                            )
+                        )
+                    ),
+                    // Expuesta - Nivel 2
+                    React.createElement('tr', null,
+                        React.createElement('td', { 
+                            style: { 
+                                ...styles.tableCell,
+                                paddingLeft: '2rem'
+                            } 
+                        }, '↳ Expuesta'),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'expuesta',
+                                style: styles.radio,
+                                checked: radioSelections['expuesta'] === 'si',
+                                onChange: () => {},
+                                onClick: () => handleRadioClick('expuesta', 'si'),
+                                disabled: radioSelections['fractura'] !== 'si'
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'expuesta',
+                                style: styles.radio,
+                                checked: radioSelections['expuesta'] === 'no',
+                                onChange: () => {},
+                                onClick: () => handleRadioClick('expuesta', 'no'),
+                                disabled: radioSelections['fractura'] !== 'si'
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell })
+                    ),
+                    // Gustilo-Anderson - Nivel 3
+                    React.createElement('tr', null,
+                        React.createElement('td', { 
+                            style: { 
+                                ...styles.tableCell,
+                                paddingLeft: '3rem'
+                            } 
+                        }, '↳ Gustilo-Anderson'),
+                        React.createElement('td', { 
+                            colSpan: 3,
+                            style: styles.tableCell 
+                        },
+                            React.createElement('select', {
+                                style: { ...styles.input, width: '150px' },
+                                value: formData.gustiloAnderson || '',
+                                onChange: (e) => handleInputChange('gustiloAnderson', e.target.value),
+                                disabled: radioSelections['expuesta'] !== 'si'
+                            },
+                                React.createElement('option', { value: '' }, 'Seleccionar...'),
+                                React.createElement('option', { value: 'I' }, 'I'),
+                                React.createElement('option', { value: 'II' }, 'II'),
+                                React.createElement('option', { value: 'IIIa' }, 'IIIa'),
+                                React.createElement('option', { value: 'IIIb' }, 'IIIb'),
+                                React.createElement('option', { value: 'IIIc' }, 'IIIc')
+                            )
+                        )
+                    ),
+                    // EEM - Nivel 1
+                    React.createElement('tr', null,
+                        React.createElement('td', { style: styles.tableCell }, 'EEM'),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'eem',
+                                style: styles.radio,
+                                checked: radioSelections['eem'] === 'si',
+                                onChange: () => {},
+                                onClick: () => handleRadioClick('eem', 'si')
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'eem',
+                                style: styles.radio,
+                                checked: radioSelections['eem'] === 'no',
+                                onChange: () => {},
+                                onClick: () => handleRadioClick('eem', 'no')
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell })
                     )
                 )
             )
