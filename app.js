@@ -1,13 +1,11 @@
+// Componente básico del formulario INOT
 const INOTForm = () => {
-  const [formData, setFormData] = useState({
+  const [formData, React.useState]({
     name: '',
     floor: '',
     ci: '',
     age: '',
-    origin: '',
-    fi: '',
-    fConsult: '',
-    fe: '',
+    origin: ''
   });
 
   const handleInputChange = (e) => {
@@ -48,27 +46,11 @@ const INOTForm = () => {
             </div>
           ))}
         </div>
-        <div className="flex justify-between mt-4">
-          {[
-            { label: 'FI:', name: 'fi' },
-            { label: 'F consulta infecto:', name: 'fConsult' },
-            { label: 'FE:', name: 'fe' }
-          ].map((field) => (
-            <div key={field.name} className="flex items-baseline gap-2">
-              <span className="font-bold">{field.label}</span>
-              <input
-                type="date"
-                name={field.name}
-                value={formData[field.name]}
-                onChange={handleInputChange}
-                className="border-b border-black min-w-[100px] min-h-[20px] p-1"
-              />
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
 };
 
-ReactDOM.render(<INOTForm />, document.getElementById('root'));
+// Renderizar la aplicación
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<INOTForm />);
