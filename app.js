@@ -239,7 +239,17 @@ function Form() {
         React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
             React.createElement('table', { style: styles.table },
                 // Cabecera de la tabla
-// Fractura
+                React.createElement('thead', null,
+                    React.createElement('tr', null,
+                        React.createElement('th', { style: styles.tableHeader }, 'Antecedentes Traumatológicos'),
+                        React.createElement('th', { style: styles.tableHeader }, 'SI'),
+                        React.createElement('th', { style: styles.tableHeader }, 'NO'),
+                        React.createElement('th', { style: styles.tableHeader }, 'Detalles')
+                    )
+                ),
+                // Cuerpo de la tabla
+                React.createElement('tbody', null,
+                    // Fractura
                     React.createElement('tr', null,
                         React.createElement('td', { style: styles.tableCell }, 'Fractura'),
                         React.createElement('td', { style: styles.tableCell },
