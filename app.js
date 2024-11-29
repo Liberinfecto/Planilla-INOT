@@ -2,7 +2,6 @@ const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 
 function Form() {
-    // Estado del formulario
     const [formData, setFormData] = React.useState({
         name: '',
         floor: '',
@@ -14,7 +13,6 @@ function Form() {
         fe: ''
     });
 
-    // Manejador de cambios en los inputs
     const handleInputChange = (fieldName, value) => {
         setFormData(prevData => ({
             ...prevData,
@@ -22,7 +20,6 @@ function Form() {
         }));
     };
 
-    // Estilos base
     const styles = {
         container: {
             maxWidth: '1024px',
@@ -54,6 +51,10 @@ function Form() {
             gap: '1rem',
             marginBottom: '1rem'
         },
+        fullWidth: {
+            gridColumn: '1 / -1',
+            marginBottom: '1rem'
+        },
         inputGroup: {
             display: 'flex',
             alignItems: 'center',
@@ -69,6 +70,26 @@ function Form() {
             borderBottom: '1px solid black',
             padding: '0.25rem',
             minWidth: 0
+        },
+        dateContainer: {
+            display: 'grid',
+            gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(3, 1fr)',
+            gap: '1rem',
+            marginTop: '1rem'
+        },
+        dateGroup: {
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem'
+        },
+        dateLabel: {
+            fontWeight: 'bold',
+            whiteSpace: 'nowrap'
+        },
+        dateInput: {
+            flex: 1,
+            padding: '0.25rem',
+            borderBottom: '1px solid black'
         }
     };
 
@@ -83,6 +104,7 @@ function Form() {
         
         // Formulario
         React.createElement('div', { style: styles.formContainer },
+            // Campos en grid
             React.createElement('div', { style: styles.grid },
                 // Campo Nombre
                 React.createElement('div', { style: styles.inputGroup },
@@ -122,6 +144,49 @@ function Form() {
                         value: formData.age,
                         onChange: (e) => handleInputChange('age', e.target.value),
                         style: styles.input
+                    })
+                ),
+                // Campo Procedencia (ancho completo)
+                React.createElement('div', { style: { ...styles.inputGroup, ...styles.fullWidth } },
+                    React.createElement('span', { style: styles.label }, 'Procedencia:'),
+                    React.createElement('input', { 
+                        type: 'text',
+                        value: formData.origin,
+                        onChange: (e) => handleInputChange('origin', e.target.value),
+                        style: styles.input
+                    })
+                )
+            ),
+            // Contenedor de fechas
+            React.createElement('div', { style: styles.dateContainer },
+                // Campo FI
+                React.createElement('div', { style: styles.dateGroup },
+                    React.createElement('span', { style: styles.dateLabel }, 'FI:'),
+                    React.createElement('input', { 
+                        type: 'date',
+                        value: formData.fi,
+                        onChange: (e) => handleInputChange('fi', e.target.value),
+                        style: styles.dateInput
+                    })
+                ),
+                // Campo F consulta infecto
+                React.createElement('div', { style: styles.dateGroup },
+                    React.createElement('span', { style: styles.dateLabel }, 'F consulta infecto:'),
+                    React.createElement('input', { 
+                        type: 'date',
+                        value: formData.fConsult,
+                        onChange: (e) => handleInputChange('fConsult', e.target.value),
+                        style: styles.dateInput
+                    })
+                ),
+                // Campo FE
+                React.createElement('div', { style: styles.dateGroup },
+                    React.createElement('span', { style: styles.dateLabel }, 'FE:'),
+                    React.createElement('input', { 
+                        type: 'date',
+                        value: formData.fe,
+                        onChange: (e) => handleInputChange('fe', e.target.value),
+                        style: styles.dateInput
                     })
                 )
             )
