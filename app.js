@@ -292,7 +292,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                             React.createElement('select', {
                                 style: { ...styles.input, width: '150px' },
                                 value: formData.fracturaTipo || '',
-                                onChange: (e) => handleInputChange('fracturaTipo', e.target.value),
+                                onChange: (e) => handleInputChange('fracturaTipo', e.target.value)
                             },
                                 React.createElement('option', { value: '' }, 'Seleccionar...'),
                                 React.createElement('option', { value: 'unica' }, 'Única'),
@@ -300,7 +300,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                             )
                         )
                     ),
-                    // Selector de hueso único
+                    // Selector de hueso único con sus detalles
                     (radioSelections['fractura'] === 'si' && formData.fracturaTipo === 'unica') && 
                     React.createElement('tr', null,
                         React.createElement('td', { 
@@ -310,49 +310,93 @@ const [radioSelections, setRadioSelections] = React.useState({});
                             } 
                         }, '↳ Hueso:'),
                         React.createElement('td', { colSpan: 3, style: styles.tableCell },
-                            React.createElement('select', {
-                                style: { ...styles.input, width: '200px' },
-                                value: formData.fracturaHueso || '',
-                                onChange: (e) => handleInputChange('fracturaHueso', e.target.value),
-                            },
-                                React.createElement('option', { value: '' }, 'Seleccionar hueso...'),
-                                // Miembro Superior
-                                React.createElement('optgroup', { label: 'Miembro Superior' },
-                                    React.createElement('option', { value: 'humero' }, 'Húmero'),
-                                    React.createElement('option', { value: 'radio' }, 'Radio'),
-                                    React.createElement('option', { value: 'cubito' }, 'Cúbito'),
-                                    React.createElement('option', { value: 'clavicula' }, 'Clavícula'),
-                                    React.createElement('option', { value: 'escapula' }, 'Escápula'),
-                                    React.createElement('option', { value: 'carpo' }, 'Carpo')
+                            React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '1rem' } },
+                                // Selector de hueso
+                                React.createElement('select', {
+                                    style: { ...styles.input, width: '200px' },
+                                    value: formData.fracturaHueso || '',
+                                    onChange: (e) => handleInputChange('fracturaHueso', e.target.value)
+                                },
+                                    React.createElement('option', { value: '' }, 'Seleccionar hueso...'),
+                                    // Miembro Superior
+                                    React.createElement('optgroup', { label: 'Miembro Superior' },
+                                        React.createElement('option', { value: 'humero' }, 'Húmero'),
+                                        React.createElement('option', { value: 'radio' }, 'Radio'),
+                                        React.createElement('option', { value: 'cubito' }, 'Cúbito'),
+                                        React.createElement('option', { value: 'clavicula' }, 'Clavícula'),
+                                        React.createElement('option', { value: 'escapula' }, 'Escápula'),
+                                        React.createElement('option', { value: 'carpo' }, 'Carpo')
+                                    ),
+                                    // Cadera/Pelvis
+                                    React.createElement('optgroup', { label: 'Cadera/Pelvis' },
+                                        React.createElement('option', { value: 'pelvis' }, 'Pelvis'),
+                                        React.createElement('option', { value: 'acetabulo' }, 'Acetábulo'),
+                                        React.createElement('option', { value: 'cabeza_femoral' }, 'Cabeza Femoral'),
+                                        React.createElement('option', { value: 'cuello_femoral' }, 'Cuello Femoral'),
+                                        React.createElement('option', { value: 'intertrocanterica' }, 'Intertrocantérica'),
+                                        React.createElement('option', { value: 'subtrocanterica' }, 'Subtrocantérica'),
+                                        React.createElement('option', { value: 'iliaco' }, 'Ilíaco'),
+                                        React.createElement('option', { value: 'isquion' }, 'Isquion'),
+                                        React.createElement('option', { value: 'pubis' }, 'Pubis'),
+                                        React.createElement('option', { value: 'sacro' }, 'Sacro')
+                                    ),
+                                    // Miembro Inferior
+                                    React.createElement('optgroup', { label: 'Miembro Inferior' },
+                                        React.createElement('option', { value: 'femur' }, 'Fémur'),
+                                        React.createElement('option', { value: 'rotula' }, 'Rótula'),
+                                        React.createElement('option', { value: 'tibia' }, 'Tibia'),
+                                        React.createElement('option', { value: 'pilon_tibial' }, 'Pilón Tibial'),
+                                        React.createElement('option', { value: 'perone' }, 'Peroné'),
+                                        React.createElement('option', { value: 'tobillo' }, 'Tobillo'),
+                                        React.createElement('option', { value: 'calcaneo' }, 'Calcáneo'),
+                                        React.createElement('option', { value: 'tarso' }, 'Tarso')
+                                    )
                                 ),
-                                // Cadera/Pelvis
-                                React.createElement('optgroup', { label: 'Cadera/Pelvis' },
-                                    React.createElement('option', { value: 'pelvis' }, 'Pelvis'),
-                                    React.createElement('option', { value: 'acetabulo' }, 'Acetábulo'),
-                                    React.createElement('option', { value: 'cabeza_femoral' }, 'Cabeza Femoral'),
-                                    React.createElement('option', { value: 'cuello_femoral' }, 'Cuello Femoral'),
-                                    React.createElement('option', { value: 'intertrocanterica' }, 'Intertrocantérica'),
-                                    React.createElement('option', { value: 'subtrocanterica' }, 'Subtrocantérica'),
-                                    React.createElement('option', { value: 'iliaco' }, 'Ilíaco'),
-                                    React.createElement('option', { value: 'isquion' }, 'Isquion'),
-                                    React.createElement('option', { value: 'pubis' }, 'Pubis'),
-                                    React.createElement('option', { value: 'sacro' }, 'Sacro')
-                                ),
-                                // Miembro Inferior
-                                React.createElement('optgroup', { label: 'Miembro Inferior' },
-                                    React.createElement('option', { value: 'femur' }, 'Fémur'),
-                                    React.createElement('option', { value: 'rotula' }, 'Rótula'),
-                                    React.createElement('option', { value: 'tibia' }, 'Tibia'),
-                                    React.createElement('option', { value: 'pilon_tibial' }, 'Pilón Tibial'),
-                                    React.createElement('option', { value: 'perone' }, 'Peroné'),
-                                    React.createElement('option', { value: 'tobillo' }, 'Tobillo'),
-                                    React.createElement('option', { value: 'calcaneo' }, 'Calcáneo'),
-                                    React.createElement('option', { value: 'tarso' }, 'Tarso')
+                                // Tipo de fractura (Cerrada/Expuesta)
+                                formData.fracturaHueso && React.createElement('div', { style: { display: 'flex', gap: '1rem', alignItems: 'center' } },
+                                    React.createElement('select', {
+                                        style: { ...styles.input, width: '150px' },
+                                        value: formData.fracturaHuesoTipo || '',
+                                        onChange: (e) => {
+                                            handleInputChange('fracturaHuesoTipo', e.target.value);
+                                            // Limpiar campos relacionados
+                                            handleInputChange('fracturaHuesoDesplazamiento', '');
+                                            handleInputChange('fracturaHuesoGustilo', '');
+                                        }
+                                    },
+                                        React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
+                                        React.createElement('option', { value: 'cerrada' }, 'Cerrada'),
+                                        React.createElement('option', { value: 'expuesta' }, 'Expuesta')
+                                    ),
+                                    // Detalles según tipo de fractura
+                                    formData.fracturaHuesoTipo === 'cerrada' &&
+                                    React.createElement('select', {
+                                        style: { ...styles.input, width: '150px' },
+                                        value: formData.fracturaHuesoDesplazamiento || '',
+                                        onChange: (e) => handleInputChange('fracturaHuesoDesplazamiento', e.target.value)
+                                    },
+                                        React.createElement('option', { value: '' }, 'Seleccionar...'),
+                                        React.createElement('option', { value: 'desplazada' }, 'Desplazada'),
+                                        React.createElement('option', { value: 'noDesplazada' }, 'No desplazada')
+                                    ),
+                                    formData.fracturaHuesoTipo === 'expuesta' &&
+                                    React.createElement('select', {
+                                        style: { ...styles.input, width: '150px' },
+                                        value: formData.fracturaHuesoGustilo || '',
+                                        onChange: (e) => handleInputChange('fracturaHuesoGustilo', e.target.value)
+                                    },
+                                        React.createElement('option', { value: '' }, 'Gustilo-Anderson...'),
+                                        React.createElement('option', { value: 'I' }, 'I'),
+                                        React.createElement('option', { value: 'II' }, 'II'),
+                                        React.createElement('option', { value: 'IIIa' }, 'IIIa'),
+                                        React.createElement('option', { value: 'IIIb' }, 'IIIb'),
+                                        React.createElement('option', { value: 'IIIc' }, 'IIIc')
+                                    )
                                 )
                             )
                         )
                     ),
-                    // Múltiples huesos con botón de agregar
+                    // Múltiples huesos con sus detalles
                     (radioSelections['fractura'] === 'si' && formData.fracturaTipo === 'multiple') && 
                     React.createElement('tr', null,
                         React.createElement('td', { 
@@ -366,75 +410,162 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                 formData.fracturaHuesos.map((hueso, index) => 
                                     React.createElement('div', { 
                                         key: index,
-                                        style: { display: 'flex', gap: '1rem', alignItems: 'center' }
+                                        style: { 
+                                            display: 'flex', 
+                                            flexDirection: 'column',
+                                            gap: '0.5rem',
+                                            padding: '1rem',
+                                            border: '1px solid #ccc',
+                                            borderRadius: '4px'
+                                        } 
                                     },
-                                        React.createElement('select', {
-                                            style: { ...styles.input, width: '200px' },
-                                            value: hueso,
-                                            onChange: (e) => {
-                                                const newHuesos = [...formData.fracturaHuesos];
-                                                newHuesos[index] = e.target.value;
-                                                setFormData(prev => ({
-                                                    ...prev,
-                                                    fracturaHuesos: newHuesos
-                                                }));
+                                        // Selector de hueso y botón eliminar
+                                        React.createElement('div', { 
+                                            style: { 
+                                                display: 'flex', 
+                                                gap: '1rem',
+                                                alignItems: 'center',
+                                                justifyContent: 'space-between'
                                             }
                                         },
-                                            React.createElement('option', { value: '' }, 'Seleccionar hueso...'),
-                                            React.createElement('optgroup', { label: 'Miembro Superior' },
-                                                React.createElement('option', { value: 'humero' }, 'Húmero'),
-                                                React.createElement('option', { value: 'radio' }, 'Radio'),
-                                                React.createElement('option', { value: 'cubito' }, 'Cúbito'),
-                                                React.createElement('option', { value: 'clavicula' }, 'Clavícula'),
-                                                React.createElement('option', { value: 'escapula' }, 'Escápula'),
-                                                React.createElement('option', { value: 'carpo' }, 'Carpo')
-                                            ),
-                                            React.createElement('optgroup', { label: 'Cadera/Pelvis' },
-                                                React.createElement('option', { value: 'pelvis' }, 'Pelvis'),
-                                                React.createElement('option', { value: 'acetabulo' }, 'Acetábulo'),
-                                                React.createElement('option', { value: 'cabeza_femoral' }, 'Cabeza Femoral'),
-                                                React.createElement('option', { value: 'cuello_femoral' }, 'Cuello Femoral'),
-                                                React.createElement('option', { value: 'intertrocanterica' }, 'Intertrocantérica'),
-                                                React.createElement('option', { value: 'subtrocanterica' }, 'Subtrocantérica'),
-                                                React.createElement('option', { value: 'iliaco' }, 'Ilíaco'),
-                                                React.createElement('option', { value: 'isquion' }, 'Isquion'),
-                                                React.createElement('option', { value: 'pubis' }, 'Pubis'),
-                                                React.createElement('option', { value: 'sacro' }, 'Sacro')
-                                            ),
-                                            React.createElement('optgroup', { label: 'Miembro Inferior' },
-                                                React.createElement('option', { value: 'femur' }, 'Fémur'),
-                                                React.createElement('option', { value: 'rotula' }, 'Rótula'),
-                                                React.createElement('option', { value: 'tibia' }, 'Tibia'),
-                                                React.createElement('option', { value: 'pilon_tibial' }, 'Pilón Tibial'),
-                                                React.createElement('option', { value: 'perone' }, 'Peroné'),
-                                                React.createElement('option', { value: 'tobillo' }, 'Tobillo'),
-                                                React.createElement('option', { value: 'calcaneo' }, 'Calcáneo'),
-                                                React.createElement('option', { value: 'tarso' }, 'Tarso')
-                                            )
-                                        ),
-                                        React.createElement('button', {
-                                            onClick: () => {
-                                                const newHuesos = formData.fracturaHuesos.filter((_, i) => i !== index);
-                                                setFormData(prev => ({
-                                                    ...prev,
-                                                    fracturaHuesos: newHuesos
-                                                }));
+                                            React.createElement('select', {
+                                                style: { ...styles.input, width: '200px' },
+                                                value: hueso.hueso || '',
+                                                onChange: (e) => {
+                                                    const newHuesos = [...formData.fracturaHuesos];
+                                                    newHuesos[index] = {
+                                                        ...newHuesos[index],
+                                                        hueso: e.target.value
+                                                    };
+                                                    setFormData(prev => ({
+                                                        ...prev,
+                                                        fracturaHuesos: newHuesos
+                                                    }));
+                                                }
                                             },
-                                            style: { 
-                                                padding: '0.25rem 0.5rem', 
-                                                cursor: 'pointer',
-                                                border: '1px solid #ccc',
-                                                borderRadius: '4px',
-                                                backgroundColor: '#f8f8f8'
-                                            }
-                                        }, '×')
+                                                React.createElement('option', { value: '' }, 'Seleccionar hueso...'),
+                                                React.createElement('optgroup', { label: 'Miembro Superior' },
+                                                    React.createElement('option', { value: 'humero' }, 'Húmero'),
+                                                    React.createElement('option', { value: 'radio' }, 'Radio'),
+                                                    React.createElement('option', { value: 'cubito' }, 'Cúbito'),
+                                                    React.createElement('option', { value: 'clavicula' }, 'Clavícula'),
+                                                    React.createElement('option', { value: 'escapula' }, 'Escápula'),
+                                                    React.createElement('option', { value: 'carpo' }, 'Carpo')
+                                                ),
+                                                React.createElement('optgroup', { label: 'Cadera/Pelvis' },
+                                                    React.createElement('option', { value: 'pelvis' }, 'Pelvis'),
+                                                    React.createElement('option', { value: 'acetabulo' }, 'Acetábulo'),
+                                                    React.createElement('option', { value: 'cabeza_femoral' }, 'Cabeza Femoral'),
+                                                    React.createElement('option', { value: 'cuello_femoral' }, 'Cuello Femoral'),
+                                                    React.createElement('option', { value: 'intertrocanterica' }, 'Intertrocantérica'),
+                                                    React.createElement('option', { value: 'subtrocanterica' }, 'Subtrocantérica'),
+                                                    React.createElement('option', { value: 'iliaco' }, 'Ilíaco'),
+                                                    React.createElement('option', { value: 'isquion' }, 'Isquion'),
+                                                    React.createElement('option', { value: 'pubis' }, 'Pubis'),
+                                                    React.createElement('option', { value: 'sacro' }, 'Sacro')
+                                                ),
+                                                React.createElement('optgroup', { label: 'Miembro Inferior' },
+                                                    React.createElement('option', { value: 'femur' }, 'Fémur'),
+                                                    React.createElement('option', { value: 'rotula' }, 'Rótula'),
+                                                    React.createElement('option', { value: 'tibia' }, 'Tibia'),
+                                                    React.createElement('option', { value: 'pilon_tibial' }, 'Pilón Tibial'),
+                                                    React.createElement('option', { value: 'perone' }, 'Peroné'),
+                                                    React.createElement('option', { value: 'tobillo' }, 'Tobillo'),
+                                                    React.createElement('option', { value: 'calcaneo' }, 'Calcáneo'),
+                                                    React.createElement('option', { value: 'tarso' }, 'Tarso')
+                                                )
+                                            ),
+                                            React.createElement('button', {
+                                                onClick: () => {
+                                                    const newHuesos = formData.fracturaHuesos.filter((_, i) => i !== index);
+                                                    setFormData(prev => ({
+                                                        ...prev,
+                                                        fracturaHuesos: newHuesos
+                                                    }));
+                                                },
+                                                style: { 
+                                                    padding: '0.25rem 0.5rem', 
+                                                    cursor: 'pointer',
+                                                    border: '1px solid #ccc',
+                                                    borderRadius: '4px',
+                                                    backgroundColor: '#f8f8f8'
+                                                }
+                                            }, '×')
+                                        ),
+                                             // Tipo de fractura y detalles
+                                        hueso.hueso && React.createElement('div', { style: { display: 'flex', gap: '1rem', alignItems: 'center' } },
+                                            React.createElement('select', {
+                                                style: { ...styles.input, width: '150px' },
+                                                value: hueso.tipo || '',
+                                                onChange: (e) => {
+                                                    const newHuesos = [...formData.fracturaHuesos];
+                                                    newHuesos[index] = {
+                                                        ...newHuesos[index],
+                                                        tipo: e.target.value,
+                                                        desplazamiento: '',
+                                                        gustilo: ''
+                                                    };
+                                                    setFormData(prev => ({
+                                                        ...prev,
+                                                        fracturaHuesos: newHuesos
+                                                    }));
+                                                }
+                                            },
+                                                React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
+                                                React.createElement('option', { value: 'cerrada' }, 'Cerrada'),
+                                                React.createElement('option', { value: 'expuesta' }, 'Expuesta')
+                                            ),
+                                            hueso.tipo === 'cerrada' &&
+                                            React.createElement('select', {
+                                                style: { ...styles.input, width: '150px' },
+                                                value: hueso.desplazamiento || '',
+                                                onChange: (e) => {
+                                                    const newHuesos = [...formData.fracturaHuesos];
+                                                    newHuesos[index] = {
+                                                        ...newHuesos[index],
+                                                        desplazamiento: e.target.value
+                                                    };
+                                                    setFormData(prev => ({
+                                                        ...prev,
+                                                        fracturaHuesos: newHuesos
+                                                    }));
+                                                }
+                                            },
+                                                React.createElement('option', { value: '' }, 'Seleccionar...'),
+                                                React.createElement('option', { value: 'desplazada' }, 'Desplazada'),
+                                                React.createElement('option', { value: 'noDesplazada' }, 'No desplazada')
+                                            ),
+                                            hueso.tipo === 'expuesta' &&
+                                            React.createElement('select', {
+                                                style: { ...styles.input, width: '150px' },
+                                                value: hueso.gustilo || '',
+                                                onChange: (e) => {
+                                                    const newHuesos = [...formData.fracturaHuesos];
+                                                    newHuesos[index] = {
+                                                        ...newHuesos[index],
+                                                        gustilo: e.target.value
+                                                    };
+                                                    setFormData(prev => ({
+                                                        ...prev,
+                                                        fracturaHuesos: newHuesos
+                                                    }));
+                                                }
+                                            },
+                                                React.createElement('option', { value: '' }, 'Gustilo-Anderson...'),
+                                                React.createElement('option', { value: 'I' }, 'I'),
+                                                React.createElement('option', { value: 'II' }, 'II'),
+                                                React.createElement('option', { value: 'IIIa' }, 'IIIa'),
+                                                React.createElement('option', { value: 'IIIb' }, 'IIIb'),
+                                                React.createElement('option', { value: 'IIIc' }, 'IIIc')
+                                            )
+                                        )
                                     )
                                 ),
                                 React.createElement('button', {
                                     onClick: () => {
                                         setFormData(prev => ({
                                             ...prev,
-                                            fracturaHuesos: [...prev.fracturaHuesos, '']
+                                            fracturaHuesos: [...prev.fracturaHuesos, { hueso: '', tipo: '', desplazamiento: '', gustilo: '' }]
                                         }));
                                     },
                                     style: { 
