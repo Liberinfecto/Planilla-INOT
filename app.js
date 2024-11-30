@@ -12,12 +12,17 @@ const [formData, setFormData] = React.useState({
     fConsult: '',
     fe: '',
     fractura: '',
-    fracturaHueso: '',
-    fracturaTipo: '',
-    fracturaHuesos: []
+    fracturaTipo: '',      // 'unica' o 'multiple'
+    // Para fractura única
+    fracturaHueso: '',     // el hueso seleccionado
+    fracturaHuesoTipo: '', // 'cerrada' o 'expuesta'
+    fracturaHuesoDesplazamiento: '', // 'desplazada' o 'noDesplazada' (si es cerrada)
+    fracturaHuesoGustilo: '',  // 'I', 'II', etc (si es expuesta)
+    // Para fracturas múltiples
+    fracturaHuesos: [], // Array de objetos, cada uno con: { hueso, tipo, desplazamiento, gustilo }
 });
 
-    const [radioSelections, setRadioSelections] = React.useState({});
+const [radioSelections, setRadioSelections] = React.useState({});
 
     const handleInputChange = (fieldName, value) => {
         setFormData(prevData => ({
