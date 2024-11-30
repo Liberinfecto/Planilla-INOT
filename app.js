@@ -2,18 +2,20 @@ const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 
 function Form() {
-    const [formData, setFormData] = React.useState({
-        name: '',
-        floor: '',
-        ci: '',
-        age: '',
-        origin: '',
-        fi: '',
-        fConsult: '',
-        fe: '',
-        fractura: '',
-        fracturaHueso: ''
-    });
+const [formData, setFormData] = React.useState({
+    name: '',
+    floor: '',
+    ci: '',
+    age: '',
+    origin: '',
+    fi: '',
+    fConsult: '',
+    fe: '',
+    fractura: '',
+    fracturaHueso: '',
+    fracturaTipo: '',
+    fracturaHuesos: []
+});
 
     const [radioSelections, setRadioSelections] = React.useState({});
 
