@@ -386,11 +386,11 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                         onChange: (e) => handleInputChange('fracturaHuesoGustilo', e.target.value)
                                     },
                                         React.createElement('option', { value: '' }, 'Gustilo-Anderson...'),
-                                        React.createElement('option', { value: 'I' }, 'I'),
-                                        React.createElement('option', { value: 'II' }, 'II'),
-                                        React.createElement('option', { value: 'IIIa' }, 'IIIa'),
-                                        React.createElement('option', { value: 'IIIb' }, 'IIIb'),
-                                        React.createElement('option', { value: 'IIIc' }, 'IIIc')
+                                        React.createElement('option', { value: 'I' }, 'Gustilo I'),
+                                        React.createElement('option', { value: 'II' }, 'Gustilo II'),
+                                        React.createElement('option', { value: 'IIIa' }, 'Gustilo IIIa'),
+                                        React.createElement('option', { value: 'IIIb' }, 'Gustilo IIIb'),
+                                        React.createElement('option', { value: 'IIIc' }, 'Gustilo IIIc')
                                     )
                                 )
                             )
