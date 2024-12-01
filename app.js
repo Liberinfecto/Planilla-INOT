@@ -291,6 +291,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                             }
                          })
                       )
+                    ),
                     // Selector Única/Múltiple
                     radioSelections['fractura'] === 'si' && React.createElement('tr', null,
                         React.createElement('td', { 
