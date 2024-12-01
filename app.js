@@ -280,16 +280,18 @@ const [radioSelections, setRadioSelections] = React.useState({});
                             })
                         ),
                         React.createElement('td', { style: styles.tableCell },
-                            React.createElement('input', {
-                                type: 'text',
+                            React.createElement('textarea', {
                                 value: formData.fracturaDetalles || '',
                                 onChange: (e) => handleInputChange('fracturaDetalles', e.target.value),
                                 placeholder: 'Agregar comentarios...',
                                 style: {
-                               ...styles.input,
-                                width: '100%'
-                            }
-                         })
+                                    ...styles.input,
+                                    width: '100%',
+                                    minHeight: '2rem',
+                                    resize: 'vertical',
+                                    overflow: 'auto'
+                                }
+                            })
                       )
                     ),
                     // Selector Única/Múltiple
