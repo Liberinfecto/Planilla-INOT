@@ -12,6 +12,7 @@ const [formData, setFormData] = React.useState({
     fConsult: '',
     fe: '',
     fractura: '',
+    fracturaDetalles: '',  // Para comentarios de fractura
     fracturaTipo: '',      // 'unica' o 'multiple'
     // Para fractura única
     fracturaHueso: '',     // el hueso seleccionado
