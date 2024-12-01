@@ -279,8 +279,18 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                 onClick: () => handleRadioClick('fractura', 'no')
                             })
                         ),
-                        React.createElement('td', { style: styles.tableCell })
-                    ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'text',
+                                value: formData.fracturaDetalles || '',
+                                onChange: (e) => handleInputChange('fracturaDetalles', e.target.value),
+                                placeholder: 'Agregar comentarios...',
+                                style: {
+                               ...styles.input,
+                                width: '100%'
+                            }
+                         })
+                      )
                     // Selector Única/Múltiple
                     radioSelections['fractura'] === 'si' && React.createElement('tr', null,
                         React.createElement('td', { 
