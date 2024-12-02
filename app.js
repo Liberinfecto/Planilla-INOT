@@ -1,6 +1,5 @@
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
-
 function Form() {
 const [formData, setFormData] = React.useState({
     name: '',
@@ -13,12 +12,8 @@ const [formData, setFormData] = React.useState({
     fe: '',
     fractura: '',
     fracturaDetalles: '',  // Para comentarios de fractura
-    osteosintesis: '',
-    osteosintesisTipo: '',
-    osteosintesisFechaColocacion: '',
-    osteosintesisExtraido: '',
-    osteosintesisFechaExtraccion: '',
-    osteosintesisOtros: '',  // para el campo de texto de "Otros"
+    osteosintesis: '',              // para el SI/NO principal
+    osteosintesisTipos: [],         // array de objetos con: { tipo, fechaColocacion, extraido, fechaExtraccion }
     fracturaTipo: '',      // 'unica' o 'multiple'
     // Para fractura única
     fracturaHueso: '',     // el hueso seleccionado
