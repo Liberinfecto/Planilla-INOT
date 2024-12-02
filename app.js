@@ -621,29 +621,95 @@ const [radioSelections, setRadioSelections] = React.useState({});
                     ),
                     React.createElement('td', { style: styles.tableCell })
                 ),
-                // Selector de tipo de osteosíntesis
+                // Lista de tipos de osteosíntesis
                 radioSelections['osteosintesis'] === 'si' && React.createElement('tr', null,
                     React.createElement('td', { 
                         style: { 
                             ...styles.tableCell,
                             paddingLeft: '2rem'
                         } 
-                    }, '↳ Tipo:'),
+                    }, '↳ Tipos:'),
                     React.createElement('td', { colSpan: 3, style: styles.tableCell },
-                        React.createElement('select', {
-                            style: { ...styles.input, width: '200px' },
-                            value: formData.osteosintesisTipo || '',
-                            onChange: (e) => handleInputChange('osteosintesisTipo', e.target.value)
-                        },
-                            React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
-                            React.createElement('option', { value: 'FFEE' }, 'FFEE'),
-                            React.createElement('option', { value: 'EEM' }, 'EEM'),
-                            React.createElement('option', { value: 'Placas' }, 'Placas'),
-                            React.createElement('option', { value: 'Tornillos' }, 'Tornillos'),
-                            React.createElement('option', { value: 'Fijador_Ilizarov' }, 'Fijador de Ilizarov'),
-                            React.createElement('option', { value: 'Alambres_Kirschner' }, 'Alambres de Kirschner'),
-                            React.createElement('option', { value: 'Grapas_metalicas' }, 'Grapas metálicas'),
-                            React.createElement('option', { value: 'Otros' }, 'Otros')
+                        React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '1rem' } },
+                            formData.osteosintesisTipos.map((tipo, index) => 
+                                React.createElement('div', { 
+                                    key: index,
+                                    style: { 
+                                        display: 'flex', 
+                                        flexDirection: 'column',
+                                        gap: '0.5rem',
+                                        padding: '1rem',
+                                        border: '1px solid #ccc',
+                                        borderRadius: '4px'
+                                    } 
+                                },
+                                    React.createElement('div', {
+                                        style: {
+                                            display: 'flex',
+                                            gap: '1rem',
+                                            alignItems: 'center'
+                                        }
+                                    },
+                                        React.createElement('select', {
+                                            style: { ...styles.input, width: '200px' },
+                                            value: tipo.tipo || '',
+                                            onChange: (e) => {
+                                                const nuevosTipos = [...formData.osteosintesisTipos];
+                                                nuevosTipos[index] = {
+                                                    ...nuevosTipos[index],
+                                                    tipo: e.target.value
+                                                };
+                                                setFormData(prev => ({
+                                                    ...prev,
+                                                    osteosintesisTipos: nuevosTipos
+                                                }));
+                                            }
+                                        },
+                                            React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
+                                            React.createElement('option', { value: 'FFEE' }, 'FFEE'),
+                                            React.createElement('option', { value: 'EEM' }, 'EEM'),
+                                            React.createElement('option', { value: 'Placas' }, 'Placas'),
+                                            React.createElement('option', { value: 'Tornillos' }, 'Tornillos'),
+                                            React.createElement('option', { value: 'Fijador_Ilizarov' }, 'Fijador de Ilizarov'),
+                                            React.createElement('option', { value: 'Alambres_Kirschner' }, 'Alambres de Kirschner'),
+                                            React.createElement('option', { value: 'Grapas_metalicas' }, 'Grapas metálicas'),
+                                            React.createElement('option', { value: 'Otros' }, 'Otros')
+                                        ),
+                                        React.createElement('button', {
+                                            onClick: () => {
+                                                const nuevosTipos = formData.osteosintesisTipos.filter((_, i) => i !== index);
+                                                setFormData(prev => ({
+                                                    ...prev,
+                                                    osteosintesisTipos: nuevosTipos
+                                                }));
+                                            },
+                                            style: {
+                                                padding: '0.25rem 0.5rem',
+                                                cursor: 'pointer',
+                                                border: '1px solid #ccc',
+                                                borderRadius: '4px',
+                                                backgroundColor: '#f8f8f8'
+                                            }
+                                        }, '×')
+                                    )
+                                )
+                            ),
+                            React.createElement('button', {
+                                onClick: () => {
+                                    setFormData(prev => ({
+                                        ...prev,
+                                        osteosintesisTipos: [...prev.osteosintesisTipos, { tipo: '', fechaColocacion: '', extraido: '', fechaExtraccion: '' }]
+                                    }));
+                                },
+                                style: {
+                                    padding: '0.5rem',
+                                    width: 'fit-content',
+                                    cursor: 'pointer',
+                                    border: '1px solid #ccc',
+                                    borderRadius: '4px',
+                                    backgroundColor: '#f8f8f8'
+                                }
+                            }, '+ Agregar Tipo')
                         )
                     )
                 )
