@@ -596,7 +596,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                         borderRadius: '4px',
                                         backgroundColor: '#f8f8f8'
                                     }
-                }, '+ Agregar Hueso')
+}, '+ Agregar Hueso')
                             )
                         )
                     )
@@ -624,8 +624,17 @@ const [radioSelections, setRadioSelections] = React.useState({});
                             onClick: () => handleRadioClick('osteosintesis', 'no')
                         })
                     ),
-                    React.createElement('td', { style: styles.tableCell },
-                        radioSelections['osteosintesis'] === 'si' && 
+                    React.createElement('td', { style: styles.tableCell })
+                ),
+                // Selector de tipo de osteosíntesis
+                radioSelections['osteosintesis'] === 'si' && React.createElement('tr', null,
+                    React.createElement('td', { 
+                        style: { 
+                            ...styles.tableCell,
+                            paddingLeft: '2rem'
+                        } 
+                    }, '↳ Tipo:'),
+                    React.createElement('td', { colSpan: 3, style: styles.tableCell },
                         React.createElement('select', {
                             style: { ...styles.input, width: '200px' },
                             value: formData.osteosintesisTipo || '',
