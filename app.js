@@ -13,6 +13,12 @@ const [formData, setFormData] = React.useState({
     fe: '',
     fractura: '',
     fracturaDetalles: '',  // Para comentarios de fractura
+    osteosintesis: '',
+    osteosintesisTipo: '',
+    osteosintesisFechaColocacion: '',
+    osteosintesisExtraido: '',
+    osteosintesisFechaExtraccion: '',
+    osteosintesisOtros: '',  // para el campo de texto de "Otros"
     fracturaTipo: '',      // 'unica' o 'multiple'
     // Para fractura única
     fracturaHueso: '',     // el hueso seleccionado
