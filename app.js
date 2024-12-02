@@ -631,7 +631,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                     }, '↳ Tipos:'),
                     React.createElement('td', { colSpan: 3, style: styles.tableCell },
                         React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '1rem' } },
-                            formData.osteosintesisTipos.map((tipo, index) => 
+                                            formData.osteosintesisTipos.map((tipo, index) => 
                                 React.createElement('div', { 
                                     key: index,
                                     style: { 
@@ -643,6 +643,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                         borderRadius: '4px'
                                     } 
                                 },
+                                    // Selector de tipo y botón eliminar
                                     React.createElement('div', {
                                         style: {
                                             display: 'flex',
@@ -691,14 +692,149 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                                 backgroundColor: '#f8f8f8'
                                             }
                                         }, '×')
-                                    )
+                                    ),
+                                    // Fecha de colocación
+                                    React.createElement('div', {
+                                        style: {
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '1rem'
+                                        }
+                                    },
+                                        React.createElement('span', null, 'Fecha colocación:'),
+                                        React.createElement('input', {
+                                            type: 'date',
+                                            value: tipo.fechaColocacion || '',
+                                            onChange: (e) => {
+                                                const nuevosTipos = [...formData.osteosintesisTipos];
+                                                nuevosTipos[index] = {
+                                                    ...nuevosTipos[index],
+                                                    fechaColocacion: e.target.value
+                                                };
+                                                setFormData(prev => ({
+                                                    ...prev,
+                                                    osteosintesisTipos: nuevosTipos
+                                                }));
+                                            },
+                                            style: {...styles.input}
+                                        })
+                                    ),
+                                    // Radio buttons ¿Se extrajo?
+                                    React.createElement('div', {
+                                        style: {
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '1rem'
+                                        }
+                                    },
+                                        React.createElement('span', null, '¿Se extrajo?'),
+                                        React.createElement('div', {
+                                            style: {
+                                                display: 'flex',
+                                                gap: '1rem'
+                                            }
+                                        },
+                                            React.createElement('label', {
+                                                style: {
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '0.5rem'
+                                                }
+                                            },
+                                                React.createElement('input', {
+                                                    type: 'radio',
+                                                    checked: tipo.extraido === 'si',
+                                                    onChange: () => {
+                                                        const nuevosTipos = [...formData.osteosintesisTipos];
+                                                        nuevosTipos[index] = {
+                                                            ...nuevosTipos[index],
+                                                            extraido: 'si'
+                                                        };
+                                                        setFormData(prev => ({
+                                                            ...prev,
+                                                            osteosintesisTipos: nuevosTipos
+                                                        }));
+                                                    },
+                                                    style: styles.radio
+                                                }),
+                                                'SI'
+                                            ),
+                                            React.createElement('label', {
+                                                style: {
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '0.5rem'
+                                                }
+                                            },
+                                                React.createElement('input', {
+                                                    type: 'radio',
+                                                    checked: tipo.extraido === 'no',
+                                                    onChange: () => {
+                                                        const nuevosTipos = [...formData.osteosintesisTipos];
+                                                        nuevosTipos[index] = {
+                                                            ...nuevosTipos[index],
+                                                            extraido: 'no'
+                                                        };
+                                                        setFormData(prev => ({
+                                                            ...prev,
+                                                            osteosintesisTipos: nuevosTipos
+                                                        }));
+                                                    },
+                                                    style: styles.radio
+                                                }),
+                                                'NO'
+                                            )
+                                        )
+                                    ),
+                                    // Fecha extracción o Alerta
+                                    tipo.extraido === 'si' ?
+                                    React.createElement('div', {
+                                        style: {
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '1rem'
+                                        }
+                                    },
+                                        React.createElement('span', null, 'Fecha extracción:'),
+                                        React.createElement('input', {
+                                            type: 'date',
+                                            value: tipo.fechaExtraccion || '',
+                                            onChange: (e) => {
+                                                const nuevosTipos = [...formData.osteosintesisTipos];
+                                                nuevosTipos[index] = {
+                                                    ...nuevosTipos[index],
+                                                    fechaExtraccion: e.target.value
+                                                };
+                                                setFormData(prev => ({
+                                                    ...prev,
+                                                    osteosintesisTipos: nuevosTipos
+                                                }));
+                                            },
+                                            style: {...styles.input}
+                                        })
+                                    ) :
+                                    tipo.extraido === 'no' &&
+                                    React.createElement('div', {
+                                        style: {
+                                            padding: '0.5rem',
+                                            backgroundColor: '#fff3cd',
+                                            color: '#856404',
+                                            borderRadius: '4px',
+                                            border: '1px solid #ffeeba'
+                                        }
+                                    }, 'Permanece con material de OS')
                                 )
                             ),
-                            React.createElement('button', {
+                                            React.createElement('button', {
                                 onClick: () => {
                                     setFormData(prev => ({
                                         ...prev,
-                                        osteosintesisTipos: [...prev.osteosintesisTipos, { tipo: '', fechaColocacion: '', extraido: '', fechaExtraccion: '' }]
+                                        osteosintesisTipos: [...prev.osteosintesisTipos, { 
+                                            tipo: '', 
+                                            fechaColocacion: '', 
+                                            extraido: '', 
+                                            fechaExtraccion: '' 
+                                        }]
                                     }));
                                 },
                                 style: {
