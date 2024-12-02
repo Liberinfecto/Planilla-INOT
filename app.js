@@ -596,8 +596,50 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                         borderRadius: '4px',
                                         backgroundColor: '#f8f8f8'
                                     }
-                                }, '+ Agregar Hueso')
+                }, '+ Agregar Hueso')
                             )
+                        )
+                    )
+                ),
+                // OSTEOSINTESIS - Nivel 1
+                React.createElement('tr', null,
+                    React.createElement('td', { style: styles.tableCell }, 'Osteosíntesis'),
+                    React.createElement('td', { style: styles.tableCell },
+                        React.createElement('input', {
+                            type: 'radio',
+                            name: 'osteosintesis',
+                            style: styles.radio,
+                            checked: radioSelections['osteosintesis'] === 'si',
+                            onChange: () => {},
+                            onClick: () => handleRadioClick('osteosintesis', 'si')
+                        })
+                    ),
+                    React.createElement('td', { style: styles.tableCell },
+                        React.createElement('input', {
+                            type: 'radio',
+                            name: 'osteosintesis',
+                            style: styles.radio,
+                            checked: radioSelections['osteosintesis'] === 'no',
+                            onChange: () => {},
+                            onClick: () => handleRadioClick('osteosintesis', 'no')
+                        })
+                    ),
+                    React.createElement('td', { style: styles.tableCell },
+                        radioSelections['osteosintesis'] === 'si' && 
+                        React.createElement('select', {
+                            style: { ...styles.input, width: '200px' },
+                            value: formData.osteosintesisTipo || '',
+                            onChange: (e) => handleInputChange('osteosintesisTipo', e.target.value)
+                        },
+                            React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
+                            React.createElement('option', { value: 'FFEE' }, 'FFEE'),
+                            React.createElement('option', { value: 'EEM' }, 'EEM'),
+                            React.createElement('option', { value: 'Placas' }, 'Placas'),
+                            React.createElement('option', { value: 'Tornillos' }, 'Tornillos'),
+                            React.createElement('option', { value: 'Fijador_Ilizarov' }, 'Fijador de Ilizarov'),
+                            React.createElement('option', { value: 'Alambres_Kirschner' }, 'Alambres de Kirschner'),
+                            React.createElement('option', { value: 'Grapas_metalicas' }, 'Grapas metálicas'),
+                            React.createElement('option', { value: 'Otros' }, 'Otros')
                         )
                     )
                 )
