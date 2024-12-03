@@ -24,6 +24,18 @@ const [formData, setFormData] = React.useState({
     fracturaHuesos: [], // Array de objetos, cada uno con: { hueso, tipo, desplazamiento, gustilo }
 });
 
+const [antecedentes, setAntecedentes] = React.useState({
+    fractura: '',               // para el SI/NO
+    fracturaHueso: '',         // para el hueso seleccionado
+    fracturaFecha: {           // estructura flexible para la fecha
+        año: '',
+        mes: '',
+        dia: ''
+    },
+    fracturaExpuesta: '',      // para el SI/NO de expuesta
+    fracturaGustilo: ''        // para clasificación Gustilo si es expuesta
+});
+
 const [radioSelections, setRadioSelections] = React.useState({});
 
     const handleInputChange = (fieldName, value) => {
