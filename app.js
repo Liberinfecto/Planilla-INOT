@@ -31,7 +31,12 @@ const [antecedentes, setAntecedentes] = React.useState({
         comentarios: ''
     },
     fracturaExpuesta: '',      // para el SI/NO de expuesta
-    fracturaGustilo: ''        // para clasificación Gustilo si es expuesta
+    fracturaGustilo: '',       // para clasificación Gustilo si es expuesta
+    osteosintesis: '',         // para el SI/NO de osteosíntesis
+    osteosintesisTipo: '',     // para el tipo de osteosíntesis
+    osteosintesisFecha: {      // para fecha y comentarios
+        comentarios: ''
+    }
 });
 
 const handleAntecedentesChange = (campo, valor, parteFecha) => {
