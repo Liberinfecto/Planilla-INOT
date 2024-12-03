@@ -283,7 +283,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                     )
                 ),
                 React.createElement('tbody', null,
-                    // FRACTURA - Nivel 1
+// FRACTURA - Nivel 1
                     React.createElement('tr', null,
                         React.createElement('td', { style: styles.tableCell }, 'Fractura'),
                         React.createElement('td', { style: styles.tableCell },
@@ -292,7 +292,14 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                 name: 'antecedenteFractura',
                                 style: styles.radio,
                                 checked: antecedentes.fractura === 'si',
-                                onChange: () => handleAntecedentesChange('fractura', 'si')
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.fractura === 'si') {
+                                        handleAntecedentesChange('fractura', '');
+                                    } else {
+                                        handleAntecedentesChange('fractura', 'si');
+                                    }
+                                }
                             })
                         ),
                         React.createElement('td', { style: styles.tableCell },
@@ -301,7 +308,14 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                 name: 'antecedenteFractura',
                                 style: styles.radio,
                                 checked: antecedentes.fractura === 'no',
-                                onChange: () => handleAntecedentesChange('fractura', 'no')
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.fractura === 'no') {
+                                        handleAntecedentesChange('fractura', '');
+                                    } else {
+                                        handleAntecedentesChange('fractura', 'no');
+                                    }
+                                }
                             })
                         ),
                         React.createElement('td', { style: styles.tableCell },
