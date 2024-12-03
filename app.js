@@ -250,7 +250,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                 // Cabecera de la tabla
                 React.createElement('thead', null,
                     React.createElement('tr', null,
-                        React.createElement('th', { style: styles.tableHeader }, 'Antecedentes Traumatológicos'),
+                        React.createElement('th', { style: styles.tableHeader }, 'Enfermedad Actual'),
                         React.createElement('th', { style: styles.tableHeader }, 'SI'),
                         React.createElement('th', { style: styles.tableHeader }, 'NO'),
                         React.createElement('th', { style: styles.tableHeader }, 'Detalles')
