@@ -36,6 +36,23 @@ const [antecedentes, setAntecedentes] = React.useState({
     fracturaGustilo: ''        // para clasificación Gustilo si es expuesta
 });
 
+const handleAntecedentesChange = (campo, valor, parteFecha) => {
+    if (parteFecha) {
+        setAntecedentes(prev => ({
+            ...prev,
+            fracturaFecha: {
+                ...prev.fracturaFecha,
+                [parteFecha]: valor
+            }
+        }));
+    } else {
+        setAntecedentes(prev => ({
+            ...prev,
+            [campo]: valor
+        }));
+    }
+};
+
 const [radioSelections, setRadioSelections] = React.useState({});
 
     const handleInputChange = (fieldName, value) => {
