@@ -27,10 +27,8 @@ const [formData, setFormData] = React.useState({
 const [antecedentes, setAntecedentes] = React.useState({
     fractura: '',               // para el SI/NO
     fracturaHueso: '',         // para el hueso seleccionado
-    fracturaFecha: {           // estructura flexible para la fecha
-        año: '',
-        mes: '',
-        dia: ''
+    fracturaFecha: {           // para fecha y comentarios
+        comentarios: ''
     },
     fracturaExpuesta: '',      // para el SI/NO de expuesta
     fracturaGustilo: ''        // para clasificación Gustilo si es expuesta
