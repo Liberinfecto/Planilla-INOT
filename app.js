@@ -314,38 +314,59 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                     alignItems: 'center'
                                 }
                             },
-                                // Selector de hueso
+// Selector de hueso
                                 React.createElement('select', {
                                     style: { ...styles.input, width: '150px' },
                                     value: antecedentes.fracturaHueso,
                                     onChange: (e) => handleAntecedentesChange('fracturaHueso', e.target.value)
                                 },
                                     React.createElement('option', { value: '' }, 'Seleccionar hueso...'),
+                                    // Miembro Superior
                                     React.createElement('optgroup', { label: 'Miembro Superior' },
                                         React.createElement('option', { value: 'humero' }, 'Húmero'),
                                         React.createElement('option', { value: 'radio' }, 'Radio'),
-                                        React.createElement('option', { value: 'cubito' }, 'Cúbito')
+                                        React.createElement('option', { value: 'cubito' }, 'Cúbito'),
+                                        React.createElement('option', { value: 'clavicula' }, 'Clavícula'),
+                                        React.createElement('option', { value: 'escapula' }, 'Escápula'),
+                                        React.createElement('option', { value: 'carpo' }, 'Carpo')
                                     ),
+                                    // Cadera/Pelvis
+                                    React.createElement('optgroup', { label: 'Cadera/Pelvis' },
+                                        React.createElement('option', { value: 'pelvis' }, 'Pelvis'),
+                                        React.createElement('option', { value: 'acetabulo' }, 'Acetábulo'),
+                                        React.createElement('option', { value: 'cabeza_femoral' }, 'Cabeza Femoral'),
+                                        React.createElement('option', { value: 'cuello_femoral' }, 'Cuello Femoral'),
+                                        React.createElement('option', { value: 'intertrocanterica' }, 'Intertrocantérica'),
+                                        React.createElement('option', { value: 'subtrocanterica' }, 'Subtrocantérica'),
+                                        React.createElement('option', { value: 'iliaco' }, 'Ilíaco'),
+                                        React.createElement('option', { value: 'isquion' }, 'Isquion'),
+                                        React.createElement('option', { value: 'pubis' }, 'Pubis'),
+                                        React.createElement('option', { value: 'sacro' }, 'Sacro')
+                                    ),
+                                    // Miembro Inferior
                                     React.createElement('optgroup', { label: 'Miembro Inferior' },
                                         React.createElement('option', { value: 'femur' }, 'Fémur'),
+                                        React.createElement('option', { value: 'rotula' }, 'Rótula'),
                                         React.createElement('option', { value: 'tibia' }, 'Tibia'),
-                                        React.createElement('option', { value: 'perone' }, 'Peroné')
+                                        React.createElement('option', { value: 'pilon_tibial' }, 'Pilón Tibial'),
+                                        React.createElement('option', { value: 'perone' }, 'Peroné'),
+                                        React.createElement('option', { value: 'tobillo' }, 'Tobillo'),
+                                        React.createElement('option', { value: 'calcaneo' }, 'Calcáneo'),
+                                        React.createElement('option', { value: 'tarso' }, 'Tarso')
                                     )
                                 ),
-                                // Inputs de fecha flexibles
-                                React.createElement('input', {
-                                    type: 'text',
-                                    placeholder: 'Año',
-                                    style: { ...styles.input, width: '60px' },
-                                    value: antecedentes.fracturaFecha.año,
-                                    onChange: (e) => handleAntecedentesChange(null, e.target.value, 'año')
-                                }),
-                                React.createElement('input', {
-                                    type: 'text',
-                                    placeholder: 'Mes',
-                                    style: { ...styles.input, width: '50px' },
-                                    value: antecedentes.fracturaFecha.mes,
-                                    onChange: (e) => handleAntecedentesChange(null, e.target.value, 'mes')
+                                // Textarea expandible para Fecha/Comentarios
+                                React.createElement('textarea', {
+                                    placeholder: 'Fecha/Comentarios',
+                                    style: {
+                                        ...styles.input,
+                                        width: '200px',
+                                        minHeight: '2rem',
+                                        resize: 'vertical',
+                                        overflow: 'auto'
+                                    },
+                                    value: antecedentes.fracturaFecha.comentarios || '',
+                                    onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
                                 })
                             )
                         )
