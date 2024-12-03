@@ -272,8 +272,131 @@ const [radioSelections, setRadioSelections] = React.useState({});
                 )
             )
         ),
-        
-      // Sección de Antecedentes Traumatológicos (nuevo contenedor separado)
+      // Sección de Antecedentes Traumatológicos
+        React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
+            React.createElement('table', { style: styles.table },
+                // Cabecera de la tabla
+                React.createElement('thead', null,
+                    React.createElement('tr', null,
+                        React.createElement('th', { style: styles.tableHeader }, 'Antecedentes Traumatológicos'),
+                        React.createElement('th', { style: styles.tableHeader }, 'SI'),
+                        React.createElement('th', { style: styles.tableHeader }, 'NO'),
+                        React.createElement('th', { style: styles.tableHeader }, 'Detalles')
+                    )
+                ),
+                React.createElement('tbody', null,
+                    // FRACTURA - Nivel 1
+                    React.createElement('tr', null,
+                        React.createElement('td', { style: styles.tableCell }, 'Fractura'),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteFractura',
+                                style: styles.radio,
+                                checked: antecedentes.fractura === 'si',
+                                onChange: () => handleAntecedentesChange('fractura', 'si')
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteFractura',
+                                style: styles.radio,
+                                checked: antecedentes.fractura === 'no',
+                                onChange: () => handleAntecedentesChange('fractura', 'no')
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            antecedentes.fractura === 'si' && React.createElement('div', {
+                                style: {
+                                    display: 'flex',
+                                    gap: '1rem',
+                                    alignItems: 'center'
+                                }
+                            },
+                                // Selector de hueso
+                                React.createElement('select', {
+                                    style: { ...styles.input, width: '150px' },
+                                    value: antecedentes.fracturaHueso,
+                                    onChange: (e) => handleAntecedentesChange('fracturaHueso', e.target.value)
+                                },
+                                    React.createElement('option', { value: '' }, 'Seleccionar hueso...'),
+                                    React.createElement('optgroup', { label: 'Miembro Superior' },
+                                        React.createElement('option', { value: 'humero' }, 'Húmero'),
+                                        React.createElement('option', { value: 'radio' }, 'Radio'),
+                                        React.createElement('option', { value: 'cubito' }, 'Cúbito')
+                                    ),
+                                    React.createElement('optgroup', { label: 'Miembro Inferior' },
+                                        React.createElement('option', { value: 'femur' }, 'Fémur'),
+                                        React.createElement('option', { value: 'tibia' }, 'Tibia'),
+                                        React.createElement('option', { value: 'perone' }, 'Peroné')
+                                    )
+                                ),
+                                // Inputs de fecha flexibles
+                                React.createElement('input', {
+                                    type: 'text',
+                                    placeholder: 'Año',
+                                    style: { ...styles.input, width: '60px' },
+                                    value: antecedentes.fracturaFecha.año,
+                                    onChange: (e) => handleAntecedentesChange(null, e.target.value, 'año')
+                                }),
+                                React.createElement('input', {
+                                    type: 'text',
+                                    placeholder: 'Mes',
+                                    style: { ...styles.input, width: '50px' },
+                                    value: antecedentes.fracturaFecha.mes,
+                                    onChange: (e) => handleAntecedentesChange(null, e.target.value, 'mes')
+                                })
+                            )
+                        )
+                    ),
+                    // Fila de Expuesta (aparece solo si hay fractura)
+                    antecedentes.fractura === 'si' && React.createElement('tr', null,
+                        React.createElement('td', { 
+                            style: { 
+                                ...styles.tableCell,
+                                paddingLeft: '2rem'
+                            } 
+                        }, '↳ Expuesta:'),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteExpuesta',
+                                style: styles.radio,
+                                checked: antecedentes.fracturaExpuesta === 'si',
+                                onChange: () => handleAntecedentesChange('fracturaExpuesta', 'si')
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteExpuesta',
+                                style: styles.radio,
+                                checked: antecedentes.fracturaExpuesta === 'no',
+                                onChange: () => handleAntecedentesChange('fracturaExpuesta', 'no')
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            antecedentes.fracturaExpuesta === 'si' && 
+                            React.createElement('select', {
+                                style: { ...styles.input, width: '150px' },
+                                value: antecedentes.fracturaGustilo,
+                                onChange: (e) => handleAntecedentesChange('fracturaGustilo', e.target.value)
+                            },
+                                React.createElement('option', { value: '' }, 'Gustilo-Anderson...'),
+                                React.createElement('option', { value: 'I' }, 'Gustilo I'),
+                                React.createElement('option', { value: 'II' }, 'Gustilo II'),
+                                React.createElement('option', { value: 'IIIa' }, 'Gustilo IIIa'),
+                                React.createElement('option', { value: 'IIIb' }, 'Gustilo IIIb'),
+                                React.createElement('option', { value: 'IIIc' }, 'Gustilo IIIc')
+                            )
+                        )
+                    )
+                )
+            )
+        ),
+                         
+      // Sección de Enfermedad Actual
         React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
             React.createElement('table', { style: styles.table },
                 // Cabecera de la tabla
