@@ -592,7 +592,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                             })
                         )
                     ),
-                    // PROTESIS - Nivel principal
+// PROTESIS - Nivel principal
                     React.createElement('tr', null,
                         React.createElement('td', { style: styles.tableCell }, 'Prótesis'),
                         React.createElement('td', { style: styles.tableCell },
