@@ -40,6 +40,15 @@ const [antecedentes, setAntecedentes] = React.useState({
     retiroImplante: '',              
     retiroImplanteFecha: {           
         comentarios: ''
+     },
+   protesis: '',              // SI/NO de prótesis
+   protesisTipo: '',          // tipo de prótesis (rodilla/cadera/otros)
+   protesisFecha: {           // para fecha y comentarios
+       comentarios: ''
+   },
+   recambioProtesis: '',      // SI/NO de recambio
+   recambioProtesisFecha: {   // para fecha y comentarios
+       comentarios: ''
     }
 });
 
@@ -579,6 +588,129 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                     overflow: 'auto'
                                 },
                                 value: antecedentes.retiroImplanteFecha.comentarios || '',
+                                    onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                            })
+                        )
+                    ),
+                    // PROTESIS - Nivel principal
+                    React.createElement('tr', null,
+                        React.createElement('td', { style: styles.tableCell }, 'Prótesis'),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteProtesis',
+                                style: styles.radio,
+                                checked: antecedentes.protesis === 'si',
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.protesis === 'si') {
+                                        handleAntecedentesChange('protesis', '');
+                                    } else {
+                                        handleAntecedentesChange('protesis', 'si');
+                                    }
+                                }
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteProtesis',
+                                style: styles.radio,
+                                checked: antecedentes.protesis === 'no',
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.protesis === 'no') {
+                                        handleAntecedentesChange('protesis', '');
+                                    } else {
+                                        handleAntecedentesChange('protesis', 'no');
+                                    }
+                                }
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            antecedentes.protesis === 'si' && React.createElement('div', {
+                                style: {
+                                    display: 'flex',
+                                    gap: '1rem',
+                                    alignItems: 'center'
+                                }
+                            },
+                                React.createElement('select', {
+                                    style: { ...styles.input, width: '150px' },
+                                    value: antecedentes.protesisTipo || '',
+                                    onChange: (e) => handleAntecedentesChange('protesisTipo', e.target.value)
+                                },
+                                    React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
+                                    React.createElement('option', { value: 'rodilla' }, 'Rodilla'),
+                                    React.createElement('option', { value: 'cadera' }, 'Cadera'),
+                                    React.createElement('option', { value: 'otros' }, 'Otros')
+                                ),
+                                React.createElement('textarea', {
+                                    placeholder: 'Fecha/Comentarios',
+                                    style: {
+                                        ...styles.input,
+                                        width: '200px',
+                                        minHeight: '2rem',
+                                        resize: 'vertical',
+                                        overflow: 'auto'
+                                    },
+                                    value: antecedentes.protesisFecha.comentarios || '',
+                                    onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                                })
+                            )
+                        )
+                    ),
+                    // Fila de Recambio de prótesis (aparece solo si prótesis es sí)
+                    antecedentes.protesis === 'si' && React.createElement('tr', null,
+                        React.createElement('td', { 
+                            style: { 
+                                ...styles.tableCell,
+                                paddingLeft: '2rem'
+                            } 
+                        }, '↳ Recambio de prótesis:'),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteRecambioProtesis',
+                                style: styles.radio,
+                                checked: antecedentes.recambioProtesis === 'si',
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.recambioProtesis === 'si') {
+                                        handleAntecedentesChange('recambioProtesis', '');
+                                    } else {
+                                        handleAntecedentesChange('recambioProtesis', 'si');
+                                    }
+                                }
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteRecambioProtesis',
+                                style: styles.radio,
+                                checked: antecedentes.recambioProtesis === 'no',
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.recambioProtesis === 'no') {
+                                        handleAntecedentesChange('recambioProtesis', '');
+                                    } else {
+                                        handleAntecedentesChange('recambioProtesis', 'no');
+                                    }
+                                }
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('textarea', {
+                                placeholder: 'Fecha/Comentarios',
+                                style: {
+                                    ...styles.input,
+                                    width: '100%',
+                                    minHeight: '2rem',
+                                    resize: 'vertical',
+                                    overflow: 'auto'
+                                },
+                                value: antecedentes.recambioProtesisFecha.comentarios || '',
                                 onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
                             })
                         )
@@ -586,9 +718,8 @@ const [radioSelections, setRadioSelections] = React.useState({});
                 )
             )
         ),
-
-
-// Sección de Enfermedad Actual
+                         
+      // Sección de Enfermedad Actual
 
 
         React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
