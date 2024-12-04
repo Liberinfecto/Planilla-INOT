@@ -527,6 +527,7 @@ Aquí tienes el bloque completo, desde // OSTEOSINTESIS - Nivel 1 hasta // Secci
                                 })
                             )
                         )
+                       )
                     ),
 
 // Sección de Enfermedad Actual
