@@ -402,7 +402,14 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                 name: 'antecedenteExpuesta',
                                 style: styles.radio,
                                 checked: antecedentes.fracturaExpuesta === 'si',
-                                onChange: () => handleAntecedentesChange('fracturaExpuesta', 'si')
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.fracturaExpuesta === 'si') {
+                                        handleAntecedentesChange('fracturaExpuesta', '');
+                                    } else {
+                                        handleAntecedentesChange('fracturaExpuesta', 'si');
+                                    }
+                                }
                             })
                         ),
                         React.createElement('td', { style: styles.tableCell },
@@ -411,7 +418,14 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                 name: 'antecedenteExpuesta',
                                 style: styles.radio,
                                 checked: antecedentes.fracturaExpuesta === 'no',
-                                onChange: () => handleAntecedentesChange('fracturaExpuesta', 'no')
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.fracturaExpuesta === 'no') {
+                                        handleAntecedentesChange('fracturaExpuesta', '');
+                                    } else {
+                                        handleAntecedentesChange('fracturaExpuesta', 'no');
+                                    }
+                                }
                             })
                         ),
                         React.createElement('td', { style: styles.tableCell },
@@ -429,10 +443,82 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                 React.createElement('option', { value: 'IIIc' }, 'Gustilo IIIc')
                             )
                         )
+                    ),
+                    // OSTEOSINTESIS - Nivel 1
+                    React.createElement('tr', null,
+                        React.createElement('td', { style: styles.tableCell }, 'Osteosíntesis'),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteOsteosintesis',
+                                style: styles.radio,
+                                checked: antecedentes.osteosintesis === 'si',
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.osteosintesis === 'si') {
+                                        handleAntecedentesChange('osteosintesis', '');
+                                    } else {
+                                        handleAntecedentesChange('osteosintesis', 'si');
+                                    }
+                                }
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteOsteosintesis',
+                                style: styles.radio,
+                                checked: antecedentes.osteosintesis === 'no',
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.osteosintesis === 'no') {
+                                        handleAntecedentesChange('osteosintesis', '');
+                                    } else {
+                                        handleAntecedentesChange('osteosintesis', 'no');
+                                    }
+                                }
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            antecedentes.osteosintesis === 'si' && React.createElement('div', {
+                                style: {
+                                    display: 'flex',
+                                    gap: '1rem',
+                                    alignItems: 'center'
+                                }
+                            },
+                                React.createElement('select', {
+                                    style: { ...styles.input, width: '200px' },
+                                    value: antecedentes.osteosintesisTipo || '',
+                                    onChange: (e) => handleAntecedentesChange('osteosintesisTipo', e.target.value)
+                                },
+                                    React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
+                                    React.createElement('option', { value: 'FFEE' }, 'FFEE'),
+                                    React.createElement('option', { value: 'EEM' }, 'EEM'),
+                                    React.createElement('option', { value: 'Placas' }, 'Placas'),
+                                    React.createElement('option', { value: 'Tornillos' }, 'Tornillos'),
+                                    React.createElement('option', { value: 'Fijador_Ilizarov' }, 'Fijador de Ilizarov'),
+                                    React.createElement('option', { value: 'Alambres_Kirschner' }, 'Alambres de Kirschner'),
+                                    React.createElement('option', { value: 'Grapas_metalicas' }, 'Grapas metálicas'),
+                                    React.createElement('option', { value: 'Otros' }, 'Otros')
+                                ),
+                                React.createElement('textarea', {
+                                    placeholder: 'Fecha/Comentarios',
+                                    style: {
+                                        ...styles.input,
+                                        width: '200px',
+                                        minHeight: '2rem',
+                                        resize: 'vertical',
+                                        overflow: 'auto'
+                                    },
+                                    value: antecedentes.osteosintesisFecha.comentarios || '',
+                                    onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                                })
+                            )
+                        )
                     )
                 )
-            )
-        ),
+            ),
                          
       // Sección de Enfermedad Actual
         React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
