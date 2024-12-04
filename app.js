@@ -527,11 +527,10 @@ Aquí tienes el bloque completo, desde // OSTEOSINTESIS - Nivel 1 hasta // Secci
                                 })
                             )
                         )
-                       )
-                    )
                     ),
 
 // Sección de Enfermedad Actual
+
 
 
         React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
