@@ -22,6 +22,11 @@ const [formData, setFormData] = React.useState({
     fracturaHuesoGustilo: '',  // 'I', 'II', etc (si es expuesta)
     // Para fracturas múltiples
     fracturaHuesos: [], // Array de objetos, cada uno con: { hueso, tipo, desplazamiento, gustilo }
+    // Nuevos campos para ISQ y LQ
+    isq: '',              // para el SI/NO de ISQ
+    isqDetalles: '',      // para los detalles de ISQ
+    lq: '',              // para el SI/NO de LQ
+    lqDetalles: ''       // para los detalles de LQ
 });
 
 const [antecedentes, setAntecedentes] = React.useState({
@@ -718,7 +723,83 @@ const [radioSelections, setRadioSelections] = React.useState({});
                 )
             )
         ),
-                         
+        // ISQ Row
+        React.createElement('tr', null,
+            React.createElement('td', { style: styles.tableCell }, 'ISQ'),
+            React.createElement('td', { style: styles.tableCell },
+                React.createElement('input', {
+                    type: 'radio',
+                    name: 'isq',
+                    style: styles.radio,
+                    checked: radioSelections['isq'] === 'si',
+                    onChange: () => {},
+                    onClick: () => handleRadioClick('isq', 'si')
+                })
+            ),
+            React.createElement('td', { style: styles.tableCell },
+                React.createElement('input', {
+                    type: 'radio',
+                    name: 'isq',
+                    style: styles.radio,
+                    checked: radioSelections['isq'] === 'no',
+                    onChange: () => {},
+                    onClick: () => handleRadioClick('isq', 'no')
+                })
+            ),
+            React.createElement('td', { style: styles.tableCell },
+                React.createElement('textarea', {
+                    value: formData.isqDetalles || '',
+                    onChange: (e) => handleInputChange('isqDetalles', e.target.value),
+                    placeholder: 'Agregar comentarios...',
+                    style: {
+                        ...styles.input,
+                        width: '100%',
+                        minHeight: '2rem',
+                        resize: 'vertical',
+                        overflow: 'auto'
+                    }
+                })
+            )
+        ),
+        // LQ Row
+        React.createElement('tr', null,
+            React.createElement('td', { style: styles.tableCell }, 'LQ'),
+            React.createElement('td', { style: styles.tableCell },
+                React.createElement('input', {
+                    type: 'radio',
+                    name: 'lq',
+                    style: styles.radio,
+                    checked: radioSelections['lq'] === 'si',
+                    onChange: () => {},
+                    onClick: () => handleRadioClick('lq', 'si')
+                })
+            ),
+            React.createElement('td', { style: styles.tableCell },
+                React.createElement('input', {
+                    type: 'radio',
+                    name: 'lq',
+                    style: styles.radio,
+                    checked: radioSelections['lq'] === 'no',
+                    onChange: () => {},
+                    onClick: () => handleRadioClick('lq', 'no')
+                })
+            ),
+            React.createElement('td', { style: styles.tableCell },
+                React.createElement('textarea', {
+                    value: formData.lqDetalles || '',
+                    onChange: (e) => handleInputChange('lqDetalles', e.target.value),
+                    placeholder: 'Agregar comentarios...',
+                    style: {
+                        ...styles.input,
+                        width: '100%',
+                        minHeight: '2rem',
+                        resize: 'vertical',
+                        overflow: 'auto'
+                    }
+                })
+            )
+        ),
+                               
       // Sección de Enfermedad Actual
 
 
