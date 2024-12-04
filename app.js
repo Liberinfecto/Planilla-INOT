@@ -734,7 +734,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                     ),
 // ISQ Row
                     React.createElement('tr', null,
-                        React.createElement('td', { style: styles.tableCell }, 'ISQ'),
+                        React.createElement('td', { style: styles.tableCell }, 'ISQ Previas al Ingreso Actual'),
                         React.createElement('td', { style: styles.tableCell },
                             React.createElement('input', {
                                 type: 'radio',
@@ -785,7 +785,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
 
 // LQ Row
                    React.createElement('tr', null,
-                       React.createElement('td', { style: styles.tableCell }, 'LQ'),
+                       React.createElement('td', { style: styles.tableCell }, 'LQ Previas al Ingreso Actual'),
                        React.createElement('td', { style: styles.tableCell },
                            React.createElement('input', {
                                type: 'radio',
