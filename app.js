@@ -60,10 +60,6 @@ const [antecedentes, setAntecedentes] = React.useState({
     }
 });
 
-
-    
-});
-
 const handleAntecedentesChange = (campo, valor, parteFecha) => {
     if (parteFecha) {
         setAntecedentes(prev => ({
