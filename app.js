@@ -22,11 +22,6 @@ const [formData, setFormData] = React.useState({
     fracturaHuesoGustilo: '',  // 'I', 'II', etc (si es expuesta)
     // Para fracturas múltiples
     fracturaHuesos: [], // Array de objetos, cada uno con: { hueso, tipo, desplazamiento, gustilo }
-    // Nuevos campos para ISQ y LQ
-    isq: '',              // para el SI/NO de ISQ
-    isqDetalles: '',      // para los detalles de ISQ
-    lq: '',              // para el SI/NO de LQ
-    lqDetalles: ''       // para los detalles de LQ
 });
 
 const [antecedentes, setAntecedentes] = React.useState({
@@ -54,7 +49,19 @@ const [antecedentes, setAntecedentes] = React.useState({
    recambioProtesis: '',      // SI/NO de recambio
    recambioProtesisFecha: {   // para fecha y comentarios
        comentarios: ''
+    },
+    isq: '',                   // para el SI/NO de ISQ
+    isqDetalles: {             // para comentarios de ISQ
+        comentarios: ''
+    },
+    lq: '',                    // para el SI/NO de LQ
+    lqDetalles: {              // para comentarios de LQ
+        comentarios: ''
     }
+});
+
+
+    
 });
 
 const handleAntecedentesChange = (campo, valor, parteFecha) => {
