@@ -827,14 +827,12 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                 },
                                 value: antecedentes.lqDetalles.comentarios || '',
                                 onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
-                            })
-                        )
                     )
                 )
             )
         ),
-                               
-      // Sección de Enfermedad Actual
+     
+        // Sección de Enfermedad Actual
 
 
         React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
