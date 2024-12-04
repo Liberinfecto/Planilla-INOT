@@ -486,19 +486,8 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                 }
                             })
                         ),
-                        React.createElement('td', { style: styles.tableCell })
-                    ),
-                    antecedentes.fractura === 'si' && antecedentes.osteosintesis === 'si' && React.createElement('tr', null,
-                        React.createElement('td', { 
-                            style: { 
-                                ...styles.tableCell,
-                                paddingLeft: '2rem'
-                            } 
-                        }, ''),
-                        React.createElement('td', { style: styles.tableCell }),
-                        React.createElement('td', { style: styles.tableCell }),
                         React.createElement('td', { style: styles.tableCell },
-                            React.createElement('div', {
+                            antecedentes.osteosintesis === 'si' && React.createElement('div', {
                                 style: {
                                     display: 'flex',
                                     gap: '1rem',
@@ -534,15 +523,9 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                 })
                             )
                         )
-                    )
-                )
-            )
-        ),
+                    ),
 
 // Sección de Enfermedad Actual
-
-
-
 
         React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
             React.createElement('table', { style: styles.table },
