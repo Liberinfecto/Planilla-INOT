@@ -831,8 +831,111 @@ const [radioSelections, setRadioSelections] = React.useState({});
                 )
             )
         ),
-        
-        // Sección de Enfermedad Actual
+// LQ Row
+                   React.createElement('tr', null,
+                       React.createElement('td', { style: styles.tableCell }, 'LQ'),
+                       React.createElement('td', { style: styles.tableCell },
+                           React.createElement('input', {
+                               type: 'radio',
+                               name: 'antecedenteLq',
+                               style: styles.radio,
+                               checked: antecedentes.lq === 'si',
+                               onChange: () => {},
+                               onClick: () => {
+                                   if (antecedentes.lq === 'si') {
+                                       handleAntecedentesChange('lq', '');
+                                   } else {
+                                       handleAntecedentesChange('lq', 'si');
+                                   }
+                               }
+                           })
+                       ),
+                       React.createElement('td', { style: styles.tableCell },
+                           React.createElement('input', {
+                               type: 'radio',
+                               name: 'antecedenteLq',
+                               style: styles.radio,
+                               checked: antecedentes.lq === 'no',
+                               onChange: () => {},
+                               onClick: () => {
+                                   if (antecedentes.lq === 'no') {
+                                       handleAntecedentesChange('lq', '');
+                                   } else {
+                                       handleAntecedentesChange('lq', 'no');
+                                   }
+                               }
+                           })
+                       ),
+                       React.createElement('td', { style: styles.tableCell },
+                           React.createElement('textarea', {
+                               placeholder: 'Fecha/Comentarios',
+                               style: {
+                                   ...styles.input,
+                                   width: '100%',
+                                   minHeight: '2rem',
+                                   resize: 'vertical',
+                                   overflow: 'auto'
+                               },
+                               value: antecedentes.lqDetalles.comentarios || '',
+                               onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                           })
+                       )
+                   ),
+// Aislamiento Microbiológico Row
+                   React.createElement('tr', null,
+                       React.createElement('td', { style: styles.tableCell }, 'Aislamiento Microbiológico previo'),
+                       React.createElement('td', { style: styles.tableCell },
+                           React.createElement('input', {
+                               type: 'radio',
+                               name: 'antecedenteAislamiento',
+                               style: styles.radio,
+                               checked: antecedentes.aislamiento === 'si',
+                               onChange: () => {},
+                               onClick: () => {
+                                   if (antecedentes.aislamiento === 'si') {
+                                       handleAntecedentesChange('aislamiento', '');
+                                   } else {
+                                       handleAntecedentesChange('aislamiento', 'si');
+                                   }
+                               }
+                           })
+                       ),
+                       React.createElement('td', { style: styles.tableCell },
+                           React.createElement('input', {
+                               type: 'radio',
+                               name: 'antecedenteAislamiento',
+                               style: styles.radio,
+                               checked: antecedentes.aislamiento === 'no',
+                               onChange: () => {},
+                               onClick: () => {
+                                   if (antecedentes.aislamiento === 'no') {
+                                       handleAntecedentesChange('aislamiento', '');
+                                   } else {
+                                       handleAntecedentesChange('aislamiento', 'no');
+                                   }
+                               }
+                           })
+                       ),
+                       React.createElement('td', { style: styles.tableCell },
+                           React.createElement('textarea', {
+                               placeholder: 'Microorganismo/Comentarios',
+                               style: {
+                                   ...styles.input,
+                                   width: '100%',
+                                   minHeight: '2rem',
+                                   resize: 'vertical',
+                                   overflow: 'auto'
+                               },
+                               value: antecedentes.aislamientoDetalles.comentarios || '',
+                               onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                           })
+                       )
+                   )
+               )
+           )
+       ),
+       
+       // Sección de Enfermedad Actual
 
 
 
