@@ -61,7 +61,11 @@ const [antecedentes, setAntecedentes] = React.useState({
    aislamiento: '',           // para el SI/NO de aislamiento
    aislamientoDetalles: {     // para detalles de aislamiento
        comentarios: ''
-   }
+   },
+   antibioticos: '',           // para el SI/NO de antibióticos previos
+   antibioticosDetalles: {     // para detalles de antibióticos
+        comentarios: ''
+    }
 });
 
 const handleAntecedentesChange = (campo, valor, parteFecha) => {
