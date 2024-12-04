@@ -730,80 +730,107 @@ const [radioSelections, setRadioSelections] = React.useState({});
                 )
             )
         ),
-        // ISQ Row
-        React.createElement('tr', null,
-            React.createElement('td', { style: styles.tableCell }, 'ISQ'),
-            React.createElement('td', { style: styles.tableCell },
-                React.createElement('input', {
-                    type: 'radio',
-                    name: 'isq',
-                    style: styles.radio,
-                    checked: radioSelections['isq'] === 'si',
-                    onChange: () => {},
-                    onClick: () => handleRadioClick('isq', 'si')
-                })
-            ),
-            React.createElement('td', { style: styles.tableCell },
-                React.createElement('input', {
-                    type: 'radio',
-                    name: 'isq',
-                    style: styles.radio,
-                    checked: radioSelections['isq'] === 'no',
-                    onChange: () => {},
-                    onClick: () => handleRadioClick('isq', 'no')
-                })
-            ),
-            React.createElement('td', { style: styles.tableCell },
-                React.createElement('textarea', {
-                    value: formData.isqDetalles || '',
-                    onChange: (e) => handleInputChange('isqDetalles', e.target.value),
-                    placeholder: 'Agregar comentarios...',
-                    style: {
-                        ...styles.input,
-                        width: '100%',
-                        minHeight: '2rem',
-                        resize: 'vertical',
-                        overflow: 'auto'
-                    }
-                })
-            )
-        ),
-        // LQ Row
-        React.createElement('tr', null,
-            React.createElement('td', { style: styles.tableCell }, 'LQ'),
-            React.createElement('td', { style: styles.tableCell },
-                React.createElement('input', {
-                    type: 'radio',
-                    name: 'lq',
-                    style: styles.radio,
-                    checked: radioSelections['lq'] === 'si',
-                    onChange: () => {},
-                    onClick: () => handleRadioClick('lq', 'si')
-                })
-            ),
-            React.createElement('td', { style: styles.tableCell },
-                React.createElement('input', {
-                    type: 'radio',
-                    name: 'lq',
-                    style: styles.radio,
-                    checked: radioSelections['lq'] === 'no',
-                    onChange: () => {},
-                    onClick: () => handleRadioClick('lq', 'no')
-                })
-            ),
-            React.createElement('td', { style: styles.tableCell },
-                React.createElement('textarea', {
-                    value: formData.lqDetalles || '',
-                    onChange: (e) => handleInputChange('lqDetalles', e.target.value),
-                    placeholder: 'Agregar comentarios...',
-                    style: {
-                        ...styles.input,
-                        width: '100%',
-                        minHeight: '2rem',
-                        resize: 'vertical',
-                        overflow: 'auto'
-                    }
-                })
+                    // ISQ Row
+                    React.createElement('tr', null,
+                        React.createElement('td', { style: styles.tableCell }, 'ISQ'),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteIsq',
+                                style: styles.radio,
+                                checked: antecedentes.isq === 'si',
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.isq === 'si') {
+                                        handleAntecedentesChange('isq', '');
+                                    } else {
+                                        handleAntecedentesChange('isq', 'si');
+                                    }
+                                }
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteIsq',
+                                style: styles.radio,
+                                checked: antecedentes.isq === 'no',
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.isq === 'no') {
+                                        handleAntecedentesChange('isq', '');
+                                    } else {
+                                        handleAntecedentesChange('isq', 'no');
+                                    }
+                                }
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('textarea', {
+                                placeholder: 'Fecha/Comentarios',
+                                style: {
+                                    ...styles.input,
+                                    width: '100%',
+                                    minHeight: '2rem',
+                                    resize: 'vertical',
+                                    overflow: 'auto'
+                                },
+                                value: antecedentes.isqDetalles.comentarios || '',
+                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                            })
+                        )
+                    ),
+                    // LQ Row
+                    React.createElement('tr', null,
+                        React.createElement('td', { style: styles.tableCell }, 'LQ'),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteLq',
+                                style: styles.radio,
+                                checked: antecedentes.lq === 'si',
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.lq === 'si') {
+                                        handleAntecedentesChange('lq', '');
+                                    } else {
+                                        handleAntecedentesChange('lq', 'si');
+                                    }
+                                }
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteLq',
+                                style: styles.radio,
+                                checked: antecedentes.lq === 'no',
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.lq === 'no') {
+                                        handleAntecedentesChange('lq', '');
+                                    } else {
+                                        handleAntecedentesChange('lq', 'no');
+                                    }
+                                }
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('textarea', {
+                                placeholder: 'Fecha/Comentarios',
+                                style: {
+                                    ...styles.input,
+                                    width: '100%',
+                                    minHeight: '2rem',
+                                    resize: 'vertical',
+                                    overflow: 'auto'
+                                },
+                                value: antecedentes.lqDetalles.comentarios || '',
+                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                            })
+                        )
+                    )
+                )
             )
         ),
                                
