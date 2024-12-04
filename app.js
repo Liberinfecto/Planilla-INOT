@@ -833,6 +833,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                            })
                        )
                    ),
+
 // Aislamiento Microbiológico Row
                    React.createElement('tr', null,
                        React.createElement('td', { style: styles.tableCell }, 'Aislamiento Microbiológico Previo'),
@@ -880,6 +881,56 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                },
                                value: antecedentes.aislamientoDetalles.comentarios || '',
                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                           })
+                       )
+                   ),
+                   // Antibióticos Row
+                   React.createElement('tr', null,
+                       React.createElement('td', { style: styles.tableCell }, 'Antibióticos en los 3 meses previos al ingreso'),
+                       React.createElement('td', { style: styles.tableCell },
+                           React.createElement('input', {
+                               type: 'radio',
+                               name: 'antecedenteAntibioticos',
+                               style: styles.radio,
+                               checked: antecedentes.antibioticos === 'si',
+                               onChange: () => {},
+                               onClick: () => {
+                                   if (antecedentes.antibioticos === 'si') {
+                                       handleAntecedentesChange('antibioticos', '');
+                                   } else {
+                                       handleAntecedentesChange('antibioticos', 'si');
+                                   }
+                               }
+                           })
+                       ),
+                       React.createElement('td', { style: styles.tableCell },
+                           React.createElement('input', {
+                               type: 'radio',
+                               name: 'antecedenteAntibioticos',
+                               style: styles.radio,
+                               checked: antecedentes.antibioticos === 'no',
+                               onChange: () => {},
+                               onClick: () => {
+                                   if (antecedentes.antibioticos === 'no') {
+                                       handleAntecedentesChange('antibioticos', '');
+                                   } else {
+                                       handleAntecedentesChange('antibioticos', 'no');
+                                   }
+                               }
+                           })
+                       ),
+                       React.createElement('td', { style: styles.tableCell },
+                           React.createElement('textarea', {
+                               placeholder: 'Antibióticos Recibidos/Comentarios',
+                               style: {
+                                   ...styles.input,
+                                   width: '100%',
+                                   minHeight: '2rem',
+                                   resize: 'vertical',
+                                   overflow: 'auto'
+                               },
+                               value: antecedentes.antibioticosDetalles.comentarios || '',
+                               onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')      
                            })
                        )
                    )
