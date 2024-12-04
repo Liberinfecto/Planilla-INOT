@@ -444,7 +444,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                             )
                         )
                     ),
-                    // OSTEOSINTESIS - Nivel 1
+// OSTEOSINTESIS - Nivel 1
                     React.createElement('tr', null,
                         React.createElement('td', { style: styles.tableCell }, 'Osteosíntesis'),
                         React.createElement('td', { style: styles.tableCell },
@@ -479,8 +479,18 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                 }
                             })
                         ),
-                        React.createElement('td', { style: styles.tableCell },
-                            antecedentes.osteosintesis === 'si' && React.createElement('div', {
+                        React.createElement('td', { style: styles.tableCell })
+                    ),
+                    // Tipos de Osteosíntesis (aparece solo si osteosíntesis es sí)
+                    antecedentes.osteosintesis === 'si' && React.createElement('tr', null,
+                        React.createElement('td', { 
+                            style: { 
+                                ...styles.tableCell,
+                                paddingLeft: '2rem'
+                            } 
+                        }, '↳ Tipo:'),
+                        React.createElement('td', { colSpan: 3, style: styles.tableCell },
+                            React.createElement('div', {
                                 style: {
                                     display: 'flex',
                                     gap: '1rem',
