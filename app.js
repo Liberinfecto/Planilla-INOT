@@ -884,7 +884,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                            })
                        )
                    ),
-                   // Antibióticos Row
+// Antibióticos Row
                    React.createElement('tr', null,
                        React.createElement('td', { style: styles.tableCell }, 'Antibióticos en los 3 meses previos al ingreso'),
                        React.createElement('td', { style: styles.tableCell },
