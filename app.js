@@ -481,7 +481,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                         ),
                         React.createElement('td', { style: styles.tableCell })
                     ),
-                    // Tipos de Osteosíntesis (aparece solo si osteosíntesis es sí)
+                    // Subnivel ↳ Tipo de Osteosíntesis (aparece solo si osteosíntesis es sí)
                     antecedentes.osteosintesis === 'si' && React.createElement('tr', null,
                         React.createElement('td', { 
                             style: { 
@@ -490,39 +490,42 @@ const [radioSelections, setRadioSelections] = React.useState({});
                             } 
                         }, '↳ Tipo:'),
                         React.createElement('td', { colSpan: 3, style: styles.tableCell },
-                            React.createElement('div', {
-                                style: {
-                                    display: 'flex',
-                                    gap: '1rem',
-                                    alignItems: 'center'
-                                }
+                            React.createElement('select', {
+                                style: { ...styles.input, width: '200px' },
+                                value: antecedentes.osteosintesisTipo || '',
+                                onChange: (e) => handleAntecedentesChange('osteosintesisTipo', e.target.value)
                             },
-                                React.createElement('select', {
-                                    style: { ...styles.input, width: '200px' },
-                                    value: antecedentes.osteosintesisTipo || '',
-                                    onChange: (e) => handleAntecedentesChange('osteosintesisTipo', e.target.value)
+                                React.createElement('option', { value: '' }, 'Tipo de Osteosíntesis...'),
+                                React.createElement('option', { value: 'FFEE' }, 'FFEE'),
+                                React.createElement('option', { value: 'EEM' }, 'EEM'),
+                                React.createElement('option', { value: 'Placas' }, 'Placas'),
+                                React.createElement('option', { value: 'Tornillos' }, 'Tornillos'),
+                                React.createElement('option', { value: 'Fijador_Ilizarov' }, 'Fijador de Ilizarov'),
+                                React.createElement('option', { value: 'Alambres_Kirschner' }, 'Alambres de Kirschner'),
+                                React.createElement('option', { value: 'Grapas_metalicas' }, 'Grapas metálicas'),
+                                React.createElement('option', { value: 'Otros' }, 'Otros')
+                            )
+                        )
+                    ),
+                    antecedentes.osteosintesis === 'si' && React.createElement('tr', null,
+                        React.createElement('td', { 
+                            style: { 
+                                ...styles.tableCell,
+                                paddingLeft: '2rem'
+                            } 
+                        }, '↳ Comentarios:'),
+                        React.createElement('td', { colSpan: 3, style: styles.tableCell },
+                            React.createElement('textarea', {
+                                placeholder: 'Fecha/Comentarios',
+                                style: {
+                                    ...styles.input,
+                                    width: '100%',
+                                    minHeight: '2rem',
+                                    resize: 'vertical',
+                                    overflow: 'auto'
                                 },
-                                    React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
-                                    React.createElement('option', { value: 'FFEE' }, 'FFEE'),
-                                    React.createElement('option', { value: 'EEM' }, 'EEM'),
-                                    React.createElement('option', { value: 'Placas' }, 'Placas'),
-                                    React.createElement('option', { value: 'Tornillos' }, 'Tornillos'),
-                                    React.createElement('option', { value: 'Fijador_Ilizarov' }, 'Fijador de Ilizarov'),
-                                    React.createElement('option', { value: 'Alambres_Kirschner' }, 'Alambres de Kirschner'),
-                                    React.createElement('option', { value: 'Grapas_metalicas' }, 'Grapas metálicas'),
-                                    React.createElement('option', { value: 'Otros' }, 'Otros')
-                                ),
-                                React.createElement('textarea', {
-                                    placeholder: 'Fecha/Comentarios',
-                                    style: {
-                                        ...styles.input,
-                                        width: '200px',
-                                        minHeight: '2rem',
-                                        resize: 'vertical',
-                                        overflow: 'auto'
-                                    },
-                                    value: antecedentes.osteosintesisFecha.comentarios || '',
-                                    onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                                value: antecedentes.osteosintesisFecha.comentarios || '',
+                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
                                 })
                             )
                         )
