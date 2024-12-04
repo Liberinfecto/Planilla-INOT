@@ -25,43 +25,43 @@ const [formData, setFormData] = React.useState({
 });
 
 const [antecedentes, setAntecedentes] = React.useState({
-    fractura: '',               
-    fracturaHueso: '',         
-    fracturaFecha: {           
-        comentarios: ''
-    },
-    fracturaExpuesta: '',      
-    fracturaGustilo: '',       
-    osteosintesis: '',         
-    osteosintesisTipo: '',     
-    osteosintesisFecha: {      
-        comentarios: ''
-    },
-    retiroImplante: '',              
-    retiroImplanteFecha: {           
-        comentarios: ''
-    },
-    protesis: '',              
-    protesisTipo: '',          
-    protesisFecha: {           
-        comentarios: ''
-    },
-    recambioProtesis: '',      
-    recambioProtesisFecha: {   
-        comentarios: ''
-    },
-    isq: '',                   
-    isqDetalles: {             
-        comentarios: ''
-    },
-    lq: '',                    
-    lqDetalles: {              
-        comentarios: ''
-    },
-    aislamiento: '',           
-    aislamientoDetalles: {     
-        comentarios: ''
-    }
+   fractura: '',               // para el SI/NO
+   fracturaHueso: '',         // para el hueso seleccionado
+   fracturaFecha: {           // para fecha y comentarios
+       comentarios: ''
+   },
+   fracturaExpuesta: '',      // para el SI/NO de expuesta
+   fracturaGustilo: '',       // para clasificación Gustilo si es expuesta
+   osteosintesis: '',         // para el SI/NO de osteosíntesis
+   osteosintesisTipo: '',     // para el tipo de osteosíntesis
+   osteosintesisFecha: {      // para fecha y comentarios
+       comentarios: ''
+   },
+   retiroImplante: '',              
+   retiroImplanteFecha: {           
+       comentarios: ''
+   },
+   protesis: '',              // SI/NO de prótesis
+   protesisTipo: '',          // tipo de prótesis (rodilla/cadera/otros)
+   protesisFecha: {           // para fecha y comentarios
+       comentarios: ''
+   },
+   recambioProtesis: '',      // SI/NO de recambio
+   recambioProtesisFecha: {   // para fecha y comentarios
+       comentarios: ''
+   },
+   isq: '',                   // para el SI/NO de ISQ
+   isqDetalles: {             // para comentarios de ISQ
+       comentarios: ''
+   },
+   lq: '',                    // para el SI/NO de LQ
+   lqDetalles: {              // para comentarios de LQ
+       comentarios: ''
+   },
+   aislamiento: '',           // para el SI/NO de aislamiento
+   aislamientoDetalles: {     // para detalles de aislamiento
+       comentarios: ''
+   }
 });
 
 const handleAntecedentesChange = (campo, valor, parteFecha) => {
