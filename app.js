@@ -831,7 +831,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                    ),
 // Aislamiento Microbiológico Row
                    React.createElement('tr', null,
-                       React.createElement('td', { style: styles.tableCell }, 'Aislamiento Microbiológico previo'),
+                       React.createElement('td', { style: styles.tableCell }, 'Aislamiento Microbiológico Previo'),
                        React.createElement('td', { style: styles.tableCell },
                            React.createElement('input', {
                                type: 'radio',
