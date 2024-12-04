@@ -728,7 +728,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                             })
                         )
                     ),
-                    // ISQ Row
+// ISQ Row
                     React.createElement('tr', null,
                         React.createElement('td', { style: styles.tableCell }, 'ISQ'),
                         React.createElement('td', { style: styles.tableCell },
