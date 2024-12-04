@@ -36,6 +36,10 @@ const [antecedentes, setAntecedentes] = React.useState({
     osteosintesisTipo: '',     // para el tipo de osteosíntesis
     osteosintesisFecha: {      // para fecha y comentarios
         comentarios: ''
+ },
+    retiroImplante: '',              
+    retiroImplanteFecha: {           
+        comentarios: ''
     }
 });
 
@@ -446,7 +450,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                     ),
 
 
-// OSTEOSINTESIS - Nivel 1
+// Fila de Osteosíntesis (aparece solo si hay fractura)
                     antecedentes.fractura === 'si' && React.createElement('tr', null,
                         React.createElement('td', { 
                             style: { 
@@ -522,6 +526,61 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                     onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
                                 })
                             )
+                        )
+                    ),
+                    // Fila de Retiro implante (aparece solo si osteosíntesis es sí)
+                    antecedentes.osteosintesis === 'si' && React.createElement('tr', null,
+                        React.createElement('td', { 
+                            style: { 
+                                ...styles.tableCell,
+                                paddingLeft: '2rem'
+                            } 
+                        }, '↳ Retiro implante:'),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteRetiroImplante',
+                                style: styles.radio,
+                                checked: antecedentes.retiroImplante === 'si',
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.retiroImplante === 'si') {
+                                        handleAntecedentesChange('retiroImplante', '');
+                                    } else {
+                                        handleAntecedentesChange('retiroImplante', 'si');
+                                    }
+                                }
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'antecedenteRetiroImplante',
+                                style: styles.radio,
+                                checked: antecedentes.retiroImplante === 'no',
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (antecedentes.retiroImplante === 'no') {
+                                        handleAntecedentesChange('retiroImplante', '');
+                                    } else {
+                                        handleAntecedentesChange('retiroImplante', 'no');
+                                    }
+                                }
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('textarea', {
+                                placeholder: 'Fecha/Comentarios',
+                                style: {
+                                    ...styles.input,
+                                    width: '100%',
+                                    minHeight: '2rem',
+                                    resize: 'vertical',
+                                    overflow: 'auto'
+                                },
+                                value: antecedentes.retiroImplanteFecha.comentarios || '',
+                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                            })
                         )
                     )
                 )
