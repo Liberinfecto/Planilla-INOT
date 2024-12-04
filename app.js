@@ -1,6 +1,7 @@
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 function Form() {
+
 const [formData, setFormData] = React.useState({
     name: '',
     floor: '',
@@ -22,6 +23,24 @@ const [formData, setFormData] = React.useState({
     fracturaHuesoGustilo: '',  // 'I', 'II', etc (si es expuesta)
     // Para fracturas múltiples
     fracturaHuesos: [], // Array de objetos, cada uno con: { hueso, tipo, desplazamiento, gustilo }
+    factorRiesgoDiabetes: '',
+    factorRiesgoDiabetesDetalles: '',
+    factorRiesgoTabaquismo: '',
+    factorRiesgoTabaquismoDetalles: '',
+    factorRiesgoObesidad: '',
+    factorRiesgoObesidadDetalles: '',
+    factorRiesgoAR: '',
+    factorRiesgoARDetalles: '',
+    factorRiesgoERC: '',
+    factorRiesgoERCDetalles: '',
+    factorRiesgoCorticoides: '',
+    factorRiesgoCorticioidesDetalles: '',
+    factorRiesgoIS: '',
+    factorRiesgoISDetalles: '',
+    factorRiesgoRecambioProtesis: '',
+    factorRiesgoRecambioProtesisDetalles: '',
+    factorRiesgoColonizadoMR: '',
+    factorRiesgoColonizadoMRDetalles: '',
 });
 
 const [antecedentes, setAntecedentes] = React.useState({
@@ -304,7 +323,61 @@ const [radioSelections, setRadioSelections] = React.useState({});
                 )
             )
         ),
-      // Sección de Antecedentes Traumatológicos
+
+// Sección de Factores de Riesgo
+      React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
+        React.createElement('table', { style: styles.table },
+          React.createElement('thead', null,
+           React.createElement('tr', null,
+               React.createElement('th', { style: styles.tableHeader }, 'Factores de Riesgo para Infección'),
+               React.createElement('th', { style: styles.tableHeader }, 'SI'),
+               React.createElement('th', { style: styles.tableHeader }, 'NO'),
+               React.createElement('th', { style: styles.tableHeader }, 'Detalles')
+           )
+       ),
+       React.createElement('tbody', null,
+           ['Diabetes', 'Tabaquismo', 'Obesidad', 'AR', 'ERC', 'Corticoides', 'IS', 'Recambio prótesis', 'Colonizado por MR'].map(factor =>
+               React.createElement('tr', null,
+                   React.createElement('td', { style: styles.tableCell }, factor),
+                   React.createElement('td', { style: styles.tableCell },
+                       React.createElement('input', {
+                           type: 'radio',
+                           name: `factorRiesgo${factor}`,
+                           style: styles.radio,
+                           checked: formData[`factorRiesgo${factor}`] === 'si',
+                           onChange: () => handleInputChange(`factorRiesgo${factor}`, formData[`factorRiesgo${factor}`] === 'si' ? '' : 'si')
+                       })
+                   ),
+                   React.createElement('td', { style: styles.tableCell },
+                       React.createElement('input', {
+                           type: 'radio',
+                           name: `factorRiesgo${factor}`,
+                           style: styles.radio,
+                           checked: formData[`factorRiesgo${factor}`] === 'no',
+                           onChange: () => handleInputChange(`factorRiesgo${factor}`, formData[`factorRiesgo${factor}`] === 'no' ? '' : 'no')
+                       })
+                   ),
+                   React.createElement('td', { style: styles.tableCell },
+                       React.createElement('textarea', {
+                           placeholder: 'Comentarios',
+                           style: {
+                               ...styles.input,
+                               width: '100%',
+                               minHeight: '2rem',
+                               resize: 'vertical',
+                               overflow: 'auto'
+                           },
+                           value: formData[`factorRiesgo${factor}Detalles`] || '',
+                           onChange: (e) => handleInputChange(`factorRiesgo${factor}Detalles`, e.target.value)
+                       })
+                   )
+               )
+           )
+       )
+   )
+),                             
+                               
+// Sección de Antecedentes Traumatológicos
         React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
             React.createElement('table', { style: styles.table },
                 // Cabecera de la tabla
