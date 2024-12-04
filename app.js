@@ -518,7 +518,8 @@ const [radioSelections, setRadioSelections] = React.useState({});
                         )
                     )
                 )
-            ),
+            )
+        ),
                          
       // Sección de Enfermedad Actual
         React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
