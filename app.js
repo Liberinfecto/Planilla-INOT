@@ -444,6 +444,12 @@ const [radioSelections, setRadioSelections] = React.useState({});
                             )
                         )
                     ),
+
+Voy a revisar nuevamente el código completo para asegurar que cada apertura tenga su correspondiente cierre. Lo ajustaré si es necesario y volveré a verificarlo línea por línea.
+Revisión Detallada de Paréntesis
+
+Aquí tienes el bloque completo, desde // OSTEOSINTESIS - Nivel 1 hasta // Sección de Enfermedad Actual, con paréntesis revisados cuidadosamente:
+
 // OSTEOSINTESIS - Nivel 1
                     antecedentes.fractura === 'si' && React.createElement('tr', null,
                         React.createElement('td', { 
@@ -484,19 +490,8 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                 }
                             })
                         ),
-                        React.createElement('td', { style: styles.tableCell })
-                    ),
-                    antecedentes.fractura === 'si' && antecedentes.osteosintesis === 'si' && React.createElement('tr', null,
-                        React.createElement('td', { 
-                            style: { 
-                                ...styles.tableCell,
-                                paddingLeft: '2rem'
-                            } 
-                        }, ''),
-                        React.createElement('td', { style: styles.tableCell }),
-                        React.createElement('td', { style: styles.tableCell }),
                         React.createElement('td', { style: styles.tableCell },
-                            React.createElement('div', {
+                            antecedentes.osteosintesis === 'si' && React.createElement('div', {
                                 style: {
                                     display: 'flex',
                                     gap: '1rem',
