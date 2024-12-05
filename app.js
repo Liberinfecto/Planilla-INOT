@@ -1047,18 +1047,20 @@ const [radioSelections, setRadioSelections] = React.useState({});
 // FRACTURA - Nivel 1
                     React.createElement('tr', null,
                         React.createElement('td', { style: styles.tableCell }, 
-                            React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
-                                formData.fracturaFecha && React.createElement('span', {
+                            React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '1rem' } },
+                                React.createElement('input', {
+                                    type: 'date',
+                                    value: formData.fracturaFecha || '',
+                                    onChange: (e) => handleInputChange('fracturaFecha', e.target.value),
                                     style: {
                                         marginRight: '1rem',
-                                        backgroundColor: '#ffebeb',
-                                        color: '#dc3545',
                                         padding: '0.25rem 0.5rem',
                                         borderRadius: '4px',
                                         fontSize: '0.875rem',
-                                        border: '1px solid #dc3545'
+                                        border: '1px solid #ccc',
+                                        width: 'auto'
                                     }
-                                }, formData.fracturaFecha),
+                                }),
                                 'Fractura'
                             )
                         ),
@@ -1083,37 +1085,21 @@ const [radioSelections, setRadioSelections] = React.useState({});
                             })
                         ),
                         React.createElement('td', { style: styles.tableCell },
-                            React.createElement('div', {
+                            React.createElement('textarea', {
+                                value: formData.fracturaDetalles || '',
+                                onChange: (e) => handleInputChange('fracturaDetalles', e.target.value),
+                                placeholder: 'Agregar comentarios...',
                                 style: {
-                                    display: 'flex',
-                                    gap: '1rem',
-                                    width: '100%'
+                                    ...styles.input,
+                                    width: '100%',
+                                    minHeight: '2rem',
+                                    resize: 'vertical',
+                                    overflow: 'auto'
                                 }
-                            },
-                                React.createElement('input', {
-                                    type: 'date',
-                                    value: formData.fracturaFecha || '',
-                                    onChange: (e) => handleInputChange('fracturaFecha', e.target.value),
-                                    style: {
-                                        ...styles.input,
-                                        width: '150px'
-                                    }
-                                }),
-                                React.createElement('textarea', {
-                                    value: formData.fracturaDetalles || '',
-                                    onChange: (e) => handleInputChange('fracturaDetalles', e.target.value),
-                                    placeholder: 'Agregar comentarios...',
-                                    style: {
-                                        ...styles.input,
-                                        flex: 1,
-                                        minHeight: '2rem',
-                                        resize: 'vertical',
-                                        overflow: 'auto'
-                                    }
-                                })
-                            )
+                            })
                         )
                     ),
+                                    
                     // Selector Única/Múltiple
                     radioSelections['fractura'] === 'si' && React.createElement('tr', null,
                         React.createElement('td', { 
