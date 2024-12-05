@@ -16,6 +16,7 @@ const [formData, setFormData] = React.useState({
     fracturaDetalles: '',  // Para comentarios de fractura
     osteosintesis: '',              // para el SI/NO principal
     osteosinesisFecha: '', // para la fecha de osteosintesis
+    osteosintesisDetalles: '',      // para los comentarios de osteosintesis
     osteosintesisTipos: [],         // array de objetos con: { tipo, fechaColocacion, extraido, fechaExtraccion }
     fracturaTipo: '',      // 'unica' o 'multiple'
     // Para fractura única
@@ -1452,7 +1453,20 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                 onClick: () => handleRadioClick('osteosintesis', 'no')
                             })
                         ),
-                        React.createElement('td', { style: styles.tableCell })
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('textarea', {
+                                value: formData.osteosintesisDetalles || '',
+                                onChange: (e) => handleInputChange('osteosintesisDetalles', e.target.value),
+                                placeholder: 'Agregar comentarios...',
+                                style: {
+                                    ...styles.input,
+                                    width: '100%',
+                                    minHeight: '2rem',
+                                    resize: 'vertical',
+                                    overflow: 'auto'
+                                }
+                            })
+                        )
                     ),
                
                 // Lista de tipos de osteosíntesis
