@@ -621,14 +621,14 @@ const [radioSelections, setRadioSelections] = React.useState({});
                             })
                         ),
                         React.createElement('td', { style: styles.tableCell },
-                            antecedentes.osteosintesis === 'si' && React.createElement('div', {
+                            React.createElement('div', {
                                 style: {
                                     display: 'flex',
                                     gap: '1rem',
                                     alignItems: 'center'
                                 }
                             },
-                                React.createElement('select', {
+                                antecedentes.osteosintesis === 'si' && React.createElement('select', {
                                     style: { ...styles.input, width: '150px' },
                                     value: antecedentes.osteosintesisTipo || '',
                                     onChange: (e) => handleAntecedentesChange('osteosintesisTipo', e.target.value)
@@ -656,61 +656,6 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                     onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
                                 })
                             )
-                        )
-                    ),
-                    // Fila de Retiro implante (aparece solo si osteosíntesis es sí)
-                    antecedentes.osteosintesis === 'si' && React.createElement('tr', null,
-                        React.createElement('td', { 
-                            style: { 
-                                ...styles.tableCell,
-                                paddingLeft: '2rem'
-                            } 
-                        }, '↳ Retiro implante:'),
-                        React.createElement('td', { style: styles.tableCell },
-                            React.createElement('input', {
-                                type: 'radio',
-                                name: 'antecedenteRetiroImplante',
-                                style: styles.radio,
-                                checked: antecedentes.retiroImplante === 'si',
-                                onChange: () => {},
-                                onClick: () => {
-                                    if (antecedentes.retiroImplante === 'si') {
-                                        handleAntecedentesChange('retiroImplante', '');
-                                    } else {
-                                        handleAntecedentesChange('retiroImplante', 'si');
-                                    }
-                                }
-                            })
-                        ),
-                        React.createElement('td', { style: styles.tableCell },
-                            React.createElement('input', {
-                                type: 'radio',
-                                name: 'antecedenteRetiroImplante',
-                                style: styles.radio,
-                                checked: antecedentes.retiroImplante === 'no',
-                                onChange: () => {},
-                                onClick: () => {
-                                    if (antecedentes.retiroImplante === 'no') {
-                                        handleAntecedentesChange('retiroImplante', '');
-                                    } else {
-                                        handleAntecedentesChange('retiroImplante', 'no');
-                                    }
-                                }
-                            })
-                        ),
-                        React.createElement('td', { style: styles.tableCell },
-                            React.createElement('textarea', {
-                                placeholder: 'Fecha/Comentarios',
-                                style: {
-                                    ...styles.input,
-                                    width: '100%',
-                                    minHeight: '2rem',
-                                    resize: 'vertical',
-                                    overflow: 'auto'
-                                },
-                                value: antecedentes.retiroImplanteFecha.comentarios || '',
-                                    onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
-                            })
                         )
                     ),
 
