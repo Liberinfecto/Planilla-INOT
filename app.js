@@ -828,7 +828,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                     overflow: 'auto'
                                 },
                                 value: antecedentes.isqDetalles.comentarios || '',
-                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'protesisFecha')
+                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'isqFecha')
                             })
                         )
                     ),
