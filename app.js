@@ -1051,10 +1051,12 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                 formData.fracturaFecha && React.createElement('span', {
                                     style: {
                                         marginRight: '1rem',
-                                        backgroundColor: '#e9ecef',
+                                        backgroundColor: '#ffebeb',
+                                        color: '#dc3545',
                                         padding: '0.25rem 0.5rem',
                                         borderRadius: '4px',
-                                        fontSize: '0.875rem'
+                                        fontSize: '0.875rem',
+                                        border: '1px solid #dc3545'
                                     }
                                 }, formData.fracturaFecha),
                                 'Fractura'
