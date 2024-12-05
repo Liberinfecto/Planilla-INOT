@@ -722,7 +722,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                         overflow: 'auto'
                                     },
                                     value: antecedentes.protesisFecha.comentarios || '',
-                                    onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                                    onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'protesisFecha')
                                 })
                             )
                         )
@@ -778,7 +778,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                     overflow: 'auto'
                                 },
                                 value: antecedentes.recambioProtesisFecha.comentarios || '',
-                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'recambioProtesisFecha')
                             })
                         )
                     ),
@@ -828,7 +828,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                     overflow: 'auto'
                                 },
                                 value: antecedentes.isqDetalles.comentarios || '',
-                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'protesisFecha')
                             })
                         )
                     ),
@@ -879,7 +879,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                    overflow: 'auto'
                                },
                                value: antecedentes.lqDetalles.comentarios || '',
-                               onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                               onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'protesisFecha')
                            })
                        )
                    ),
