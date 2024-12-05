@@ -1048,7 +1048,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                     React.createElement('tr', null,
                         React.createElement('td', { style: styles.tableCell }, 
                             React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '1rem' } },
-                                React.createElement('input', {
+                                radioSelections['fractura'] === 'si' && React.createElement('input', {
                                     type: 'date',
                                     value: formData.fracturaFecha || '',
                                     onChange: (e) => handleInputChange('fracturaFecha', e.target.value),
@@ -1057,7 +1057,9 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                         padding: '0.25rem 0.5rem',
                                         borderRadius: '4px',
                                         fontSize: '0.875rem',
-                                        border: '1px solid #ccc',
+                                        border: '1px solid #dc3545',
+                                        backgroundColor: '#ffebeb',
+                                        color: '#dc3545',
                                         width: 'auto'
                                     }
                                 }),
