@@ -90,12 +90,12 @@ const [antecedentes, setAntecedentes] = React.useState({
     }
 });
 
-const handleAntecedentesChange = (campo, valor, parteFecha) => {
+const handleAntecedentesChange = (campo, valor, parteFecha, campoFecha = 'fracturaFecha') => {
     if (parteFecha) {
         setAntecedentes(prev => ({
             ...prev,
-            fracturaFecha: {
-                ...prev.fracturaFecha,
+            [campoFecha]: {
+                ...prev[campoFecha],
                 [parteFecha]: valor
             }
         }));
@@ -653,7 +653,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                         overflow: 'auto'
                                     },
                                     value: antecedentes.osteosintesisFecha.comentarios || '',
-                                    onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                                    onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'osteosintesisFecha')
                                 })
                             )
                         )
