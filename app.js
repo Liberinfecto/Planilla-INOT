@@ -15,6 +15,7 @@ const [formData, setFormData] = React.useState({
     fracturaFecha: '', 
     fracturaDetalles: '',  // Para comentarios de fractura
     osteosintesis: '',              // para el SI/NO principal
+    osteosinesisFecha: '', // para la fecha de osteosintesis
     osteosintesisTipos: [],         // array de objetos con: { tipo, fechaColocacion, extraido, fechaExtraccion }
     fracturaTipo: '',      // 'unica' o 'multiple'
     // Para fractura única
