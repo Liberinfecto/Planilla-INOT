@@ -225,6 +225,21 @@ const [radioSelections, setRadioSelections] = React.useState({});
         },
         radio: {
             cursor: 'pointer'
+        },
+         labelContainerStyle: {
+            display: 'flex',
+            alignItems: 'center',
+            width: '300px'
+        },
+        dateInputStyle: {
+            marginRight: '1rem',
+            padding: '0.25rem 0.5rem',
+            borderRadius: '4px',
+            fontSize: '0.875rem',
+            border: '1px solid #dc3545',
+            backgroundColor: '#ffebeb',
+            color: '#dc3545',
+            width: '130px'
         }
     };
 
@@ -1049,21 +1064,12 @@ const [radioSelections, setRadioSelections] = React.useState({});
 // FRACTURA - Nivel 1
                     React.createElement('tr', null,
                         React.createElement('td', { style: styles.tableCell }, 
-                            React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '1rem' } },
+                            React.createElement('div', { style: styles.labelContainerStyle },
                                 radioSelections['fractura'] === 'si' && React.createElement('input', {
                                     type: 'date',
                                     value: formData.fracturaFecha || '',
                                     onChange: (e) => handleInputChange('fracturaFecha', e.target.value),
-                                    style: {
-                                        marginRight: '1rem',
-                                        padding: '0.25rem 0.5rem',
-                                        borderRadius: '4px',
-                                        fontSize: '0.875rem',
-                                        border: '1px solid #dc3545',
-                                        backgroundColor: '#ffebeb',
-                                        color: '#dc3545',
-                                        width: 'auto'
-                                    }
+                                    style: styles.dateInputStyle
                                 }),
                                 'Fractura'
                             )
@@ -1414,21 +1420,12 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                 paddingLeft: '2rem'
                             } 
                         }, 
-                            React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '1rem' } },
+                            React.createElement('div', { style: styles.labelContainerStyle },
                                 radioSelections['osteosintesis'] === 'si' && React.createElement('input', {
                                     type: 'date',
                                     value: formData.osteosinesisFecha || '',
                                     onChange: (e) => handleInputChange('osteosinesisFecha', e.target.value),
-                                    style: {
-                                        marginRight: '1rem',
-                                        padding: '0.25rem 0.5rem',
-                                        borderRadius: '4px',
-                                        fontSize: '0.875rem',
-                                        border: '1px solid #dc3545',
-                                        backgroundColor: '#ffebeb',
-                                        color: '#dc3545',
-                                        width: 'auto'
-                                    }
+                                    style: styles.dateInputStyle
                                 }),
                                 '↳ Osteosíntesis'
                             )
