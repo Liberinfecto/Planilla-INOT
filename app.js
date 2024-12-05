@@ -1027,7 +1027,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
            )
        ),
        
-       // Sección de Enfermedad Actual
+// Sección de Enfermedad Actual
 
 
 
@@ -1399,36 +1399,62 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                         borderRadius: '4px',
                                         backgroundColor: '#f8f8f8'
                                     }
-}, '+ Agregar Hueso')
+                                        }, '+ Agregar Hueso')
                             )
                         )
                     )
                 ),
-                // OSTEOSINTESIS - Nivel 1
-                React.createElement('tr', null,
-                    React.createElement('td', { style: styles.tableCell }, 'Osteosíntesis'),
-                    React.createElement('td', { style: styles.tableCell },
-                        React.createElement('input', {
-                            type: 'radio',
-                            name: 'osteosintesis',
-                            style: styles.radio,
-                            checked: radioSelections['osteosintesis'] === 'si',
-                            onChange: () => {},
-                            onClick: () => handleRadioClick('osteosintesis', 'si')
-                        })
+                
+                                // Sector OSTEOSINTESIS
+                    radioSelections['fractura'] === 'si' && React.createElement('tr', null,
+                        React.createElement('td', { 
+                            style: { 
+                                ...styles.tableCell,
+                                paddingLeft: '2rem'
+                            } 
+                        }, 
+                            React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '1rem' } },
+                                radioSelections['osteosintesis'] === 'si' && React.createElement('input', {
+                                    type: 'date',
+                                    value: formData.osteosinesisFecha || '',
+                                    onChange: (e) => handleInputChange('osteosinesisFecha', e.target.value),
+                                    style: {
+                                        marginRight: '1rem',
+                                        padding: '0.25rem 0.5rem',
+                                        borderRadius: '4px',
+                                        fontSize: '0.875rem',
+                                        border: '1px solid #dc3545',
+                                        backgroundColor: '#ffebeb',
+                                        color: '#dc3545',
+                                        width: 'auto'
+                                    }
+                                }),
+                                '↳ Osteosíntesis'
+                            )
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'osteosintesis',
+                                style: styles.radio,
+                                checked: radioSelections['osteosintesis'] === 'si',
+                                onChange: () => {},
+                                onClick: () => handleRadioClick('osteosintesis', 'si')
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'osteosintesis',
+                                style: styles.radio,
+                                checked: radioSelections['osteosintesis'] === 'no',
+                                onChange: () => {},
+                                onClick: () => handleRadioClick('osteosintesis', 'no')
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell })
                     ),
-                    React.createElement('td', { style: styles.tableCell },
-                        React.createElement('input', {
-                            type: 'radio',
-                            name: 'osteosintesis',
-                            style: styles.radio,
-                            checked: radioSelections['osteosintesis'] === 'no',
-                            onChange: () => {},
-                            onClick: () => handleRadioClick('osteosintesis', 'no')
-                        })
-                    ),
-                    React.createElement('td', { style: styles.tableCell })
-                ),
+               
                 // Lista de tipos de osteosíntesis
                 radioSelections['osteosintesis'] === 'si' && React.createElement('tr', null,
                     React.createElement('td', { 
