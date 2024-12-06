@@ -1705,7 +1705,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                        })
                    ),
                    React.createElement('td', { style: styles.tableCell },
-                       React.createElement('div', {
+                       radioSelections['irf'] === 'si' && React.createElement('div', {
                            style: {
                                display: 'flex',
                                gap: '1rem',
