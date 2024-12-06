@@ -26,6 +26,8 @@ const [formData, setFormData] = React.useState({
     fracturaHuesoGustilo: '',  // 'I', 'II', etc (si es expuesta)
     // Para fracturas múltiples
     fracturaHuesos: [], // Array de objetos, cada uno con: { hueso, tipo, desplazamiento, gustilo }
+    irfTipo: '',
+    irfDetalles: '',
     factorRiesgoDiabetes: '',
     factorRiesgoDiabetesDetalles: '',
     factorRiesgoTabaquismo: '',
@@ -1638,9 +1640,79 @@ const [radioSelections, setRadioSelections] = React.useState({});
                             }, '+ Agregar Tipo')
                         )
                     )
+                ),
+  
+// Nivel 1 IRF
+                    React.createElement('tr', null,
+                    React.createElement('td', { style: styles.tableCell }, 'IRF'),
+                    React.createElement('td', { style: styles.tableCell },
+                        React.createElement('input', {
+                            type: 'radio',
+                            name: 'irf',
+                            style: styles.radio,
+                            checked: radioSelections['irf'] === 'si',
+                            onChange: () => {},
+                            onClick: () => {
+                                if (radioSelections['irf'] === 'si') {
+                                    handleRadioClick('irf', '');
+                                } else {
+                                    handleRadioClick('irf', 'si');
+                                }
+                            }
+                        })
+                    ),
+                    React.createElement('td', { style: styles.tableCell },
+                        React.createElement('input', {
+                            type: 'radio',
+                            name: 'irf',
+                            style: styles.radio,
+                            checked: radioSelections['irf'] === 'no',
+                            onChange: () => {},
+                            onClick: () => {
+                                if (radioSelections['irf'] === 'no') {
+                                    handleRadioClick('irf', '');
+                                } else {
+                                    handleRadioClick('irf', 'no');
+                                }
+                            }
+                        })
+                    ),
+                    React.createElement('td', { style: styles.tableCell },
+                        React.createElement('div', {
+                            style: {
+                                display: 'flex',
+                                gap: '1rem',
+                                flexDirection: 'column'
+                            }
+                        },
+                            React.createElement('select', {
+                                style: { ...styles.input, width: '100%' },
+                                value: formData.irfTipo || '',
+                                onChange: (e) => handleInputChange('irfTipo', e.target.value)
+                            },
+                                React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
+                                React.createElement('option', { value: 'aguda' }, 'Aguda (1-2 semanas)'),
+                                React.createElement('option', { value: 'retrasada' }, 'Retrasada (3-10 semanas)'),
+                                React.createElement('option', { value: 'tardia' }, 'Tardía (>10 semanas)'),
+                                React.createElement('option', { value: 'pseudoartrosis' }, 'Pseudoartrosis (6-9 meses)')
+                            ),
+                            React.createElement('textarea', {
+                                placeholder: 'Agregar comentarios...',
+                                value: formData.irfDetalles || '',
+                                onChange: (e) => handleInputChange('irfDetalles', e.target.value),
+                                style: {
+                                    ...styles.input,
+                                    width: '100%',
+                                    minHeight: '2rem',
+                                    resize: 'vertical',
+                                    overflow: 'auto'
+                                }
+                            })
+                        )
+                    )
                 )
-            )
-        )
-    );
-}
+            )      // cierre del tbody
+        )          // cierre de la tabla
+    );            // cierre del div de Enfermedad Actual y el return del Form
+}                 // cierre de la función Form
 root.render(React.createElement(Form));
