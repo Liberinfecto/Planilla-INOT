@@ -828,7 +828,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                     overflow: 'auto'
                                 },
                                 value: antecedentes.isqDetalles.comentarios || '',
-                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'isqDetallesFecha')
+                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'isqDetalles')
                             })
                         )
                     ),
@@ -879,7 +879,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                    overflow: 'auto'
                                },
                                value: antecedentes.lqDetalles.comentarios || '',
-                               onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'protesisFecha')
+                               onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'LQDetalles')
                            })
                        )
                    ),
@@ -930,7 +930,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                    overflow: 'auto'
                                },
                                value: antecedentes.aislamientoDetalles.comentarios || '',
-                               onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')
+                               onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'aislamientoDetalles')                          
                            })
                        )
                    ),
@@ -980,8 +980,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                    overflow: 'auto'
                                },
                                value: antecedentes.antibioticosDetalles.comentarios || '',
-                               onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios')      
-                           })
+                               onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'antibioticosDetalles')
                        )
                    )
                )
