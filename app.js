@@ -1649,8 +1649,9 @@ const [radioSelections, setRadioSelections] = React.useState({});
                        React.createElement('div', { 
                            style: {
                                ...styles.labelContainerStyle,
-                               flexDirection: 'column',  
-                               gap: '0.5rem'            
+                                flexDirection: 'row',  
+                                gap: '1rem',  
+                                alignItems: 'center'  
                            }
                        },
                            'IRF',
