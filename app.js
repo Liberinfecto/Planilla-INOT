@@ -51,6 +51,9 @@ const [formData, setFormData] = React.useState({
     isqTipoHQ: '',
     isqTipo: '',
     isqDetalles: '',
+    osteomielitisFecha: '',
+    osteomielitisTipo: '',
+    osteomielitisDetalles: '',
 });
 
 const [antecedentes, setAntecedentes] = React.useState({
@@ -1856,7 +1859,101 @@ const [radioSelections, setRadioSelections] = React.useState({});
                             })
                         )
                     )
-                )                    
+                ),
+
+// Nivel 1 Osteosíntesis
+React.createElement('tr', null,
+                    React.createElement('td', { style: styles.tableCell }, 
+                        React.createElement('div', { 
+                            style: {
+                                ...styles.labelContainerStyle,
+                                flexDirection: 'row',  
+                                gap: '1rem',  
+                                alignItems: 'center'  
+                            }
+                        },
+                            radioSelections['osteomielitis'] === 'si' && React.createElement('div', {
+                                style: {
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '0.25rem'
+                                }
+                            },
+                                React.createElement('span', null, 'Inicio de síntomas'),
+                                React.createElement('input', {
+                                    type: 'date',
+                                    value: formData.osteomielitisFecha || '',
+                                    onChange: (e) => handleInputChange('osteomielitisFecha', e.target.value),
+                                    style: styles.dateInputStyle
+                                })
+                            ),
+                            'Osteomielitis'
+                        )
+                    ),
+                    React.createElement('td', { style: styles.tableCell },
+                        React.createElement('input', {
+                            type: 'radio',
+                            name: 'osteomielitis',
+                            style: styles.radio,
+                            checked: radioSelections['osteomielitis'] === 'si',
+                            onChange: () => {},
+                            onClick: () => {
+                                if (radioSelections['osteomielitis'] === 'si') {
+                                    handleRadioClick('osteomielitis', '');
+                                } else {
+                                    handleRadioClick('osteomielitis', 'si');
+                                }
+                            }
+                        })
+                    ),
+                    React.createElement('td', { style: styles.tableCell },
+                        React.createElement('input', {
+                            type: 'radio',
+                            name: 'osteomielitis',
+                            style: styles.radio,
+                            checked: radioSelections['osteomielitis'] === 'no',
+                            onChange: () => {},
+                            onClick: () => {
+                                if (radioSelections['osteomielitis'] === 'no') {
+                                    handleRadioClick('osteomielitis', '');
+                                } else {
+                                    handleRadioClick('osteomielitis', 'no');
+                                }
+                            }
+                        })
+                    ),
+                    React.createElement('td', { style: styles.tableCell },
+                        React.createElement('div', {
+                            style: {
+                                display: 'flex',
+                                gap: '1rem',
+                                flexDirection: 'column'
+                            }
+                        },
+                            radioSelections['osteomielitis'] === 'si' && React.createElement('select', {
+                                style: { ...styles.input, width: '100%' },
+                                value: formData.osteomielitisTipo || '',
+                                onChange: (e) => handleInputChange('osteomielitisTipo', e.target.value)
+                            },
+                                React.createElement('option', { value: '' }, 'Clasificación...'),
+                                React.createElement('option', { value: 'aguda' }, 'Aguda (<3 semanas)'),
+                                React.createElement('option', { value: 'cronica' }, 'Crónica (>3 semanas)')
+                            ),
+                            React.createElement('textarea', {
+                                placeholder: 'Agregar comentarios...',
+                                value: formData.osteomielitisDetalles || '',
+                                onChange: (e) => handleInputChange('osteomielitisDetalles', e.target.value),
+                                style: {
+                                    ...styles.input,
+                                    width: '100%',
+                                    minHeight: '2rem',
+                                    resize: 'vertical',
+                                    overflow: 'auto'
+                                }
+                            })
+                        )
+                    )
+                )                         
            )      // cierre del tbody
        )          // cierre de la tabla
    );            // cierre del div de Enfermedad Actual y el return del Form
