@@ -1644,104 +1644,103 @@ const [radioSelections, setRadioSelections] = React.useState({});
                 ),
   
 // Nivel 1 IRF
-               React.createElement('tr', null,
-                   React.createElement('td', { style: styles.tableCell }, 
-                       React.createElement('div', { 
-                           style: {
-                               ...styles.labelContainerStyle,
-                                flexDirection: 'row',  
-                                gap: '1rem',  
-                                alignItems: 'center'  
-                           }
-                       },
-                           'IRF',
-                           radioSelections['irf'] === 'si' && React.createElement('div', {
-                               style: {
-                                   display: 'flex',
-                                   flexDirection: 'column',
-                                   gap: '0.25rem',
-                                   marginRight: 'auto'
-                               }
-                           },
-                               React.createElement('span', null, 'Inicio de síntomas'),
-                               React.createElement('input', {
-                                   type: 'date',
-                                   value: formData.irfFecha || '',
-                                   onChange: (e) => handleInputChange('irfFecha', e.target.value),
-                                   style: styles.dateInputStyle
-                               })
-                           )
-                       )
-                   ),
+              React.createElement('tr', null,
+                  React.createElement('td', { style: styles.tableCell }, 
+                      React.createElement('div', { 
+                          style: {
+                              ...styles.labelContainerStyle,
+                               flexDirection: 'row',  
+                               gap: '1rem',  
+                               alignItems: 'center'  
+                          }
+                      },
+                          radioSelections['irf'] === 'si' && React.createElement('div', {
+                              style: {
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  gap: '0.25rem'
+                              }
+                          },
+                              React.createElement('span', null, 'Inicio de síntomas'),
+                              React.createElement('input', {
+                                  type: 'date',
+                                  value: formData.irfFecha || '',
+                                  onChange: (e) => handleInputChange('irfFecha', e.target.value),
+                                  style: styles.dateInputStyle
+                              })
+                          ),
+                          'IRF'
+                      )
+                  ),
+                  React.createElement('td', { style: styles.tableCell },
+                      React.createElement('input', {
+                          type: 'radio',
+                          name: 'irf',
+                          style: styles.radio,
+                          checked: radioSelections['irf'] === 'si',
+                          onChange: () => {},
+                          onClick: () => {
+                              if (radioSelections['irf'] === 'si') {
+                                  handleRadioClick('irf', '');
+                              } else {
+                                  handleRadioClick('irf', 'si');
+                              }
+                          }
+                      })
+                  ),
                    React.createElement('td', { style: styles.tableCell },
                        React.createElement('input', {
                            type: 'radio',
                            name: 'irf',
                            style: styles.radio,
-                           checked: radioSelections['irf'] === 'si',
+                           checked: radioSelections['irf'] === 'no',
                            onChange: () => {},
                            onClick: () => {
-                               if (radioSelections['irf'] === 'si') {
+                               if (radioSelections['irf'] === 'no') {
                                    handleRadioClick('irf', '');
                                } else {
-                                   handleRadioClick('irf', 'si');
+                                   handleRadioClick('irf', 'no');
                                }
                            }
                        })
                    ),
-                    React.createElement('td', { style: styles.tableCell },
-                        React.createElement('input', {
-                            type: 'radio',
-                            name: 'irf',
-                            style: styles.radio,
-                            checked: radioSelections['irf'] === 'no',
-                            onChange: () => {},
-                            onClick: () => {
-                                if (radioSelections['irf'] === 'no') {
-                                    handleRadioClick('irf', '');
-                                } else {
-                                    handleRadioClick('irf', 'no');
-                                }
-                            }
-                        })
-                    ),
-                    React.createElement('td', { style: styles.tableCell },
-                        React.createElement('div', {
-                            style: {
-                                display: 'flex',
-                                gap: '1rem',
-                                flexDirection: 'column'
-                            }
-                        },
-                            React.createElement('select', {
-                                style: { ...styles.input, width: '100%' },
-                                value: formData.irfTipo || '',
-                                onChange: (e) => handleInputChange('irfTipo', e.target.value)
-                            },
-                                React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
-                                React.createElement('option', { value: 'aguda' }, 'Aguda (1-2 semanas)'),
-                                React.createElement('option', { value: 'retrasada' }, 'Retrasada (3-10 semanas)'),
-                                React.createElement('option', { value: 'tardia' }, 'Tardía (>10 semanas)'),
-                                React.createElement('option', { value: 'pseudoartrosis' }, 'Pseudoartrosis (6-9 meses)')
-                            ),
-                            React.createElement('textarea', {
-                                placeholder: 'Agregar comentarios...',
-                                value: formData.irfDetalles || '',
-                                onChange: (e) => handleInputChange('irfDetalles', e.target.value),
-                                style: {
-                                    ...styles.input,
-                                    width: '100%',
-                                    minHeight: '2rem',
-                                    resize: 'vertical',
-                                    overflow: 'auto'
-                                }
-                            })
-                        )
-                    )
-                )
-            )      // cierre del tbody
-        )          // cierre de la tabla
-    );            // cierre del div de Enfermedad Actual y el return del Form
+                   React.createElement('td', { style: styles.tableCell },
+                       React.createElement('div', {
+                           style: {
+                               display: 'flex',
+                               gap: '1rem',
+                               flexDirection: 'column'
+                           }
+                       },
+                           React.createElement('select', {
+                               style: { ...styles.input, width: '100%' },
+                               value: formData.irfTipo || '',
+                               onChange: (e) => handleInputChange('irfTipo', e.target.value)
+                           },
+                               React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
+                               React.createElement('option', { value: 'aguda' }, 'Aguda (1-2 semanas)'),
+                               React.createElement('option', { value: 'retrasada' }, 'Retrasada (3-10 semanas)'),
+                               React.createElement('option', { value: 'tardia' }, 'Tardía (>10 semanas)'),
+                               React.createElement('option', { value: 'pseudoartrosis' }, 'Pseudoartrosis (6-9 meses)')
+                           ),
+                           React.createElement('textarea', {
+                               placeholder: 'Agregar comentarios...',
+                               value: formData.irfDetalles || '',
+                               onChange: (e) => handleInputChange('irfDetalles', e.target.value),
+                               style: {
+                                   ...styles.input,
+                                   width: '100%',
+                                   minHeight: '2rem',
+                                   resize: 'vertical',
+                                   overflow: 'auto'
+                               }
+                           })
+                       )
+                   )
+               )
+           )      // cierre del tbody
+       )          // cierre de la tabla
+   );            // cierre del div de Enfermedad Actual y el return del Form
 }                 // cierre de la función Form
 root.render(React.createElement(Form));
 
