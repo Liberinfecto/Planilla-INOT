@@ -47,6 +47,10 @@ const [formData, setFormData] = React.useState({
     factorRiesgoRecambioProtesisDetalles: '',
     factorRiesgoColonizadoMR: '',
     factorRiesgoColonizadoMRDetalles: '',
+    isqFecha: '',
+    isqTipoHQ: '',
+    isqTipo: '',
+    isqDetalles: '',
 });
 
 const [antecedentes, setAntecedentes] = React.useState({
@@ -1737,7 +1741,122 @@ const [radioSelections, setRadioSelections] = React.useState({});
                            })
                        )
                    )
-               )
+               ),
+
+                                
+// Nivel 1 ISQ
+               React.createElement('tr', null,
+                    React.createElement('td', { style: styles.tableCell }, 
+                        React.createElement('div', { 
+                            style: {
+                                ...styles.labelContainerStyle,
+                                flexDirection: 'row',  
+                                gap: '1rem',  
+                                alignItems: 'center'  
+                            }
+                        },
+                            radioSelections['isq'] === 'si' && React.createElement('div', {
+                                style: {
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '0.25rem'
+                                }
+                            },
+                                React.createElement('span', null, 'Inicio de síntomas'),
+                                React.createElement('input', {
+                                    type: 'date',
+                                    value: formData.isqFecha || '',
+                                    onChange: (e) => handleInputChange('isqFecha', e.target.value),
+                                    style: styles.dateInputStyle
+                                })
+                            ),
+                            'ISQ'
+                        )
+                    ),
+                    React.createElement('td', { style: styles.tableCell },
+                        React.createElement('input', {
+                            type: 'radio',
+                            name: 'isq',
+                            style: styles.radio,
+                            checked: radioSelections['isq'] === 'si',
+                            onChange: () => {},
+                            onClick: () => {
+                                if (radioSelections['isq'] === 'si') {
+                                    handleRadioClick('isq', '');
+                                } else {
+                                    handleRadioClick('isq', 'si');
+                                }
+                            }
+                        })
+                    ),
+                    React.createElement('td', { style: styles.tableCell },
+                        React.createElement('input', {
+                            type: 'radio',
+                            name: 'isq',
+                            style: styles.radio,
+                            checked: radioSelections['isq'] === 'no',
+                            onChange: () => {},
+                            onClick: () => {
+                                if (radioSelections['isq'] === 'no') {
+                                    handleRadioClick('isq', '');
+                                } else {
+                                    handleRadioClick('isq', 'no');
+                                }
+                            }
+                        })
+                    ),
+                    React.createElement('td', { style: styles.tableCell },
+                        React.createElement('div', {
+                            style: {
+                                display: 'flex',
+                                gap: '1rem',
+                                flexDirection: 'column'
+                            }
+                        },
+                            radioSelections['isq'] === 'si' && React.createElement('div', {
+                                style: {
+                                    display: 'flex',
+                                    gap: '1rem',
+                                    flexDirection: 'column'
+                                }
+                            },
+                                React.createElement('select', {
+                                    style: { ...styles.input, width: '100%' },
+                                    value: formData.isqTipoHQ || '',
+                                    onChange: (e) => handleInputChange('isqTipoHQ', e.target.value)
+                                },
+                                    React.createElement('option', { value: '' }, 'Clasificación de HQ...'),
+                                    React.createElement('option', { value: 'limpia' }, 'Limpia'),
+                                    React.createElement('option', { value: 'limpia-contaminada' }, 'Limpia-Contaminada'),
+                                    React.createElement('option', { value: 'contaminada' }, 'Contaminada'),
+                                    React.createElement('option', { value: 'sucia' }, 'Sucia')
+                                ),
+                                React.createElement('select', {
+                                    style: { ...styles.input, width: '100%' },
+                                    value: formData.isqTipo || '',
+                                    onChange: (e) => handleInputChange('isqTipo', e.target.value)
+                                },
+                                    React.createElement('option', { value: '' }, 'Clasificación de ISQ...'),
+                                    React.createElement('option', { value: 'superficial' }, 'Superficial'),
+                                    React.createElement('option', { value: 'profunda' }, 'Profunda'),
+                                    React.createElement('option', { value: 'organo-espacio' }, 'Organo Espacio')
+                                )
+                            ),
+                            React.createElement('textarea', {
+                                placeholder: 'Región/Características',
+                                value: formData.isqDetalles || '',
+                                onChange: (e) => handleInputChange('isqDetalles', e.target.value),
+                                style: {
+                                    ...styles.input,
+                                    width: '100%',
+                                    minHeight: '2rem',
+                                    resize: 'vertical',
+                                    overflow: 'auto'
+                                }
+                            })
+                        )
+                    )
+                )                    
            )      // cierre del tbody
        )          // cierre de la tabla
    );            // cierre del div de Enfermedad Actual y el return del Form
