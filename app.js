@@ -1659,7 +1659,8 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                style: {
                                    display: 'flex',
                                    flexDirection: 'column',
-                                   gap: '0.25rem'
+                                   gap: '0.25rem',
+                                   marginRight: 'auto'
                                }
                            },
                                React.createElement('span', null, 'Inicio de síntomas'),
