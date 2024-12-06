@@ -981,6 +981,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                },
                                value: antecedentes.antibioticosDetalles.comentarios || '',
                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'antibioticosDetalles')
+                            })
                        )
                    )
                )
