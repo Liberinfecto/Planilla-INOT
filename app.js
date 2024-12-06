@@ -1725,7 +1725,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
                                React.createElement('option', { value: 'aguda' }, 'Aguda (1-2 semanas)'),
                                React.createElement('option', { value: 'retrasada' }, 'Retrasada (3-10 semanas)'),
                                React.createElement('option', { value: 'tardia' }, 'Tardía (>10 semanas)'),
-                               React.createElement('option', { value: 'pseudoartrosis' }, 'Pseudoartrosis (6-9 meses)')
+                               React.createElement('option', { value: 'pseudoartrosis' }, 'Pseudoartrosis Infectada (6-9 meses)')
                            ),
                            React.createElement('textarea', {
                                placeholder: 'Agregar comentarios...',
