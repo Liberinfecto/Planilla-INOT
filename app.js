@@ -1705,14 +1705,14 @@ const [radioSelections, setRadioSelections] = React.useState({});
                        })
                    ),
                    React.createElement('td', { style: styles.tableCell },
-                       radioSelections['irf'] === 'si' && React.createElement('div', {
+                       React.createElement('div', {
                            style: {
                                display: 'flex',
                                gap: '1rem',
                                flexDirection: 'column'
                            }
                        },
-                           React.createElement('select', {
+                           radioSelections['irf'] === 'si' && React.createElement('select', {
                                style: { ...styles.input, width: '100%' },
                                value: formData.irfTipo || '',
                                onChange: (e) => handleInputChange('irfTipo', e.target.value)
