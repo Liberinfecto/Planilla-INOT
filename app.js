@@ -1940,7 +1940,7 @@ React.createElement('tr', null,
                                 React.createElement('option', { value: 'cronica' }, 'Crónica (>3 semanas)')
                             ),
                             React.createElement('textarea', {
-                                placeholder: 'Agregar comentarios...',
+                                placeholder: 'Región/Características...',
                                 value: formData.osteomielitisDetalles || '',
                                 onChange: (e) => handleInputChange('osteomielitisDetalles', e.target.value),
                                 style: {
