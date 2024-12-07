@@ -156,6 +156,19 @@ const calcularClasificacionTsukayama = (fechaColocacion, fechaSintomas) => {
         if (diferenciaMeses >= 24) return 'hematogena';
         return 'cronica';
     };
+
+    const calcularClasificacionIRF = (fechaFractura, fechaSintomas) => {
+    if (!fechaFractura || !fechaSintomas) return '';
+    
+    const fractura = new Date(fechaFractura);
+    const sintomas = new Date(fechaSintomas);
+    const diferenciaDias = (sintomas - fractura) / (1000 * 60 * 60 * 24);
+    const diferenciaSemanas = diferenciaDias / 7;
+
+    if (diferenciaSemanas <= 2) return 'aguda';
+    if (diferenciaSemanas <= 10) return 'retrasada';
+    return 'tardia';
+};
     
     const styles = {
         container: {
@@ -2117,18 +2130,17 @@ React.createElement('tr', null,
                                         gap: '0.25rem'
                                     }
                                 },
-                                    React.createElement('span', null, 'Inicio de síntomas'),
-                                    React.createElement('input', {
-                                        type: 'date',
-                                        value: formData.ippSintomasFecha || '',
-                                        onChange: (e) => {
-                                            handleInputChange('ippSintomasFecha', e.target.value);
-                                            const nuevaClasificacion = calcularClasificacionTsukayama(formData.ippColocacionFecha, e.target.value);
-                                            if (nuevaClasificacion) {
-                                                handleInputChange('ippTipo', nuevaClasificacion);
-                                            }
-                                        },
-                                        style: styles.dateInputStyle
+                                React.createElement('input', {
+                                    type: 'date',
+                                    value: formData.irfFecha || '',
+                                    onChange: (e) => {
+                                        handleInputChange('irfFecha', e.target.value);
+                                        const nuevaClasificacion = calcularClasificacionIRF(formData.fracturaFecha, e.target.value);
+                                        if (nuevaClasificacion) {
+                                            handleInputChange('irfTipo', nuevaClasificacion);
+                                        }
+                                      },
+                                      style: styles.dateInputStyle
                                     })
                                 )
                             ),
