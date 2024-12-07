@@ -2057,23 +2057,24 @@ React.createElement('tr', null,
                 ),
 
 // Nivel 1 IPP
-React.createElement('tr', null,
-                    React.createElement('td', { style: styles.tableCell }, 
+                   React.createElement('td', { style: styles.tableCell }, 
                         React.createElement('div', { 
                             style: {
                                 ...styles.labelContainerStyle,
-                                flexDirection: 'column',  // Cambiado a column para apilar las fechas
-                                gap: '0.5rem',  
-                                alignItems: 'flex-start'  // Alinea a la izquierda
+                                flexDirection: 'row',  
+                                gap: '1rem',  
+                                alignItems: 'center'  
                             }
                         },
                             radioSelections['ipp'] === 'si' && React.createElement('div', {
                                 style: {
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    gap: '0.5rem'
+                                    gap: '1rem',
+                                    marginRight: '1rem'
                                 }
                             },
+                                // Primera fecha (Colocación del Implante)
                                 React.createElement('div', {
                                     style: {
                                         display: 'flex',
@@ -2089,6 +2090,7 @@ React.createElement('tr', null,
                                         style: styles.dateInputStyle
                                     })
                                 ),
+                                // Segunda fecha (Inicio de síntomas)
                                 React.createElement('div', {
                                     style: {
                                         display: 'flex',
@@ -2107,74 +2109,8 @@ React.createElement('tr', null,
                             ),
                             'IPP'
                         )
-                    ),
-                    React.createElement('td', { style: styles.tableCell },
-                        React.createElement('input', {
-                            type: 'radio',
-                            name: 'ipp',
-                            style: styles.radio,
-                            checked: radioSelections['ipp'] === 'si',
-                            onChange: () => {},
-                            onClick: () => {
-                                if (radioSelections['ipp'] === 'si') {
-                                    handleRadioClick('ipp', '');
-                                } else {
-                                    handleRadioClick('ipp', 'si');
-                                }
-                            }
-                        })
-                    ),
-                    React.createElement('td', { style: styles.tableCell },
-                        React.createElement('input', {
-                            type: 'radio',
-                            name: 'ipp',
-                            style: styles.radio,
-                            checked: radioSelections['ipp'] === 'no',
-                            onChange: () => {},
-                            onClick: () => {
-                                if (radioSelections['ipp'] === 'no') {
-                                    handleRadioClick('ipp', '');
-                                } else {
-                                    handleRadioClick('ipp', 'no');
-                                }
-                            }
-                        })
-                    ),
-                    React.createElement('td', { style: styles.tableCell },
-                        React.createElement('div', {
-                            style: {
-                                display: 'flex',
-                                gap: '1rem',
-                                flexDirection: 'column'
-                            }
-                        },
-                            radioSelections['ipp'] === 'si' && React.createElement('select', {
-                                style: { ...styles.input, width: '100%' },
-                                value: formData.ippTipo || '',
-                                onChange: (e) => handleInputChange('ippTipo', e.target.value)
-                            },
-                                React.createElement('option', { value: '' }, 'Clasificación de Tsukayama...'),
-                                React.createElement('option', { value: 'ciop' }, 'CIOP'),
-                                React.createElement('option', { value: 'aguda' }, 'IPP Aguda (<1 mes)'),
-                                React.createElement('option', { value: 'cronica' }, 'Crónica (>1 mes)'),
-                                React.createElement('option', { value: 'hematogena' }, 'Hematógena (>2 años)')
-                            ),
-                            React.createElement('textarea', {
-                                placeholder: 'Agregar comentarios...',
-                                value: formData.ippDetalles || '',
-                                onChange: (e) => handleInputChange('ippDetalles', e.target.value),
-                                style: {
-                                    ...styles.input,
-                                    width: '100%',
-                                    minHeight: '2rem',
-                                    resize: 'vertical',
-                                    overflow: 'auto'
-                                }
-                            })
-                        )
-                    )
-                )                     
-           )      // cierre del tbody
+                    )                      
+             )      // cierre del tbody
        )          // cierre de la tabla
    );            // cierre del div de Enfermedad Actual y el return del Form
 }                 // cierre de la función Form
