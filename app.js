@@ -2056,7 +2056,6 @@ React.createElement('tr', null,
                     )
                 ),
 
-// Nivel 1 IPP
                 const calcularClasificacionTsukayama = (fechaColocacion, fechaSintomas) => {
                     if (!fechaColocacion || !fechaSintomas) return ''; 
 
