@@ -1963,113 +1963,6 @@ React.createElement('tr', null,
                 ),
 
 // Nivel 1 Artritis Séptica
-React.createElement('tr', null,
-                    React.createElement('td', { style: styles.tableCell }, 
-                        React.createElement('div', { 
-                            style: {
-                                ...styles.labelContainerStyle,
-                                flexDirection: 'row',  
-                                gap: '1rem',  
-                                alignItems: 'center'  
-                            }
-                        },
-                            radioSelections['artritisSeptica'] === 'si' && React.createElement('div', {
-                                style: {
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    gap: '0.25rem'
-                                }
-                            },
-                                React.createElement('span', null, 'Inicio de síntomas'),
-                                React.createElement('input', {
-                                    type: 'date',
-                                    value: formData.artritisSepticaFecha || '',
-                                    onChange: (e) => handleInputChange('artritisSepticaFecha', e.target.value),
-                                    style: styles.dateInputStyle
-                                })
-                            ),
-                            'Artritis Séptica'
-                        )
-                    ),
-                    React.createElement('td', { style: styles.tableCell },
-                        React.createElement('input', {
-                            type: 'radio',
-                            name: 'artritisSeptica',
-                            style: styles.radio,
-                            checked: radioSelections['artritisSeptica'] === 'si',
-                            onChange: () => {},
-                            onClick: () => {
-                                if (radioSelections['artritisSeptica'] === 'si') {
-                                    handleRadioClick('artritisSeptica', '');
-                                } else {
-                                    handleRadioClick('artritisSeptica', 'si');
-                                }
-                            }
-                        })
-                    ),
-                    React.createElement('td', { style: styles.tableCell },
-                        React.createElement('input', {
-                            type: 'radio',
-                            name: 'artritisSeptica',
-                            style: styles.radio,
-                            checked: radioSelections['artritisSeptica'] === 'no',
-                            onChange: () => {},
-                            onClick: () => {
-                                if (radioSelections['artritisSeptica'] === 'no') {
-                                    handleRadioClick('artritisSeptica', '');
-                                } else {
-                                    handleRadioClick('artritisSeptica', 'no');
-                                }
-                            }
-                        })
-                    ),
-                    React.createElement('td', { style: styles.tableCell },
-                        React.createElement('div', {
-                            style: {
-                                display: 'flex',
-                                gap: '1rem',
-                                flexDirection: 'column'
-                            }
-                        },
-                            radioSelections['artritisSeptica'] === 'si' && React.createElement('select', {
-                                style: { ...styles.input, width: '100%' },
-                                value: formData.artritisSepticaTipo || '',
-                                onChange: (e) => handleInputChange('artritisSepticaTipo', e.target.value)
-                            },
-                                React.createElement('option', { value: '' }, 'Clasificación...'),
-                                React.createElement('option', { value: 'aguda' }, 'Aguda (<3 semanas)'),
-                                React.createElement('option', { value: 'cronica' }, 'Crónica (>3 semanas)')
-                            ),
-                            React.createElement('textarea', {
-                                placeholder: 'Región/Características',
-                                value: formData.artritisSepticaDetalles || '',
-                                onChange: (e) => handleInputChange('artritisSepticaDetalles', e.target.value),
-                                style: {
-                                    ...styles.input,
-                                    width: '100%',
-                                    minHeight: '2rem',
-                                    resize: 'vertical',
-                                    overflow: 'auto'
-                                }
-                            })
-                        )
-                    )
-                ),
-
-                const calcularClasificacionTsukayama = (fechaColocacion, fechaSintomas) => {
-                    if (!fechaColocacion || !fechaSintomas) return ''; 
-
-                    const colocacion = new Date(fechaColocacion);
-                    const sintomas = new Date(fechaSintomas);
-                    const diferenciaMeses = (sintomas - colocacion) / (1000 * 60 * 60 * 24 * 30.44);
-                    const diferenciaDias = (sintomas - colocacion) / (1000 * 60 * 60 * 24);
-                    const diferenciaAnios = diferenciaMeses / 12;
-
-                    if (diferenciaDias < 30) return 'aguda';
-                    if (diferenciaAnios >= 2) return 'hematogena';
-                    return 'cronica';
-                };
-
                 React.createElement('tr', null,
                     React.createElement('td', { style: styles.tableCell }, 
                         React.createElement('div', { 
@@ -2100,13 +1993,7 @@ React.createElement('tr', null,
                                     React.createElement('input', {
                                         type: 'date',
                                         value: formData.ippColocacionFecha || '',
-                                        onChange: (e) => {
-                                            handleInputChange('ippColocacionFecha', e.target.value);
-                                            if (formData.ippSintomasFecha) {
-                                                const nuevaClasificacion = calcularClasificacionTsukayama(e.target.value, formData.ippSintomasFecha);
-                                                handleInputChange('ippTipo', nuevaClasificacion);
-                                            }
-                                        },
+                                        onChange: (e) => handleInputChange('ippColocacionFecha', e.target.value),
                                         style: styles.dateInputStyle
                                     })
                                 ),
@@ -2122,13 +2009,7 @@ React.createElement('tr', null,
                                     React.createElement('input', {
                                         type: 'date',
                                         value: formData.ippSintomasFecha || '',
-                                        onChange: (e) => {
-                                            handleInputChange('ippSintomasFecha', e.target.value);
-                                            if (formData.ippColocacionFecha) {
-                                                const nuevaClasificacion = calcularClasificacionTsukayama(formData.ippColocacionFecha, e.target.value);
-                                                handleInputChange('ippTipo', nuevaClasificacion);
-                                            }
-                                        },
+                                        onChange: (e) => handleInputChange('ippSintomasFecha', e.target.value),
                                         style: styles.dateInputStyle
                                     })
                                 )
@@ -2201,7 +2082,7 @@ React.createElement('tr', null,
                             })
                         )
                     )
-                )
+                ),
             )      // cierre del tbody
        )          // cierre de la tabla
    );            // cierre del div de Enfermedad Actual y el return del Form
