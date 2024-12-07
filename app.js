@@ -2037,8 +2037,8 @@ React.createElement('tr', null,
                                 onChange: (e) => handleInputChange('artritisSepticaTipo', e.target.value)
                             },
                                 React.createElement('option', { value: '' }, 'Clasificación...'),
-                                React.createElement('option', { value: 'aguda' }, 'Aguda (<2 semanas)'),
-                                React.createElement('option', { value: 'cronica' }, 'Crónica (>2 semanas)')
+                                React.createElement('option', { value: 'aguda' }, 'Aguda (<3 semanas)'),
+                                React.createElement('option', { value: 'cronica' }, 'Crónica (>3 semanas)')
                             ),
                             React.createElement('textarea', {
                                 placeholder: 'Región/Características',
