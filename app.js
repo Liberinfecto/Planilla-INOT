@@ -147,6 +147,16 @@ const [radioSelections, setRadioSelections] = React.useState({});
         });
     };
 
+const calcularClasificacionTsukayama = (fechaColocacion, fechaSintomas) => {
+        if (!fechaColocacion || !fechaSintomas) return '';
+        const colocacion = new Date(fechaColocacion);
+        const sintomas = new Date(fechaSintomas);
+        const diferenciaMeses = (sintomas - colocacion) / (1000 * 60 * 60 * 24 * 30.44);
+        if (diferenciaMeses < 1) return 'aguda';
+        if (diferenciaMeses >= 24) return 'hematogena';
+        return 'cronica';
+    };
+    
     const styles = {
         container: {
             maxWidth: '1024px',
@@ -2089,7 +2099,13 @@ React.createElement('tr', null,
                                     React.createElement('input', {
                                         type: 'date',
                                         value: formData.ippColocacionFecha || '',
-                                        onChange: (e) => handleInputChange('ippColocacionFecha', e.target.value),
+                                        onChange: (e) => {
+                                            handleInputChange('ippColocacionFecha', e.target.value);
+                                            const nuevaClasificacion = calcularClasificacionTsukayama(e.target.value, formData.ippSintomasFecha);
+                                            if (nuevaClasificacion) {
+                                                handleInputChange('ippTipo', nuevaClasificacion);
+                                            }
+                                        },
                                         style: styles.dateInputStyle
                                     })
                                 ),
@@ -2105,7 +2121,13 @@ React.createElement('tr', null,
                                     React.createElement('input', {
                                         type: 'date',
                                         value: formData.ippSintomasFecha || '',
-                                        onChange: (e) => handleInputChange('ippSintomasFecha', e.target.value),
+                                        onChange: (e) => {
+                                            handleInputChange('ippSintomasFecha', e.target.value);
+                                            const nuevaClasificacion = calcularClasificacionTsukayama(formData.ippColocacionFecha, e.target.value);
+                                            if (nuevaClasificacion) {
+                                                handleInputChange('ippTipo', nuevaClasificacion);
+                                            }
+                                        },
                                         style: styles.dateInputStyle
                                     })
                                 )
