@@ -2057,21 +2057,7 @@ React.createElement('tr', null,
                 ),
 
 // Nivel 1 IPP
-                const calcularClasificacionTsukayama = (fechaColocacion, fechaSintomas) => {
-                    if (!fechaColocacion || !fechaSintomas) return ''; 
-
-                    const colocacion = new Date(fechaColocacion);
-                    const sintomas = new Date(fechaSintomas);
-                    const diferenciaMeses = (sintomas - colocacion) / (1000 * 60 * 60 * 24 * 30.44);
-                    const diferenciaDias = (sintomas - colocacion) / (1000 * 60 * 60 * 24);
-                    const diferenciaAnios = diferenciaMeses / 12;
-
-                    if (diferenciaDias < 30) return 'aguda';
-                    if (diferenciaAnios >= 2) return 'hematogena';
-                    return 'cronica';
-                };
-
-                React.createElement('tr', null,
+React.createElement('tr', null,
                     React.createElement('td', { style: styles.tableCell }, 
                         React.createElement('div', { 
                             style: {
@@ -2101,13 +2087,7 @@ React.createElement('tr', null,
                                     React.createElement('input', {
                                         type: 'date',
                                         value: formData.ippColocacionFecha || '',
-                                        onChange: (e) => {
-                                            handleInputChange('ippColocacionFecha', e.target.value);
-                                            if (formData.ippSintomasFecha) {
-                                                const nuevaClasificacion = calcularClasificacionTsukayama(e.target.value, formData.ippSintomasFecha);
-                                                handleInputChange('ippTipo', nuevaClasificacion);
-                                            }
-                                        },
+                                        onChange: (e) => handleInputChange('ippColocacionFecha', e.target.value),
                                         style: styles.dateInputStyle
                                     })
                                 ),
@@ -2123,13 +2103,7 @@ React.createElement('tr', null,
                                     React.createElement('input', {
                                         type: 'date',
                                         value: formData.ippSintomasFecha || '',
-                                        onChange: (e) => {
-                                            handleInputChange('ippSintomasFecha', e.target.value);
-                                            if (formData.ippColocacionFecha) {
-                                                const nuevaClasificacion = calcularClasificacionTsukayama(formData.ippColocacionFecha, e.target.value);
-                                                handleInputChange('ippTipo', nuevaClasificacion);
-                                            }
-                                        },
+                                        onChange: (e) => handleInputChange('ippSintomasFecha', e.target.value),
                                         style: styles.dateInputStyle
                                     })
                                 )
