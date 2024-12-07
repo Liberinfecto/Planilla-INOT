@@ -1963,6 +1963,102 @@ React.createElement('tr', null,
                 ),
 
 // Nivel 1 Artritis Séptica
+React.createElement('tr', null,
+                    React.createElement('td', { style: styles.tableCell }, 
+                        React.createElement('div', { 
+                            style: {
+                                ...styles.labelContainerStyle,
+                                flexDirection: 'row',  
+                                gap: '1rem',  
+                                alignItems: 'center'  
+                            }
+                        },
+                            radioSelections['artritisSeptica'] === 'si' && React.createElement('div', {
+                                style: {
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '0.25rem'
+                                }
+                            },
+                                React.createElement('span', null, 'Inicio de síntomas'),
+                                React.createElement('input', {
+                                    type: 'date',
+                                    value: formData.artritisSepticaFecha || '',
+                                    onChange: (e) => handleInputChange('artritisSepticaFecha', e.target.value),
+                                    style: styles.dateInputStyle
+                                })
+                            ),
+                            'Artritis Séptica'
+                        )
+                    ),
+                    React.createElement('td', { style: styles.tableCell },
+                        React.createElement('input', {
+                            type: 'radio',
+                            name: 'artritisSeptica',
+                            style: styles.radio,
+                            checked: radioSelections['artritisSeptica'] === 'si',
+                            onChange: () => {},
+                            onClick: () => {
+                                if (radioSelections['artritisSeptica'] === 'si') {
+                                    handleRadioClick('artritisSeptica', '');
+                                } else {
+                                    handleRadioClick('artritisSeptica', 'si');
+                                }
+                            }
+                        })
+                    ),
+                    React.createElement('td', { style: styles.tableCell },
+                        React.createElement('input', {
+                            type: 'radio',
+                            name: 'artritisSeptica',
+                            style: styles.radio,
+                            checked: radioSelections['artritisSeptica'] === 'no',
+                            onChange: () => {},
+                            onClick: () => {
+                                if (radioSelections['artritisSeptica'] === 'no') {
+                                    handleRadioClick('artritisSeptica', '');
+                                } else {
+                                    handleRadioClick('artritisSeptica', 'no');
+                                }
+                            }
+                        })
+                    ),
+                    React.createElement('td', { style: styles.tableCell },
+                        React.createElement('div', {
+                            style: {
+                                display: 'flex',
+                                gap: '1rem',
+                                flexDirection: 'column'
+                            }
+                        },
+                            radioSelections['artritisSeptica'] === 'si' && React.createElement('select', {
+                                style: { ...styles.input, width: '100%' },
+                                value: formData.artritisSepticaTipo || '',
+                                onChange: (e) => handleInputChange('artritisSepticaTipo', e.target.value)
+                            },
+                                React.createElement('option', { value: '' }, 'Clasificación...'),
+                                React.createElement('option', { value: 'aguda' }, 'Aguda (<2 semanas)'),
+                                React.createElement('option', { value: 'cronica' }, 'Crónica (>2 semanas)')
+                            ),
+                            React.createElement('textarea', {
+                                placeholder: 'Región/Características',
+                                value: formData.artritisSepticaDetalles || '',
+                                onChange: (e) => handleInputChange('artritisSepticaDetalles', e.target.value),
+                                style: {
+                                    ...styles.input,
+                                    width: '100%',
+                                    minHeight: '2rem',
+                                    resize: 'vertical',
+                                    overflow: 'auto'
+                                }
+                            })
+                        )
+                    )
+                ),
+
+
+                                
+// Nivel 1 IPP
                 React.createElement('tr', null,
                     React.createElement('td', { style: styles.tableCell }, 
                         React.createElement('div', { 
