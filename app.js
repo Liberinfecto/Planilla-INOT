@@ -1962,7 +1962,7 @@ React.createElement('tr', null,
                     )
                 ),
 
-// Nivel 1 Osteosíntesis
+// Nivel 1 Artritis Séptica
 React.createElement('tr', null,
                     React.createElement('td', { style: styles.tableCell }, 
                         React.createElement('div', { 
