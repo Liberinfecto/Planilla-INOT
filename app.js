@@ -157,7 +157,7 @@ const calcularClasificacionTsukayama = (fechaColocacion, fechaSintomas) => {
         return 'cronica';
     };
 
-    const calcularClasificacionIRF = (fechaFractura, fechaSintomas) => {
+const calcularClasificacionIRF = (fechaFractura, fechaSintomas) => {
     if (!fechaFractura || !fechaSintomas) return '';
     
     const fractura = new Date(fechaFractura);
@@ -1702,7 +1702,13 @@ const calcularClasificacionTsukayama = (fechaColocacion, fechaSintomas) => {
                               React.createElement('input', {
                                   type: 'date',
                                   value: formData.irfFecha || '',
-                                  onChange: (e) => handleInputChange('irfFecha', e.target.value),
+                                  onChange: (e) => {
+                                      handleInputChange('irfFecha', e.target.value);
+                                      const nuevaClasificacion = calcularClasificacionIRF(formData.fracturaFecha, e.target.value);
+                                      if (nuevaClasificacion) {
+                                          handleInputChange('irfTipo', nuevaClasificacion);
+                                      }
+                                  },
                                   style: styles.dateInputStyle
                               })
                           ),
@@ -2130,17 +2136,18 @@ React.createElement('tr', null,
                                         gap: '0.25rem'
                                     }
                                 },
-                                React.createElement('input', {
-                                    type: 'date',
-                                    value: formData.irfFecha || '',
-                                    onChange: (e) => {
-                                        handleInputChange('irfFecha', e.target.value);
-                                        const nuevaClasificacion = calcularClasificacionIRF(formData.fracturaFecha, e.target.value);
-                                        if (nuevaClasificacion) {
-                                            handleInputChange('irfTipo', nuevaClasificacion);
-                                        }
-                                      },
-                                      style: styles.dateInputStyle
+                                    React.createElement('span', null, 'Inicio de síntomas'),
+                                    React.createElement('input', {
+                                        type: 'date',
+                                        value: formData.ippSintomasFecha || '',
+                                        onChange: (e) => {
+                                            handleInputChange('ippSintomasFecha', e.target.value);
+                                            const nuevaClasificacion = calcularClasificacionTsukayama(formData.ippColocacionFecha, e.target.value);
+                                            if (nuevaClasificacion) {
+                                                handleInputChange('ippTipo', nuevaClasificacion);
+                                            }
+                                        },
+                                        style: styles.dateInputStyle
                                     })
                                 )
                             ),
