@@ -2082,7 +2082,7 @@ React.createElement('tr', null,
                             })
                         )
                     )
-                ),
+                )
             )      // cierre del tbody
        )          // cierre de la tabla
    );            // cierre del div de Enfermedad Actual y el return del Form
