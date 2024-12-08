@@ -1826,11 +1826,11 @@ React.createElement('tr', null,
                                value: formData.irfTipo || '',
                                onChange: (e) => handleInputChange('irfTipo', e.target.value)
                            },
-                               React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
-                               React.createElement('option', { value: 'aguda' }, 'Aguda (1-2 semanas)'),
-                               React.createElement('option', { value: 'retrasada' }, 'Retrasada (3-10 semanas)'),
-                               React.createElement('option', { value: 'tardia' }, 'Tardía (>10 semanas)'),
-                               React.createElement('option', { value: 'pseudoartrosis' }, 'Pseudoartrosis Infectada (6-9 meses)')
+                              React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
+                              React.createElement('option', { value: 'aguda' }, 'Aguda (1-3 semanas)'),
+                              React.createElement('option', { value: 'retrasada' }, 'Retrasada (4-10 semanas)'),
+                              React.createElement('option', { value: 'tardia' }, 'Tardía (>10 semanas)'),
+                              React.createElement('option', { value: 'pseudoartrosis' }, 'Pseudoartrosis Infectada (6-9 meses)')
                            ),
                            React.createElement('textarea', {
                                placeholder: 'Agregar comentarios...',
