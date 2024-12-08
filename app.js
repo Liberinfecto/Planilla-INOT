@@ -1409,7 +1409,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                     )
                 ),
                 
-                                // Sector OSTEOSINTESIS
+// Sector OSTEOSINTESIS
                     radioSelections['fractura'] === 'si' && React.createElement('tr', null,
                         React.createElement('td', { 
                             style: { 
@@ -1429,7 +1429,17 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                                     React.createElement('input', {
                                         type: 'date',
                                         value: formData.osteosinesisFecha || '',
-                                        onChange: (e) => handleInputChange('osteosinesisFecha', e.target.value),
+                                        onChange: (e) => {
+                                            const fechaOS = new Date(e.target.value);
+                                            const fechaFractura = formData.fracturaFecha ? new Date(formData.fracturaFecha) : null;
+                                            
+                                            if (fechaFractura && fechaOS < fechaFractura) {
+                                                alert('La fecha de colocación de osteosíntesis no puede ser anterior a la fecha de fractura');
+                                                return;
+                                            }
+                                            
+                                            handleInputChange('osteosinesisFecha', e.target.value);
+                                        },
                                         style: styles.dateInputStyle
                                     })
                                 ),
@@ -1701,6 +1711,14 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                                   type: 'date',
                                   value: formData.irfFecha || '',
                                   onChange: (e) => {
+                                      const fechaSintomas = new Date(e.target.value);
+                                      const fechaFractura = formData.fracturaFecha ? new Date(formData.fracturaFecha) : null;
+                                      
+                                      if (fechaFractura && fechaSintomas < fechaFractura) {
+                                          alert('La fecha de inicio de síntomas no puede ser anterior a la fecha de fractura');
+                                          return;
+                                      }
+                                      
                                       handleInputChange('irfFecha', e.target.value);
                                       const nuevaClasificacion = calcularClasificacionIRF(formData.fracturaFecha, e.target.value);
                                       if (nuevaClasificacion) {
@@ -1779,8 +1797,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                        )
                    )
                ),
-
-                                
+         
 // Nivel 1 ISQ
                React.createElement('tr', null,
                     React.createElement('td', { style: styles.tableCell }, 
