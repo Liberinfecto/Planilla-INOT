@@ -1084,6 +1084,11 @@ React.createElement('tr', null,
                             alert('La fecha de fractura no puede ser posterior a la fecha de IRF');
                             return;
                         }
+                        // Calcular clasificación IRF si existe fecha de IRF
+                        const nuevaClasificacion = calcularClasificacionIRF(e.target.value, formData.irfFecha);
+                        if (nuevaClasificacion) {
+                            handleInputChange('irfTipo', nuevaClasificacion);
+                        }
                     }
                     
                     handleInputChange('fracturaFecha', e.target.value);
