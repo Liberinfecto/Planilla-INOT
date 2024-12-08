@@ -1059,55 +1059,77 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                 React.createElement('tbody', null,
       
 // FRACTURA - Nivel 1
-                    React.createElement('tr', null,
-                        React.createElement('td', { style: styles.tableCell }, 
-                            React.createElement('div', { style: styles.labelContainerStyle },
-                                radioSelections['fractura'] === 'si' && React.createElement('input', {
-                                    type: 'date',
-                                    value: formData.fracturaFecha || '',
-                                    onChange: (e) => handleInputChange('fracturaFecha', e.target.value),
-                                    style: styles.dateInputStyle
-                                }),
-                                'Fractura'
-                            )
-                        ),
-                        React.createElement('td', { style: styles.tableCell },
-                            React.createElement('input', {
-                                type: 'radio',
-                                name: 'fractura',
-                                style: styles.radio,
-                                checked: radioSelections['fractura'] === 'si',
-                                onChange: () => {},
-                                onClick: () => handleRadioClick('fractura', 'si')
-                            })
-                        ),
-                        React.createElement('td', { style: styles.tableCell },
-                            React.createElement('input', {
-                                type: 'radio',
-                                name: 'fractura',
-                                style: styles.radio,
-                                checked: radioSelections['fractura'] === 'no',
-                                onChange: () => {},
-                                onClick: () => handleRadioClick('fractura', 'no')
-                            })
-                        ),
-                        React.createElement('td', { style: styles.tableCell },
-                            React.createElement('textarea', {
-                                value: formData.fracturaDetalles || '',
-                                onChange: (e) => handleInputChange('fracturaDetalles', e.target.value),
-                                placeholder: 'Agregar comentarios...',
-                                style: {
-                                    ...styles.input,
-                                    width: '100%',
-                                    minHeight: '2rem',
-                                    resize: 'vertical',
-                                    overflow: 'auto'
-                                }
-                            })
-                        )
-                    ),
-                                    
-                    // Selector Única/Múltiple
+React.createElement('tr', null,
+    React.createElement('td', { style: styles.tableCell }, 
+        React.createElement('div', { style: styles.labelContainerStyle },
+            radioSelections['fractura'] === 'si' && React.createElement('input', {
+                type: 'date',
+                value: formData.fracturaFecha || '',
+                onChange: (e) => {
+                    const nuevaFechaFractura = new Date(e.target.value);
+                    
+                    // Validar fecha de osteosíntesis
+                    if (formData.osteosinesisFecha) {
+                        const fechaOS = new Date(formData.osteosinesisFecha);
+                        if (nuevaFechaFractura > fechaOS) {
+                            alert('La fecha de fractura no puede ser posterior a la fecha de osteosíntesis');
+                            return;
+                        }
+                    }
+                    
+                    // Validar fecha de IRF
+                    if (formData.irfFecha) {
+                        const fechaIRF = new Date(formData.irfFecha);
+                        if (nuevaFechaFractura > fechaIRF) {
+                            alert('La fecha de fractura no puede ser posterior a la fecha de IRF');
+                            return;
+                        }
+                    }
+                    
+                    handleInputChange('fracturaFecha', e.target.value);
+                },
+                style: styles.dateInputStyle
+            }),
+            'Fractura'
+        )
+    ),
+    React.createElement('td', { style: styles.tableCell },
+        React.createElement('input', {
+            type: 'radio',
+            name: 'fractura',
+            style: styles.radio,
+            checked: radioSelections['fractura'] === 'si',
+            onChange: () => {},
+            onClick: () => handleRadioClick('fractura', 'si')
+        })
+    ),
+    React.createElement('td', { style: styles.tableCell },
+        React.createElement('input', {
+            type: 'radio',
+            name: 'fractura',
+            style: styles.radio,
+            checked: radioSelections['fractura'] === 'no',
+            onChange: () => {},
+            onClick: () => handleRadioClick('fractura', 'no')
+        })
+    ),
+    React.createElement('td', { style: styles.tableCell },
+        React.createElement('textarea', {
+            value: formData.fracturaDetalles || '',
+            onChange: (e) => handleInputChange('fracturaDetalles', e.target.value),
+            placeholder: 'Agregar comentarios...',
+            style: {
+                ...styles.input,
+                width: '100%',
+                minHeight: '2rem',
+                resize: 'vertical',
+                overflow: 'auto'
+            }
+        })
+    )
+),
+
+// Selector Única/Múltiple
                     radioSelections['fractura'] === 'si' && React.createElement('tr', null,
                         React.createElement('td', { 
                             style: { 
@@ -1409,80 +1431,88 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                     )
                 ),
                 
-                                // Sector OSTEOSINTESIS
-                    radioSelections['fractura'] === 'si' && React.createElement('tr', null,
-                        React.createElement('td', { 
-                            style: { 
-                                ...styles.tableCell,
-                                paddingLeft: '2rem'
-                            } 
-                        }, 
-                            React.createElement('div', { style: styles.labelContainerStyle },
-                                radioSelections['osteosintesis'] === 'si' && React.createElement('div', {
-                                    style: {
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        gap: '0.25rem'
-                                    }
-                                },
-                                    React.createElement('span', null, 'Fecha de Colocación'),
-                                    React.createElement('input', {
-                                        type: 'date',
-                                        value: formData.osteosinesisFecha || '',
-                                        onChange: (e) => {
-                                            const fechaOS = new Date(e.target.value);
-                                            const fechaFractura = formData.fracturaFecha ? new Date(formData.fracturaFecha) : null;
-                                            
-                                            if (fechaFractura && fechaOS < fechaFractura) {
-                                                alert('La fecha de colocación de osteosíntesis no puede ser anterior a la fecha de fractura');
-                                                return;
-                                            }
-                                            
-                                            handleInputChange('osteosinesisFecha', e.target.value);
-                                        },
-                                        style: styles.dateInputStyle
-                                    })
-                                ),
-                                '↳ Osteosíntesis'
-                            )
-                        ),
-                        React.createElement('td', { style: styles.tableCell },
-                            React.createElement('input', {
-                                type: 'radio',
-                                name: 'osteosintesis',
-                                style: styles.radio,
-                                checked: radioSelections['osteosintesis'] === 'si',
-                                onChange: () => {},
-                                onClick: () => handleRadioClick('osteosintesis', 'si')
-                            })
-                        ),
-                        React.createElement('td', { style: styles.tableCell },
-                            React.createElement('input', {
-                                type: 'radio',
-                                name: 'osteosintesis',
-                                style: styles.radio,
-                                checked: radioSelections['osteosintesis'] === 'no',
-                                onChange: () => {},
-                                onClick: () => handleRadioClick('osteosintesis', 'no')
-                            })
-                        ),
-                        React.createElement('td', { style: styles.tableCell },
-                            React.createElement('textarea', {
-                                value: formData.osteosintesisDetalles || '',
-                                onChange: (e) => handleInputChange('osteosintesisDetalles', e.target.value),
-                                placeholder: 'Agregar comentarios...',
-                                style: {
-                                    ...styles.input,
-                                    width: '100%',
-                                    minHeight: '2rem',
-                                    resize: 'vertical',
-                                    overflow: 'auto'
-                                }
-                            })
-                        )
-                    ),
-               
-                // Lista de tipos de osteosíntesis
+// Sector OSTEOSINTESIS
+radioSelections['fractura'] === 'si' && React.createElement('tr', null,
+    React.createElement('td', { 
+        style: { 
+            ...styles.tableCell,
+            paddingLeft: '2rem'
+        } 
+    }, 
+        React.createElement('div', { style: styles.labelContainerStyle },
+            radioSelections['osteosintesis'] === 'si' && React.createElement('div', {
+                style: {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.25rem'
+                }
+            },
+                React.createElement('span', null, 'Fecha de Colocación'),
+                React.createElement('input', {
+                    type: 'date',
+                    value: formData.osteosinesisFecha || '',
+                    onChange: (e) => {
+                        const fechaOS = new Date(e.target.value);
+                        
+                        if (formData.fracturaFecha) {
+                            const fechaFractura = new Date(formData.fracturaFecha);
+                            if (fechaOS < fechaFractura) {
+                                alert('La fecha de colocación de osteosíntesis no puede ser anterior a la fecha de fractura');
+                                return;
+                            }
+                        } else {
+                            // Si no hay fecha de fractura, guardarla como fecha de fractura
+                            handleInputChange('fracturaFecha', e.target.value);
+                            // También activar el radio button de fractura
+                            handleRadioClick('fractura', 'si');
+                            alert('Se ha establecido automáticamente la fecha de fractura igual a la fecha de osteosíntesis');
+                        }
+                        
+                        handleInputChange('osteosinesisFecha', e.target.value);
+                    },
+                    style: styles.dateInputStyle
+                })
+            ),
+            '↳ Osteosíntesis'
+        )
+    ),
+    React.createElement('td', { style: styles.tableCell },
+        React.createElement('input', {
+            type: 'radio',
+            name: 'osteosintesis',
+            style: styles.radio,
+            checked: radioSelections['osteosintesis'] === 'si',
+            onChange: () => {},
+            onClick: () => handleRadioClick('osteosintesis', 'si')
+        })
+    ),
+    React.createElement('td', { style: styles.tableCell },
+        React.createElement('input', {
+            type: 'radio',
+            name: 'osteosintesis',
+            style: styles.radio,
+            checked: radioSelections['osteosintesis'] === 'no',
+            onChange: () => {},
+            onClick: () => handleRadioClick('osteosintesis', 'no')
+        })
+    ),
+    React.createElement('td', { style: styles.tableCell },
+        React.createElement('textarea', {
+            value: formData.osteosintesisDetalles || '',
+            onChange: (e) => handleInputChange('osteosintesisDetalles', e.target.value),
+            placeholder: 'Agregar comentarios...',
+            style: {
+                ...styles.input,
+                width: '100%',
+                minHeight: '2rem',
+                resize: 'vertical',
+                overflow: 'auto'
+            }
+        })
+    )
+),
+
+// Lista de tipos de osteosíntesis
                 (radioSelections['fractura'] === 'si' && radioSelections['osteosintesis'] === 'si') && React.createElement('tr', null,
                     React.createElement('td', { 
                         style: { 
@@ -1689,115 +1719,123 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                 ),
   
 // Nivel 1 IRF
-              React.createElement('tr', null,
-                  React.createElement('td', { style: styles.tableCell }, 
-                      React.createElement('div', { 
-                          style: {
-                              ...styles.labelContainerStyle,
-                               flexDirection: 'row',  
-                               gap: '1rem',  
-                               alignItems: 'center'  
-                          }
-                      },
-                          radioSelections['irf'] === 'si' && React.createElement('div', {
-                              style: {
-                                  display: 'flex',
-                                  flexDirection: 'column',
-                                  gap: '0.25rem'
-                              }
-                          },
-                              React.createElement('span', null, 'Inicio de síntomas'),
-                              React.createElement('input', {
-                                  type: 'date',
-                                  value: formData.irfFecha || '',
-                                  onChange: (e) => {
-                                      const fechaSintomas = new Date(e.target.value);
-                                      const fechaFractura = formData.fracturaFecha ? new Date(formData.fracturaFecha) : null;
-                                      
-                                      if (fechaFractura && fechaSintomas < fechaFractura) {
-                                          alert('La fecha de inicio de síntomas no puede ser anterior a la fecha de fractura');
-                                          return;
-                                      }
-                                      
-                                      handleInputChange('irfFecha', e.target.value);
-                                      const nuevaClasificacion = calcularClasificacionIRF(formData.fracturaFecha, e.target.value);
-                                      if (nuevaClasificacion) {
-                                          handleInputChange('irfTipo', nuevaClasificacion);
-                                      }
-                                  },
-                                  style: styles.dateInputStyle
-                              })
-                          ),
-                          'IRF'
-                      )
-                  ),
-                  React.createElement('td', { style: styles.tableCell },
-                      React.createElement('input', {
-                          type: 'radio',
-                          name: 'irf',
-                          style: styles.radio,
-                          checked: radioSelections['irf'] === 'si',
-                          onChange: () => {},
-                          onClick: () => {
-                              if (radioSelections['irf'] === 'si') {
-                                  handleRadioClick('irf', '');
-                              } else {
-                                  handleRadioClick('irf', 'si');
-                              }
-                          }
-                      })
-                  ),
-                   React.createElement('td', { style: styles.tableCell },
-                       React.createElement('input', {
-                           type: 'radio',
-                           name: 'irf',
-                           style: styles.radio,
-                           checked: radioSelections['irf'] === 'no',
-                           onChange: () => {},
-                           onClick: () => {
-                               if (radioSelections['irf'] === 'no') {
-                                   handleRadioClick('irf', '');
-                               } else {
-                                   handleRadioClick('irf', 'no');
-                               }
+React.createElement('tr', null,
+   React.createElement('td', { style: styles.tableCell }, 
+       React.createElement('div', { 
+           style: {
+               ...styles.labelContainerStyle,
+               flexDirection: 'row',  
+               gap: '1rem',  
+               alignItems: 'center'  
+           }
+       },
+           radioSelections['irf'] === 'si' && React.createElement('div', {
+               style: {
+                   display: 'flex',
+                   flexDirection: 'column',
+                   gap: '0.25rem'
+               }
+           },
+               React.createElement('span', null, 'Inicio de síntomas'),
+               React.createElement('input', {
+                   type: 'date',
+                   value: formData.irfFecha || '',
+                   onChange: (e) => {
+                       const fechaSintomas = new Date(e.target.value);
+                       
+                       if (formData.fracturaFecha) {
+                           const fechaFractura = new Date(formData.fracturaFecha);
+                           if (fechaSintomas < fechaFractura) {
+                               alert('La fecha de inicio de síntomas no puede ser anterior a la fecha de fractura');
+                               return;
                            }
-                       })
-                   ),
-                   React.createElement('td', { style: styles.tableCell },
-                       React.createElement('div', {
-                           style: {
-                               display: 'flex',
-                               gap: '1rem',
-                               flexDirection: 'column'
-                           }
-                       },
-                           radioSelections['irf'] === 'si' && React.createElement('select', {
-                               style: { ...styles.input, width: '100%' },
-                               value: formData.irfTipo || '',
-                               onChange: (e) => handleInputChange('irfTipo', e.target.value)
-                           },
-                               React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
-                               React.createElement('option', { value: 'aguda' }, 'Aguda (1-2 semanas)'),
-                               React.createElement('option', { value: 'retrasada' }, 'Retrasada (3-10 semanas)'),
-                               React.createElement('option', { value: 'tardia' }, 'Tardía (>10 semanas)'),
-                               React.createElement('option', { value: 'pseudoartrosis' }, 'Pseudoartrosis Infectada (6-9 meses)')
-                           ),
-                           React.createElement('textarea', {
-                               placeholder: 'Agregar comentarios...',
-                               value: formData.irfDetalles || '',
-                               onChange: (e) => handleInputChange('irfDetalles', e.target.value),
-                               style: {
-                                   ...styles.input,
-                                   width: '100%',
-                                   minHeight: '2rem',
-                                   resize: 'vertical',
-                                   overflow: 'auto'
-                               }
-                           })
-                       )
-                   )
-               ),
-         
+                       } else {
+                           // Si no hay fecha de fractura, guardarla como fecha de fractura
+                           handleInputChange('fracturaFecha', e.target.value);
+                           // También activar el radio button de fractura
+                           handleRadioClick('fractura', 'si');
+                           alert('Se ha establecido automáticamente la fecha de fractura igual a la fecha de inicio de síntomas de IRF');
+                       }
+                       
+                       handleInputChange('irfFecha', e.target.value);
+                       const nuevaClasificacion = calcularClasificacionIRF(formData.fracturaFecha, e.target.value);
+                       if (nuevaClasificacion) {
+                           handleInputChange('irfTipo', nuevaClasificacion);
+                       }
+                   },
+                   style: styles.dateInputStyle
+               })
+           ),
+           'IRF'
+       )
+   ),
+   React.createElement('td', { style: styles.tableCell },
+       React.createElement('input', {
+           type: 'radio',
+           name: 'irf',
+           style: styles.radio,
+           checked: radioSelections['irf'] === 'si',
+           onChange: () => {},
+           onClick: () => {
+               if (radioSelections['irf'] === 'si') {
+                   handleRadioClick('irf', '');
+               } else {
+                   handleRadioClick('irf', 'si');
+               }
+           }
+       })
+   ),
+   React.createElement('td', { style: styles.tableCell },
+       React.createElement('input', {
+           type: 'radio',
+           name: 'irf',
+           style: styles.radio,
+           checked: radioSelections['irf'] === 'no',
+           onChange: () => {},
+           onClick: () => {
+               if (radioSelections['irf'] === 'no') {
+                   handleRadioClick('irf', '');
+               } else {
+                   handleRadioClick('irf', 'no');
+               }
+           }
+       })
+   ),
+   React.createElement('td', { style: styles.tableCell },
+       React.createElement('div', {
+           style: {
+               display: 'flex',
+               gap: '1rem',
+               flexDirection: 'column'
+           }
+       },
+           radioSelections['irf'] === 'si' && React.createElement('select', {
+               style: { ...styles.input, width: '100%' },
+               value: formData.irfTipo || '',
+               onChange: (e) => handleInputChange('irfTipo', e.target.value)
+           },
+               React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
+               React.createElement('option', { value: 'aguda' }, 'Aguda (1-2 semanas)'),
+               React.createElement('option', { value: 'retrasada' }, 'Retrasada (3-10 semanas)'),
+               React.createElement('option', { value: 'tardia' }, 'Tardía (>10 semanas)'),
+               React.createElement('option', { value: 'pseudoartrosis' }, 'Pseudoartrosis Infectada (6-9 meses)')
+           ),
+           React.createElement('textarea', {
+               placeholder: 'Agregar comentarios...',
+               value: formData.irfDetalles || '',
+               onChange: (e) => handleInputChange('irfDetalles', e.target.value),
+               style: {
+                   ...styles.input,
+                   width: '100%',
+                   minHeight: '2rem',
+                   resize: 'vertical',
+                   overflow: 'auto'
+               }
+           })
+       )
+   )
+),
+
 // Nivel 1 ISQ
                React.createElement('tr', null,
                     React.createElement('td', { style: styles.tableCell }, 
