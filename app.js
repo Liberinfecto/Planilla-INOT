@@ -1432,87 +1432,89 @@ React.createElement('tr', null,
                 ),
                 
 // Sector OSTEOSINTESIS
-radioSelections['fractura'] === 'si' && React.createElement('tr', null,
-    React.createElement('td', { 
-        style: { 
-            ...styles.tableCell,
-            paddingLeft: '2rem'
-        } 
-    }, 
-        React.createElement('div', { style: styles.labelContainerStyle },
-            radioSelections['osteosintesis'] === 'si' && React.createElement('div', {
-                style: {
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '0.25rem'
-                }
-            },
-                React.createElement('span', null, 'Fecha de Colocación'),
-                React.createElement('input', {
-                    type: 'date',
-                    value: formData.osteosinesisFecha || '',
-                    onChange: (e) => {
-                        const fechaOS = new Date(e.target.value);
-                        
-                        if (formData.fracturaFecha) {
-                            const fechaFractura = new Date(formData.fracturaFecha);
-                            if (fechaOS < fechaFractura) {
-                                alert('La fecha de colocación de osteosíntesis no puede ser anterior a la fecha de fractura');
-                                return;
-                            }
-                        } else {
-                            // Si no hay fecha de fractura, guardarla como fecha de fractura
-                            handleInputChange('fracturaFecha', e.target.value);
-                            // También activar el radio button de fractura
-                            handleRadioClick('fractura', 'si');
-                            alert('Se ha establecido automáticamente la fecha de fractura igual a la fecha de osteosíntesis');
-                        }
-                        
-                        handleInputChange('osteosinesisFecha', e.target.value);
-                    },
-                    style: styles.dateInputStyle
-                })
-            ),
-            '↳ Osteosíntesis'
-        )
-    ),
-    React.createElement('td', { style: styles.tableCell },
-        React.createElement('input', {
-            type: 'radio',
-            name: 'osteosintesis',
-            style: styles.radio,
-            checked: radioSelections['osteosintesis'] === 'si',
-            onChange: () => {},
-            onClick: () => handleRadioClick('osteosintesis', 'si')
-        })
-    ),
-    React.createElement('td', { style: styles.tableCell },
-        React.createElement('input', {
-            type: 'radio',
-            name: 'osteosintesis',
-            style: styles.radio,
-            checked: radioSelections['osteosintesis'] === 'no',
-            onChange: () => {},
-            onClick: () => handleRadioClick('osteosintesis', 'no')
-        })
-    ),
-    React.createElement('td', { style: styles.tableCell },
-        React.createElement('textarea', {
-            value: formData.osteosintesisDetalles || '',
-            onChange: (e) => handleInputChange('osteosintesisDetalles', e.target.value),
-            placeholder: 'Agregar comentarios...',
-            style: {
-                ...styles.input,
-                width: '100%',
-                minHeight: '2rem',
-                resize: 'vertical',
-                overflow: 'auto'
-            }
-        })
-    )
-),
-
-// Lista de tipos de osteosíntesis
+                    radioSelections['fractura'] === 'si' && React.createElement('tr', null,
+                        React.createElement('td', { 
+                            style: { 
+                                ...styles.tableCell,
+                                paddingLeft: '2rem'
+                            } 
+                        }, 
+                            React.createElement('div', { style: styles.labelContainerStyle },
+                                radioSelections['osteosintesis'] === 'si' && React.createElement('div', {
+                                    style: {
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        gap: '0.25rem'
+                                    }
+                                },
+                                    React.createElement('span', null, 'Fecha de Colocación'),
+                                    React.createElement('input', {
+                                        type: 'date',
+                                        value: formData.osteosinesisFecha || '',
+                                        onChange: (e) => {
+                                            const fechaOS = new Date(e.target.value);
+                                            
+                                            if (formData.fracturaFecha) {
+                                                const fechaFractura = new Date(formData.fracturaFecha);
+                                                if (fechaOS < fechaFractura) {
+                                                    alert('La fecha de colocación de osteosíntesis no puede ser anterior a la fecha de fractura');
+                                                    return;
+                                                }
+                                            } else {
+                                                // Si no hay fecha de fractura, guardarla como fecha de fractura
+                                                handleInputChange('fracturaFecha', e.target.value);
+                                                // Asegurarnos que el radio de fractura quede en 'si'
+                                                if (radioSelections['fractura'] !== 'si') {
+                                                    handleRadioClick('fractura', 'si');
+                                                }
+                                                alert('Se ha establecido automáticamente la fecha de fractura igual a la fecha de osteosíntesis');
+                                            }
+                                            
+                                            handleInputChange('osteosinesisFecha', e.target.value);
+                                        },
+                                        style: styles.dateInputStyle
+                                    })
+                                ),
+                                '↳ Osteosíntesis'
+                            )
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'osteosintesis',
+                                style: styles.radio,
+                                checked: radioSelections['osteosintesis'] === 'si',
+                                onChange: () => {},
+                                onClick: () => handleRadioClick('osteosintesis', 'si')
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'osteosintesis',
+                                style: styles.radio,
+                                checked: radioSelections['osteosintesis'] === 'no',
+                                onChange: () => {},
+                                onClick: () => handleRadioClick('osteosintesis', 'no')
+                            })
+                        ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('textarea', {
+                                value: formData.osteosintesisDetalles || '',
+                                onChange: (e) => handleInputChange('osteosintesisDetalles', e.target.value),
+                                placeholder: 'Agregar comentarios...',
+                                style: {
+                                    ...styles.input,
+                                    width: '100%',
+                                    minHeight: '2rem',
+                                    resize: 'vertical',
+                                    overflow: 'auto'
+                                }
+                            })
+                        )
+                    ),
+               
+                // Lista de tipos de osteosíntesis
                 (radioSelections['fractura'] === 'si' && radioSelections['osteosintesis'] === 'si') && React.createElement('tr', null,
                     React.createElement('td', { 
                         style: { 
