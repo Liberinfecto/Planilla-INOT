@@ -1434,7 +1434,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                             })
                         ),
                         '↳ Osteosíntesis'
-                    )
+                    ),
                         React.createElement('td', { style: styles.tableCell },
                             React.createElement('input', {
                                 type: 'radio',
