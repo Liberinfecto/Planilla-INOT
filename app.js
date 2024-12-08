@@ -1790,6 +1790,9 @@ React.createElement('tr', null,
                                    handleRadioClick('irf', '');
                                } else {
                                    handleRadioClick('irf', 'si');
+                                   if (radioSelections['fractura'] !== 'si') {
+                                       handleRadioClick('fractura', 'si');
+                                    }
                                }
                            }
                        })
