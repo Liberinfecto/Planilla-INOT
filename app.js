@@ -1,4 +1,4 @@
-const container = document.getElementById('root');
+const calcularClasificacionIRF = (fechaFractura, fechaSintomas) => {
 const root = ReactDOM.createRoot(container);
 function Form() {
 
@@ -165,7 +165,7 @@ const calcularClasificacionIRF = (fechaFractura, fechaSintomas) => {
     const diferenciaDias = (sintomas - fractura) / (1000 * 60 * 60 * 24);
     const diferenciaSemanas = diferenciaDias / 7;
 
-    if (diferenciaSemanas <= 2) return 'aguda';
+    if (diferenciaSemanas <= 3) return 'aguda';
     if (diferenciaSemanas <= 10) return 'retrasada';
     return 'tardia';
 };
