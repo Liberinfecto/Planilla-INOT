@@ -1535,32 +1535,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                                             }
                                         }, '×')
                                     ),
-                                    // Fecha de colocación
-                                    React.createElement('div', {
-                                        style: {
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '1rem'
-                                        }
-                                    },
-                                        React.createElement('span', null, 'Fecha colocación:'),
-                                        React.createElement('input', {
-                                            type: 'date',
-                                            value: tipo.fechaColocacion || '',
-                                            onChange: (e) => {
-                                                const nuevosTipos = [...formData.osteosintesisTipos];
-                                                nuevosTipos[index] = {
-                                                    ...nuevosTipos[index],
-                                                    fechaColocacion: e.target.value
-                                                };
-                                                setFormData(prev => ({
-                                                    ...prev,
-                                                    osteosintesisTipos: nuevosTipos
-                                                }));
-                                            },
-                                            style: {...styles.input}
-                                        })
-                                    ),
+
                                     // Radio buttons ¿Se extrajo?
                                     React.createElement('div', {
                                         style: {
