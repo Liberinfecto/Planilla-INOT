@@ -1570,11 +1570,12 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                                                 React.createElement('input', {
                                                     type: 'radio',
                                                     checked: tipo.extraido === 'si',
-                                                    onChange: () => {
+                                                    onChange: () => {},
+                                                    onClick: () => {
                                                         const nuevosTipos = [...formData.osteosintesisTipos];
                                                         nuevosTipos[index] = {
                                                             ...nuevosTipos[index],
-                                                            extraido: 'si'
+                                                            extraido: tipo.extraido === 'si' ? '' : 'si'
                                                         };
                                                         setFormData(prev => ({
                                                             ...prev,
@@ -1595,11 +1596,12 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                                                 React.createElement('input', {
                                                     type: 'radio',
                                                     checked: tipo.extraido === 'no',
-                                                    onChange: () => {
+                                                    onChange: () => {},
+                                                    onClick: () => {
                                                         const nuevosTipos = [...formData.osteosintesisTipos];
                                                         nuevosTipos[index] = {
                                                             ...nuevosTipos[index],
-                                                            extraido: 'no'
+                                                            extraido: tipo.extraido === 'no' ? '' : 'no'
                                                         };
                                                         setFormData(prev => ({
                                                             ...prev,
