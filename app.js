@@ -1483,7 +1483,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                     ),
                
                 // Lista de tipos de osteosíntesis
-                radioSelections['osteosintesis'] === 'si' && React.createElement('tr', null,
+               (radioSelections['fractura'] === 'si' && radioSelections['osteosintesis'] === 'si') && React.createElement('tr', null,
                     React.createElement('td', { 
                         style: { 
                             ...styles.tableCell,
