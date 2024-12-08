@@ -291,7 +291,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
             border: '1px solid #dc3545',
             backgroundColor: '#ffebeb',
             color: '#dc3545',
-            width: '130px'
+            width: '150px'
         }
     };
 
