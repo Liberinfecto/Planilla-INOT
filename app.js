@@ -1417,16 +1417,24 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                                 paddingLeft: '2rem'
                             } 
                         }, 
-                            React.createElement('div', { style: styles.labelContainerStyle },
-                                radioSelections['osteosintesis'] === 'si' && React.createElement('input', {
-                                    type: 'date',
-                                    value: formData.osteosinesisFecha || '',
-                                    onChange: (e) => handleInputChange('osteosinesisFecha', e.target.value),
-                                    style: styles.dateInputStyle
-                                }),
-                                '↳ Osteosíntesis'
-                            )
+                    React.createElement('div', { style: styles.labelContainerStyle },
+                        radioSelections['osteosintesis'] === 'si' && React.createElement('div', {
+                            style: {
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '0.25rem'
+                            }
+                        },
+                            React.createElement('span', null, 'Fecha de Colocación'),
+                            React.createElement('input', {
+                                type: 'date',
+                                value: formData.osteosinesisFecha || '',
+                                onChange: (e) => handleInputChange('osteosinesisFecha', e.target.value),
+                                style: styles.dateInputStyle
+                            })
                         ),
+                        '↳ Osteosíntesis'
+                    )
                         React.createElement('td', { style: styles.tableCell },
                             React.createElement('input', {
                                 type: 'radio',
