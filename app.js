@@ -169,6 +169,18 @@ const calcularClasificacionIRF = (fechaFractura, fechaSintomas) => {
     if (diferenciaSemanas <= 10) return 'retrasada';
     return 'tardia';
 };
+
+const calcularClasificacionOMA = (fechaSintomas) => {
+    if (!fechaSintomas) return '';
+    
+    const sintomas = new Date(fechaSintomas);
+    const hoy = new Date();
+    const diferenciaDias = (hoy - sintomas) / (1000 * 60 * 60 * 24);
+    const diferenciaSemanas = diferenciaDias / 7;
+
+    if (diferenciaSemanas <= 3) return 'aguda';
+    return 'cronica';
+};
     
     const styles = {
         container: {
@@ -1916,10 +1928,16 @@ React.createElement('tr', null,
                                 }
                             },
                                 React.createElement('span', null, 'Inicio de síntomas'),
-                                React.createElement('input', {
+                               React.createElement('input', {
                                     type: 'date',
                                     value: formData.osteomielitisFecha || '',
-                                    onChange: (e) => handleInputChange('osteomielitisFecha', e.target.value),
+                                    onChange: (e) => {
+                                        handleInputChange('osteomielitisFecha', e.target.value);
+                                        const nuevaClasificacion = calcularClasificacionOMA(e.target.value);
+                                        if (nuevaClasificacion) {
+                                            handleInputChange('osteomielitisTipo', nuevaClasificacion);
+                                        }
+                                    },
                                     style: styles.dateInputStyle
                                 })
                             ),
@@ -2013,7 +2031,13 @@ React.createElement('tr', null,
                                 React.createElement('input', {
                                     type: 'date',
                                     value: formData.artritisSepticaFecha || '',
-                                    onChange: (e) => handleInputChange('artritisSepticaFecha', e.target.value),
+                                    onChange: (e) => {
+                                        handleInputChange('artritisSepticaFecha', e.target.value);
+                                        const nuevaClasificacion = calcularClasificacionOMA(e.target.value);
+                                        if (nuevaClasificacion) {
+                                            handleInputChange('artritisSepticaTipo', nuevaClasificacion);
+                                        }
+                                    },
                                     style: styles.dateInputStyle
                                 })
                             ),
