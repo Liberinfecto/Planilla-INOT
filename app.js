@@ -1409,7 +1409,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                     )
                 ),
                 
-// Sector OSTEOSINTESIS
+                                // Sector OSTEOSINTESIS
                     radioSelections['fractura'] === 'si' && React.createElement('tr', null,
                         React.createElement('td', { 
                             style: { 
@@ -1483,7 +1483,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                     ),
                
                 // Lista de tipos de osteosíntesis
-               (radioSelections['fractura'] === 'si' && radioSelections['osteosintesis'] === 'si') && React.createElement('tr', null,
+                radioSelections['osteosintesis'] === 'si' && React.createElement('tr', null,
                     React.createElement('td', { 
                         style: { 
                             ...styles.tableCell,
