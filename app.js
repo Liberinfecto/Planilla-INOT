@@ -165,7 +165,7 @@ const calcularClasificacionIRF = (fechaFractura, fechaSintomas) => {
     const diferenciaDias = (sintomas - fractura) / (1000 * 60 * 60 * 24);
     const diferenciaSemanas = diferenciaDias / 7;
 
-    if (diferenciaSemanas <= 3) return 'aguda';
+    if (diferenciaSemanas <= 2) return 'aguda';
     if (diferenciaSemanas <= 10) return 'retrasada';
     return 'tardia';
 };
@@ -1827,8 +1827,8 @@ React.createElement('tr', null,
                                onChange: (e) => handleInputChange('irfTipo', e.target.value)
                            },
                               React.createElement('option', { value: '' }, 'Seleccionar tipo...'),
-                              React.createElement('option', { value: 'aguda' }, 'Aguda (1-3 semanas)'),
-                              React.createElement('option', { value: 'retrasada' }, 'Retrasada (4-10 semanas)'),
+                              React.createElement('option', { value: 'aguda' }, 'Aguda (1-2 semanas)'),
+                              React.createElement('option', { value: 'retrasada' }, 'Retrasada (3-10 semanas)'),
                               React.createElement('option', { value: 'tardia' }, 'Tardía (>10 semanas)'),
                               React.createElement('option', { value: 'pseudoartrosis' }, 'Pseudoartrosis Infectada (6-9 meses)')
                            ),
