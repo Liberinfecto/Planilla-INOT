@@ -2178,102 +2178,98 @@ React.createElement('tr', null,
                                 
 // Nivel 1 IPP
                 React.createElement('tr', null,
-                   React.createElement('td', { style: styles.tableCell }, 
-                       React.createElement('div', { 
-                           style: {
-                               ...styles.labelContainerStyle,
-                               flexDirection: 'row',  
-                               gap: '1rem',  
-                               alignItems: 'center'  
-                           }
-                       },
-                           radioSelections['ipp'] === 'si' && React.createElement('div', {
-                               style: {
-                                   display: 'flex',
-                                   flexDirection: 'column',
-                                   gap: '1rem',
-                                   marginRight: '1rem'
-                               }
-                           },
-                               // Primera fecha (Colocación del Implante)
-                               React.createElement('div', {
-                                   style: {
-                                       display: 'flex',
-                                       flexDirection: 'column',
-                                       gap: '0.25rem'
-                                   }
-                               },
-                                   React.createElement('span', null, 'Colocación del Implante'),
-                                   React.createElement('input', {
-                                       type: 'date',
-                                       value: formData.ippColocacionFecha || '',
-                                       onChange: (e) => {
-                                           const fechaColocacion = new Date(e.target.value);
-                                           const fechaActual = new Date();
-                                           
-                                           if (fechaColocacion > fechaActual) {
-                                               alert('La fecha de colocación no puede ser posterior a la fecha actual');
-                                               return;
-                                           }
+                    React.createElement('td', { style: styles.tableCell }, 
+                        React.createElement('div', { 
+                            style: {
+                                ...styles.labelContainerStyle,
+                                flexDirection: 'row',  
+                                gap: '1rem',  
+                                alignItems: 'center'  
+                            }
+                        },
+                            radioSelections['ipp'] === 'si' && React.createElement('div', {
+                                style: {
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '1rem',
+                                    marginRight: '1rem'
+                                }
+                            },
+                                // Primera fecha (Colocación del Implante)
+                                React.createElement('div', {
+                                    style: {
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        gap: '0.25rem'
+                                    }
+                                },
+                                    React.createElement('span', null, 'Colocación del Implante'),
+                                    React.createElement('input', {
+                                        type: 'date',
+                                        value: formData.ippColocacionFecha || '',
+                                        onChange: (e) => {
+                                            const fechaColocacion = new Date(e.target.value);
+                                            const fechaActual = new Date();
+                                            
+                                            if (fechaColocacion > fechaActual) {
+                                                alert('La fecha de colocación no puede ser posterior a la fecha actual');
+                                                return;
+                                            }
                 
-                                           // Si ya existe fecha de síntomas, verificar que siga siendo válida
-                                           if (formData.ippSintomasFecha) {
-                                               const fechaSintomas = new Date(formData.ippSintomasFecha);
-                                               if (fechaSintomas < fechaColocacion) {
-                                                   handleInputChange('ippSintomasFecha', ''); // Limpia la fecha de síntomas
-                                                   handleInputChange('ippTipo', ''); // Limpia la clasificación
-                                                   alert('La fecha de síntomas existente era anterior a la nueva fecha de colocación y ha sido removida');
-                                               }
-                                           }
-                                           
-                                           handleInputChange('ippColocacionFecha', e.target.value);
-                                           const nuevaClasificacion = calcularClasificacionTsukayama(e.target.value, formData.ippSintomasFecha);
-                                           if (nuevaClasificacion) {
-                                               handleInputChange('ippTipo', nuevaClasificacion);
-                                           }
-                                       },
-                                       style: styles.dateInputStyle
-                                   })
-                               ),
-                               // Segunda fecha (Inicio de síntomas)
-                               React.createElement('div', {
-                                   style: {
-                                       display: 'flex',
-                                       flexDirection: 'column',
-                                       gap: '0.25rem'
-                                   }
-                               },
-                                   React.createElement('span', null, 'Inicio de síntomas'),
-                                   React.createElement('input', {
-                                       type: 'date',
-                                       value: formData.ippSintomasFecha || '',
-                                       onChange: (e) => {
-                                           const fechaSintomas = new Date(e.target.value);
-                                           const fechaActual = new Date();
-                                           
-                                           if (fechaSintomas > fechaActual) {
-                                               alert('La fecha de inicio de síntomas no puede ser posterior a la fecha actual');
-                                               return;
-                                           }
-                                           
-                                           if (formData.ippColocacionFecha) {
-                                               const fechaColocacion = new Date(formData.ippColocacionFecha);
-                                               if (fechaSintomas < fechaColocacion) {
-                                                   alert('La fecha de inicio de síntomas no puede ser anterior a la fecha de colocación del implante');
-                                                   return;
-                                               }
-                                           } else {
-                                               alert('Debe ingresar primero la fecha de colocación del implante');
-                                               return;
-                                           }
-                                           
-                                           handleInputChange('ippSintomasFecha', e.target.value);
-                                           const nuevaClasificacion = calcularClasificacionTsukayama(formData.ippColocacionFecha, e.target.value);
-                                           if (nuevaClasificacion) {
-                                               handleInputChange('ippTipo', nuevaClasificacion);
-                                           }
-                                       },
-                                       style: styles.dateInputStyle
+                                            // Si ya existe fecha de síntomas, verificar que la nueva fecha de colocación sea anterior
+                                            if (formData.ippSintomasFecha) {
+                                                const fechaSintomas = new Date(formData.ippSintomasFecha);
+                                                if (fechaColocacion > fechaSintomas) {
+                                                    alert('La fecha de colocación debe ser anterior a la fecha de inicio de síntomas');
+                                                    return;
+                                                }
+                                            }
+                                            
+                                            handleInputChange('ippColocacionFecha', e.target.value);
+                                            const nuevaClasificacion = calcularClasificacionTsukayama(e.target.value, formData.ippSintomasFecha);
+                                            if (nuevaClasificacion) {
+                                                handleInputChange('ippTipo', nuevaClasificacion);
+                                            }
+                                        },
+                                        style: styles.dateInputStyle
+                                    })
+                                ),
+                                // Segunda fecha (Inicio de síntomas)
+                                React.createElement('div', {
+                                    style: {
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        gap: '0.25rem'
+                                    }
+                                },
+                                    React.createElement('span', null, 'Inicio de síntomas'),
+                                    React.createElement('input', {
+                                        type: 'date',
+                                        value: formData.ippSintomasFecha || '',
+                                        onChange: (e) => {
+                                            const fechaSintomas = new Date(e.target.value);
+                                            const fechaActual = new Date();
+                                            
+                                            if (fechaSintomas > fechaActual) {
+                                                alert('La fecha de inicio de síntomas no puede ser posterior a la fecha actual');
+                                                return;
+                                            }
+                                            
+                                            if (formData.ippColocacionFecha) {
+                                                const fechaColocacion = new Date(formData.ippColocacionFecha);
+                                                if (fechaSintomas < fechaColocacion) {
+                                                    alert('La fecha de inicio de síntomas no puede ser anterior a la fecha de colocación del implante');
+                                                    return;
+                                                }
+                                            }
+                                            
+                                            handleInputChange('ippSintomasFecha', e.target.value);
+                                            const nuevaClasificacion = calcularClasificacionTsukayama(formData.ippColocacionFecha, e.target.value);
+                                            if (nuevaClasificacion) {
+                                                handleInputChange('ippTipo', nuevaClasificacion);
+                                            }
+                                        },
+                                        style: styles.dateInputStyle
                                    })
                                )
                            ),
