@@ -1,4 +1,4 @@
-const calcularClasificacionIRF = (fechaFractura, fechaSintomas) => {
+
 const root = ReactDOM.createRoot(container);
 function Form() {
 
