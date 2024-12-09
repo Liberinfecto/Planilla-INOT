@@ -126,13 +126,15 @@ const handleAntecedentesChange = (campo, valor, parteFecha, campoFecha = 'fractu
 
 const [radioSelections, setRadioSelections] = React.useState({});
 
+const hoy = new Date().toISOString().split('T')[0]; 
+
     const handleInputChange = (fieldName, value) => {
         setFormData(prevData => ({
             ...prevData,
             [fieldName]: value
         }));
     };
-
+    
     const handleRadioClick = (name, value) => {
         setRadioSelections(prev => {
             if (prev[name] === value) {
