@@ -1757,14 +1757,12 @@ React.createElement('tr', null,
                                                return;
                                            }
                                        } else {
-                                           // Si no hay fecha de fractura, guardarla como fecha de fractura
-                                           handleInputChange('fracturaFecha', e.target.value);
-                                           // Asegurarnos que el radio de fractura quede en 'si'
-                                           if (radioSelections['fractura'] !== 'si') {
-                                               handleRadioClick('fractura', 'si');
-                                           }
-                                           alert('Se ha establecido automáticamente la fecha de fractura igual a la fecha de inicio de síntomas de IRF');
-                                       }
+                                           // En lugar de establecer la fecha, solo mostramos el recordatorio
+                                            if (radioSelections['fractura'] !== 'si') {
+                                            handleRadioClick('fractura', 'si');
+                                            }
+                                            alert('No se olvide de ingresar una fecha de fractura');
+                                        }
                                        
                                        handleInputChange('irfFecha', e.target.value);
                                        const nuevaClasificacion = calcularClasificacionIRF(formData.fracturaFecha, e.target.value);
