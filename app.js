@@ -150,14 +150,13 @@ const hoy = new Date().toISOString().split('T')[0];
     };
 
 const calcularClasificacionTsukayama = (fechaColocacion, fechaSintomas) => {
-        if (!fechaColocacion || !fechaSintomas) return '';
-        const colocacion = new Date(fechaColocacion);
-        const sintomas = new Date(fechaSintomas);
-        const diferenciaMeses = (sintomas - colocacion) / (1000 * 60 * 60 * 24 * 30.44);
-        if (diferenciaMeses < 1) return 'aguda';
-        if (diferenciaMeses >= 24) return 'hematogena';
-        return 'cronica';
-    };
+    if (!fechaColocacion || !fechaSintomas) return '';
+    const colocacion = new Date(fechaColocacion);
+    const sintomas = new Date(fechaSintomas);
+    const diferenciaMeses = (sintomas - colocacion) / (1000 * 60 * 60 * 24 * 30.44);
+    if (diferenciaMeses < 1) return 'aguda';
+    return 'cronica';
+};
 
 const calcularClasificacionIRF = (fechaFractura, fechaSintomas) => {
     if (!fechaFractura || !fechaSintomas) return '';
@@ -2321,11 +2320,9 @@ React.createElement('tr', null,
                                 value: formData.ippTipo || '',
                                 onChange: (e) => handleInputChange('ippTipo', e.target.value)
                             },
-                                React.createElement('option', { value: '' }, 'Clasificación de Tsukayama...'),
-                                React.createElement('option', { value: 'ciop' }, 'CIOP'),
-                                React.createElement('option', { value: 'aguda' }, 'IPP Aguda (<1 mes)'),
-                                React.createElement('option', { value: 'cronica' }, 'Crónica (>1 mes)'),
-                                React.createElement('option', { value: 'hematogena' }, 'Hematógena (>2 años)')
+                                React.createElement('option', { value: '' }, 'Clasificación...'),
+                                React.createElement('option', { value: 'aguda' }, 'Aguda (<1 mes)'),
+                                React.createElement('option', { value: 'cronica' }, 'Crónica (>1 mes)')    
                             ),
                             React.createElement('textarea', {
                                 placeholder: 'Agregar comentarios...',
