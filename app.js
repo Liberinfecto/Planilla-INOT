@@ -61,6 +61,13 @@ const [formData, setFormData] = React.useState({
     ippSintomasFecha: '',
     ippTipo: '',
     ippDetalles: '',
+    // campos para espondilodiscitis
+    espondilodiscitisFecha: '',
+    espondilodiscitisTipo: '',
+    espondilodiscitisDetalles: '',
+    espondilodiscitisOS: '',
+    espondilodiscitisOSFecha: '',   
+    espondilodiscitisOSDetalles: '',
 });
 
 const [antecedentes, setAntecedentes] = React.useState({
@@ -181,6 +188,28 @@ const calcularClasificacionOMA = (fechaSintomas) => {
 
     if (diferenciaSemanas <= 3) return 'aguda';
     return 'cronica';
+};
+    const calcularClasificacionEspondilodiscitis = (fechaOS, fechaSintomas, tieneOS) => {
+    if (!fechaSintomas) return '';
+    
+    if (tieneOS === 'si' && fechaOS) {
+        // Cálculo con material de OS
+        const colocacion = new Date(fechaOS);
+        const sintomas = new Date(fechaSintomas);
+        const diferenciaSemanas = (sintomas - colocacion) / (1000 * 60 * 60 * 24 * 7);
+        
+        if (diferenciaSemanas <= 2) return 'temprana';
+        if (diferenciaSemanas <= 10) return 'retrasada';
+        return 'tardia';
+    } else {
+        // Cálculo sin material de OS
+        const sintomas = new Date(fechaSintomas);
+        const hoy = new Date();
+        const diferenciaSemanas = (hoy - sintomas) / (1000 * 60 * 60 * 24 * 7);
+        
+        if (diferenciaSemanas <= 2) return 'aguda';
+        return 'cronica';
+    }
 };
     
     const styles = {
