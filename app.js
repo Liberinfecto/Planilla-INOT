@@ -2448,30 +2448,44 @@ React.createElement('tr', null,
                                }
                            }
                        })
-                   ),
-                   React.createElement('td', { style: styles.tableCell },
-                       React.createElement('div', {
-                           style: {
-                               display: 'flex',
-                               gap: '1rem',
-                               flexDirection: 'column'
-                           }
-                       },
-                           React.createElement('textarea', {
-                               placeholder: 'Agregar comentarios...',
-                               value: formData.espondilodiscitisDetalles || '',
-                               onChange: (e) => handleInputChange('espondilodiscitisDetalles', e.target.value),
-                               style: {
-                                   ...styles.input,
-                                   width: '100%',
-                                   minHeight: '2rem',
-                                   resize: 'vertical',
-                                   overflow: 'auto'
-                               }
-                           })
-                       )
-                   )
-               ),
+                     ),
+                        React.createElement('td', { style: styles.tableCell },
+                            React.createElement('div', {
+                                style: {
+                                    display: 'flex',
+                                    gap: '1rem',
+                                    flexDirection: 'column'
+                                }
+                            },
+                                radioSelections['espondilodiscitis'] === 'si' && React.createElement('select', {  
+                                    style: { ...styles.input, width: '100%' },
+                                    value: formData.espondilodiscitisTipo || '',
+                                    onChange: (e) => handleInputChange('espondilodiscitisTipo', e.target.value)
+                                },
+                                    React.createElement('option', { value: '' }, 'Clasificación...'),
+                                    radioSelections['espondilodiscitisOS'] !== 'si' ? [
+                                        React.createElement('option', { value: 'aguda' }, 'Aguda (<2 semanas)'),
+                                        React.createElement('option', { value: 'cronica' }, 'Crónica (>2 semanas)')
+                                    ] : [
+                                        React.createElement('option', { value: 'temprana' }, 'Temprana (0-2 semanas)'),
+                                        React.createElement('option', { value: 'retrasada' }, 'Retrasada (3-10 semanas)'),
+                                        React.createElement('option', { value: 'tardia' }, 'Tardía (>10 semanas)')
+                                    ]
+                                ),              
+                                React.createElement('textarea', {
+                                    placeholder: 'Agregar comentarios...',
+                                    value: formData.espondilodiscitisDetalles || '',
+                                    onChange: (e) => handleInputChange('espondilodiscitisDetalles', e.target.value),
+                                    style: {
+                                        ...styles.input,
+                                        width: '100%',
+                                        minHeight: '2rem',
+                                        resize: 'vertical',
+                                        overflow: 'auto'
+                                    }
+                                })
+                            )
+                        )
 
 // Subnivel Osteosíntesis para Espondilodiscitis
                radioSelections['espondilodiscitis'] === 'si' && React.createElement('tr', null,
