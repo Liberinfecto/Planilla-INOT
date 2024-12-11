@@ -2485,7 +2485,7 @@ React.createElement('tr', null,
                                     }
                                 })
                             )
-                        )
+                        ),
 
 // Subnivel Osteosíntesis para Espondilodiscitis
                radioSelections['espondilodiscitis'] === 'si' && React.createElement('tr', null,
