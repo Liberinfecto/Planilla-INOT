@@ -2371,121 +2371,122 @@ React.createElement('tr', null,
 
                                 
 // Nivel 1 Espondilodiscitis
-               React.createElement('tr', null,
-                   React.createElement('td', { style: styles.tableCell }, 
-                       React.createElement('div', { 
-                           style: {
-                               ...styles.labelContainerStyle,
-                               flexDirection: 'row',  
-                               gap: '1rem',  
-                               alignItems: 'center'  
-                           }
-                       },
-                           radioSelections['espondilodiscitis'] === 'si' && React.createElement('div', {
-                               style: {
-                                   display: 'flex',
-                                   flexDirection: 'column',
-                                   gap: '0.25rem'
-                               }
-                           },
-                               React.createElement('span', null, 'Inicio de síntomas'),
-                               React.createElement('input', {
-                                   type: 'date',
-                                   value: formData.espondilodiscitisFecha || '',
-                                   onChange: (e) => {
-                                       const fechaSintomas = new Date(e.target.value);
-                                       const fechaActual = new Date();
-                                       
-                                       if (fechaSintomas > fechaActual) {
-                                           alert('La fecha de inicio de síntomas no puede ser posterior a la fecha actual');
-                                           return;
-                                       }
-                                       
-                                       handleInputChange('espondilodiscitisFecha', e.target.value);
-                                       const nuevaClasificacion = calcularClasificacionEspondilodiscitis(
-                                           formData.espondilodiscitisOSFecha, 
-                                           e.target.value, 
-                                           radioSelections['espondilodiscitisOS']
-                                       );
-                                       if (nuevaClasificacion) {
-                                           handleInputChange('espondilodiscitisTipo', nuevaClasificacion);
-                                       }
-                                   },
-                                   style: styles.dateInputStyle
-                               })
-                           ),
-                           'Espondilodiscitis'
-                       )
-                   ),
-                   React.createElement('td', { style: styles.tableCell },
-                       React.createElement('input', {
-                           type: 'radio',
-                           name: 'espondilodiscitis',
-                           style: styles.radio,
-                           checked: radioSelections['espondilodiscitis'] === 'si',
-                           onChange: () => {},
-                           onClick: () => {
-                               if (radioSelections['espondilodiscitis'] === 'si') {
-                                   handleRadioClick('espondilodiscitis', '');
-                               } else {
-                                   handleRadioClick('espondilodiscitis', 'si');
-                               }
-                           }
-                       })
-                   ),
-                   React.createElement('td', { style: styles.tableCell },
-                       React.createElement('input', {
-                           type: 'radio',
-                           name: 'espondilodiscitis',
-                           style: styles.radio,
-                           checked: radioSelections['espondilodiscitis'] === 'no',
-                           onChange: () => {},
-                           onClick: () => {
-                               if (radioSelections['espondilodiscitis'] === 'no') {
-                                   handleRadioClick('espondilodiscitis', '');
-                               } else {
-                                   handleRadioClick('espondilodiscitis', 'no');
-                               }
-                           }
-                       })
-                     ),
-                        React.createElement('td', { style: styles.tableCell },
-                            React.createElement('div', {
-                                style: {
-                                    display: 'flex',
-                                    gap: '1rem',
-                                    flexDirection: 'column'
-                                }
-                            },
-                                radioSelections['espondilodiscitis'] === 'si' && React.createElement('select', {  
-                                    style: { ...styles.input, width: '100%' },
-                                    value: formData.espondilodiscitisTipo || '',
-                                    onChange: (e) => handleInputChange('espondilodiscitisTipo', e.target.value)
-                                },
-                                    React.createElement('option', { value: '' }, 'Clasificación...'),
-                                    radioSelections['espondilodiscitisOS'] !== 'si' ? [
-                                        React.createElement('option', { value: 'aguda' }, 'Aguda (<2 semanas)'),
-                                        React.createElement('option', { value: 'cronica' }, 'Crónica (>2 semanas)')
-                                    ] : [
-                                        React.createElement('option', { value: 'temprana' }, 'Temprana (0-2 semanas)'),
-                                        React.createElement('option', { value: 'retrasada' }, 'Retrasada (3-10 semanas)'),
-                                        React.createElement('option', { value: 'tardia' }, 'Tardía (>10 semanas)')
-                                    ]
-                                ),              
-                                React.createElement('textarea', {
-                                    placeholder: 'Agregar comentarios...',
-                                    value: formData.espondilodiscitisDetalles || '',
-                                    onChange: (e) => handleInputChange('espondilodiscitisDetalles', e.target.value),
-                                    style: {
-                                        ...styles.input,
-                                        width: '100%',
-                                        minHeight: '2rem',
-                                        resize: 'vertical',
-                                        overflow: 'auto'
-                                    }
-                                })
-                            )
-                        ),
+                            React.createElement('tr', null,
+                                React.createElement('td', { style: styles.tableCell }, 
+                                    React.createElement('div', { 
+                                        style: {
+                                            ...styles.labelContainerStyle,
+                                            flexDirection: 'row',  
+                                            gap: '1rem',  
+                                            alignItems: 'center'  
+                                        }
+                                    },
+                                        radioSelections['espondilodiscitis'] === 'si' && React.createElement('div', {
+                                            style: {
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                gap: '0.25rem'
+                                            }
+                                        },
+                                            React.createElement('span', null, 'Inicio de síntomas'),
+                                            React.createElement('input', {
+                                                type: 'date',
+                                                value: formData.espondilodiscitisFecha || '',
+                                                onChange: (e) => {
+                                                    const fechaSintomas = new Date(e.target.value);
+                                                    const fechaActual = new Date();
+                                                    
+                                                    if (fechaSintomas > fechaActual) {
+                                                        alert('La fecha de inicio de síntomas no puede ser posterior a la fecha actual');
+                                                        return;
+                                                    }
+                                                    
+                                                    handleInputChange('espondilodiscitisFecha', e.target.value);
+                                                    const nuevaClasificacion = calcularClasificacionEspondilodiscitis(
+                                                        formData.espondilodiscitisOSFecha, 
+                                                        e.target.value, 
+                                                        radioSelections['espondilodiscitisOS']
+                                                    );
+                                                    if (nuevaClasificacion) {
+                                                        handleInputChange('espondilodiscitisTipo', nuevaClasificacion);
+                                                    }
+                                                },
+                                                style: styles.dateInputStyle
+                                            })
+                                        ),
+                                        'Espondilodiscitis'
+                                    )
+                                ),
+                                React.createElement('td', { style: styles.tableCell },
+                                    React.createElement('input', {
+                                        type: 'radio',
+                                        name: 'espondilodiscitis',
+                                        style: styles.radio,
+                                        checked: radioSelections['espondilodiscitis'] === 'si',
+                                        onChange: () => {},
+                                        onClick: () => {
+                                            if (radioSelections['espondilodiscitis'] === 'si') {
+                                                handleRadioClick('espondilodiscitis', '');
+                                            } else {
+                                                handleRadioClick('espondilodiscitis', 'si');
+                                            }
+                                        }
+                                    })
+                                ),
+                                React.createElement('td', { style: styles.tableCell },
+                                    React.createElement('input', {
+                                        type: 'radio',
+                                        name: 'espondilodiscitis',
+                                        style: styles.radio,
+                                        checked: radioSelections['espondilodiscitis'] === 'no',
+                                        onChange: () => {},
+                                        onClick: () => {
+                                            if (radioSelections['espondilodiscitis'] === 'no') {
+                                                handleRadioClick('espondilodiscitis', '');
+                                            } else {
+                                                handleRadioClick('espondilodiscitis', 'no');
+                                            }
+                                        }
+                                    })
+                                ),
+                                React.createElement('td', { style: styles.tableCell },
+                                    React.createElement('div', {
+                                        style: {
+                                            display: 'flex',
+                                            gap: '1rem',
+                                            flexDirection: 'column'
+                                        }
+                                    },
+                                        radioSelections['espondilodiscitis'] === 'si' && React.createElement('select', {  
+                                            style: { ...styles.input, width: '100%' },
+                                            value: formData.espondilodiscitisTipo || '',
+                                            onChange: (e) => handleInputChange('espondilodiscitisTipo', e.target.value)
+                                        },
+                                            React.createElement('option', { value: '' }, 'Clasificación...'),
+                                            radioSelections['espondilodiscitisOS'] !== 'si' ? [
+                                                React.createElement('option', { value: 'aguda' }, 'Aguda (<2 semanas)'),
+                                                React.createElement('option', { value: 'cronica' }, 'Crónica (>2 semanas)')
+                                            ] : [
+                                                React.createElement('option', { value: 'temprana' }, 'Temprana (0-2 semanas)'),
+                                                React.createElement('option', { value: 'retrasada' }, 'Retrasada (3-10 semanas)'),
+                                                React.createElement('option', { value: 'tardia' }, 'Tardía (>10 semanas)')
+                                            ]
+                                        ),              
+                                        React.createElement('textarea', {
+                                            placeholder: 'Agregar comentarios...',
+                                            value: formData.espondilodiscitisDetalles || '',
+                                            onChange: (e) => handleInputChange('espondilodiscitisDetalles', e.target.value),
+                                            style: {
+                                                ...styles.input,
+                                                width: '100%',
+                                                minHeight: '2rem',
+                                                resize: 'vertical',
+                                                overflow: 'auto'
+                                            }
+                                        })
+                                    )
+                                )
+                            ),
 
 // Subnivel Osteosíntesis para Espondilodiscitis
                radioSelections['espondilodiscitis'] === 'si' && React.createElement('tr', null,
