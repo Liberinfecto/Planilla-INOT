@@ -2543,8 +2543,30 @@ React.createElement('tr', null,
                            onClick: () => {
                                if (radioSelections['espondilodiscitisOS'] === 'si') {
                                    handleRadioClick('espondilodiscitisOS', '');
+                                   // Al quitar OS, recalcular usando fecha de síntomas y fecha actual
+                                   if (formData.espondilodiscitisFecha) {
+                                       const nuevaClasificacion = calcularClasificacionEspondilodiscitis(
+                                           null, 
+                                           formData.espondilodiscitisFecha, 
+                                           'no'
+                                       );
+                                       if (nuevaClasificacion) {
+                                           handleInputChange('espondilodiscitisTipo', nuevaClasificacion);
+                                       }
+                                   }
                                } else {
                                    handleRadioClick('espondilodiscitisOS', 'si');
+                                   // Al poner OS, si hay ambas fechas, recalcular usando fecha OS y fecha síntomas
+                                   if (formData.espondilodiscitisFecha && formData.espondilodiscitisOSFecha) {
+                                       const nuevaClasificacion = calcularClasificacionEspondilodiscitis(
+                                           formData.espondilodiscitisOSFecha,
+                                           formData.espondilodiscitisFecha,
+                                           'si'
+                                       );
+                                       if (nuevaClasificacion) {
+                                           handleInputChange('espondilodiscitisTipo', nuevaClasificacion);
+                                       }
+                                   }
                                }
                            }
                        })
