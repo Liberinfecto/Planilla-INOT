@@ -2517,24 +2517,35 @@ React.createElement('tr', null,
                                    type: 'date',
                                    value: formData.espondilodiscitisOSFecha || '',
                                    onChange: (e) => {
-                                       const fechaOS = new Date(e.target.value);
-                                       const fechaActual = new Date();
-                                       
-                                       if (fechaOS > fechaActual) {
-                                           alert('La fecha de colocación no puede ser posterior a la fecha actual');
-                                           return;
-                                       }
-                                       
-                                       handleInputChange('espondilodiscitisOSFecha', e.target.value);
-                                       const nuevaClasificacion = calcularClasificacionEspondilodiscitis(
-                                           e.target.value, 
-                                           formData.espondilodiscitisFecha, 
-                                           'si'
-                                       );
-                                       if (nuevaClasificacion) {
-                                           handleInputChange('espondilodiscitisTipo', nuevaClasificacion);
-                                       }
-                                   },
+                                        const fechaOS = new Date(e.target.value);
+                                        const fechaActual = new Date();
+                                        
+                                        if (fechaOS > fechaActual) {
+                                            alert('La fecha de colocación no puede ser posterior a la fecha actual');
+                                            return;
+                                        }
+                                        
+                                        // Si ya existe fecha de síntomas, verificar que la OS sea anterior
+                                        if (formData.espondilodiscitisFecha) {
+                                            const fechaSintomas = new Date(formData.espondilodiscitisFecha);
+                                            if (fechaOS > fechaSintomas) {
+                                                alert('La fecha de colocación debe ser anterior a la fecha de inicio de síntomas');
+                                                return;
+                                            }
+                                        }
+                                        
+                                        handleInputChange('espondilodiscitisOSFecha', e.target.value);
+                                        if (formData.espondilodiscitisFecha) {
+                                            const nuevaClasificacion = calcularClasificacionEspondilodiscitis(
+                                                e.target.value, 
+                                                formData.espondilodiscitisFecha, 
+                                                'si'
+                                            );
+                                            if (nuevaClasificacion) {
+                                                handleInputChange('espondilodiscitisTipo', nuevaClasificacion);
+                                            }
+                                        }
+                                    },
                                    style: styles.dateInputStyle
                                })
                            ),
