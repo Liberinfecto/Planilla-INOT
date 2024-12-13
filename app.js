@@ -424,28 +424,9 @@ const calcularClasificacionOMA = (fechaSintomas) => {
             )
         ),
 
-
-
-
-// Contenedor para Factores de Riesgo y Antecedentes
-React.createElement('div', { 
-    style: { 
-        display: 'flex', 
-        gap: '1rem',
-        marginTop: '2rem'
-    }
-},
-    // Sección Factores de Riesgo (izquierda)
-    React.createElement('div', { 
-        style: { 
-            flex: 1,
-            border: '1px solid #333', 
-            padding: '1rem' 
-        }
-    },
-
 // Sección de Factores de Riesgo
-        React.createElement('table', { style: {...styles.table, width: '100%'} },
+                React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
+                    React.createElement('table', { style: styles.table },
                         React.createElement('thead', null,
                             React.createElement('tr', null,
                                 React.createElement('th', { style: styles.tableHeader }, 'Factores de Riesgo para Infección'),
@@ -509,19 +490,11 @@ React.createElement('div', {
                         )
                     )
                 ),
-
-    // Sección Antecedentes (derecha)
-    React.createElement('div', { 
-        style: { 
-            flex: 1,
-            border: '1px solid #333', 
-            padding: '1rem' 
-        }
-    },
-                            
+                
 // Sección de Antecedentes Traumatológicos
+        React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
+            React.createElement('table', { style: styles.table },
                 // Cabecera de la tabla
-        React.createElement('table', { style: {...styles.table, width: '100%'} },
                 React.createElement('thead', null,
                     React.createElement('tr', null,
                         React.createElement('th', { style: styles.tableHeader }, 'Antecedentes Traumatológicos'),
@@ -1092,13 +1065,15 @@ React.createElement('div', {
                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'antibioticosDetalles')
                             })
                        )
-                    )    // cierre de la fila de antibióticos
-                 )    // cierre del tbody
-              )      // cierre de la tabla
-           )        // cierre del div derecho
-        )            // cierre del div flex container principal
+                   )
+               )
+           )
+       ),
        
 // Sección de Enfermedad Actual
+
+
+
                             
         React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
             React.createElement('table', { style: styles.table },
@@ -2651,4 +2626,3 @@ React.createElement('tr', null,
   );            // cierre del div de Enfermedad Actual y el return del Form
 }                // cierre de la función Form
 root.render(React.createElement(Form));
-
