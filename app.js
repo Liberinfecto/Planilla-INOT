@@ -1092,10 +1092,11 @@ React.createElement('div', {
                                onChange: (e) => handleAntecedentesChange(null, e.target.value, 'comentarios', 'antibioticosDetalles')
                             })
                        )
-                   )    // cierre del tbody
-               )      // cierre de la tabla
+                    )    // cierre de la fila de antibióticos
+                 )    // cierre del tbody
+              )      // cierre de la tabla
            )        // cierre del div derecho
-      )            // cierre del div flex container principal
+        )            // cierre del div flex container principal
        
 // Sección de Enfermedad Actual
                             
