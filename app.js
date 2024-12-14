@@ -373,34 +373,48 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                 })
             ),
             
-            // Campo Sexo
-            React.createElement('div', { style: {...styles.inputGroup, ...styles.compact} },
-                React.createElement('span', { style: styles.smallLabel }, 'Sexo:'),
-                React.createElement('div', { style: { display: 'flex', gap: '1rem' } },
-                    React.createElement('label', { style: { display: 'flex', alignItems: 'center', gap: '0.5rem' } },
-                        React.createElement('input', {
-                            type: 'radio',
-                            name: 'sexo',
-                            value: 'H',
-                            checked: formData.sexo === 'H',
-                            onChange: (e) => handleInputChange('sexo', e.target.value),
-                            style: styles.radio
-                        }),
-                        'H'
-                    ),
-                    React.createElement('label', { style: { display: 'flex', alignItems: 'center', gap: '0.5rem' } },
-                        React.createElement('input', {
-                            type: 'radio',
-                            name: 'sexo',
-                            value: 'M',
-                            checked: formData.sexo === 'M',
-                            onChange: (e) => handleInputChange('sexo', e.target.value),
-                            style: styles.radio
-                        }),
-                        'M'
+                // Campo Sexo
+                React.createElement('div', { style: {...styles.inputGroup, ...styles.compact} },
+                    React.createElement('span', { style: styles.smallLabel }, 'Sexo:'),
+                    React.createElement('div', { style: { display: 'flex', gap: '1rem' } },
+                        React.createElement('label', { style: { display: 'flex', alignItems: 'center', gap: '0.5rem' } },
+                            'H',  // <- Texto antes del input
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'sexo',
+                                value: 'H',
+                                checked: formData.sexo === 'H',
+                                onChange: () => {
+                                    // Si ya está seleccionado, lo desmarcamos
+                                    if (formData.sexo === 'H') {
+                                        handleInputChange('sexo', '');
+                                    } else {
+                                        handleInputChange('sexo', 'H');
+                                    }
+                                },
+                                style: styles.radio
+                            })
+                        ),
+                        React.createElement('label', { style: { display: 'flex', alignItems: 'center', gap: '0.5rem' } },
+                            'M',  // <- Texto antes del input
+                            React.createElement('input', {
+                                type: 'radio',
+                                name: 'sexo',
+                                value: 'M',
+                                checked: formData.sexo === 'M',
+                                onChange: () => {
+                                    // Si ya está seleccionado, lo desmarcamos
+                                    if (formData.sexo === 'M') {
+                                        handleInputChange('sexo', '');
+                                    } else {
+                                        handleInputChange('sexo', 'M');
+                                    }
+                                },
+                                style: styles.radio
+                            })
+                        )
                     )
                 )
-            ),
             
             // Fila de campos numéricos (Edad, Peso, Talla)
             React.createElement('div', { style: { display: 'flex', gap: '1rem', marginBottom: '0.5rem' } },
