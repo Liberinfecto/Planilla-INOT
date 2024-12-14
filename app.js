@@ -135,7 +135,34 @@ const handleAntecedentesChange = (campo, valor, parteFecha, campoFecha = 'fractu
 };
 
 const [radioSelections, setRadioSelections] = React.useState({});
-
+const [paraclinicaData, setParaclinicaData] = React.useState({
+    columnas: [
+        {
+            fecha: '',
+            tipo: 'fi'
+        },
+        {
+            fecha: new Date().toISOString().split('T')[0],
+            tipo: 'actual'
+        }
+    ],
+    valores: {
+        hb: { unidad: 'g/dL', valores: [] },
+        gb: { unidad: 'x10³/µL', valores: [] },
+        pcr: { unidad: 'mg/L', valores: [] },
+        ves: { unidad: 'mm/h', valores: [] },
+        azo: { unidad: 'mg/dL', valores: [] },
+        cr: { unidad: 'mg/dL', valores: [] },
+        bt: { unidad: 'mg/dL', valores: [] },
+        bd: { unidad: 'mg/dL', valores: [] },
+        bi: { unidad: 'mg/dL', valores: [] },
+        alb: { unidad: 'g/dL', valores: [] },
+        fa: { unidad: 'UI/L', valores: [] },
+        gto: { unidad: 'UI/L', valores: [] },
+        gtp: { unidad: 'UI/L', valores: [] },
+        ggt: { unidad: 'UI/L', valores: [] }
+    }
+});
 const hoy = new Date().toISOString().split('T')[0]; 
 
     const handleInputChange = (fieldName, value) => {
