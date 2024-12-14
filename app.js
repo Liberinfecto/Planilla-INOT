@@ -378,39 +378,37 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                     React.createElement('span', { style: styles.smallLabel }, 'Sexo:'),
                     React.createElement('div', { style: { display: 'flex', gap: '1rem' } },
                         React.createElement('label', { style: { display: 'flex', alignItems: 'center', gap: '0.5rem' } },
-                            'H',  // <- Texto antes del input
+                            'H',
                             React.createElement('input', {
                                 type: 'radio',
                                 name: 'sexo',
-                                value: 'H',
-                                checked: formData.sexo === 'H',
-                                onChange: () => {
-                                    // Si ya está seleccionado, lo desmarcamos
-                                    if (formData.sexo === 'H') {
-                                        handleInputChange('sexo', '');
+                                style: styles.radio,
+                                checked: radioSelections['sexo'] === 'H',
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (radioSelections['sexo'] === 'H') {
+                                        handleRadioClick('sexo', '');
                                     } else {
-                                        handleInputChange('sexo', 'H');
+                                        handleRadioClick('sexo', 'H');
                                     }
-                                },
-                                style: styles.radio
+                                }
                             })
                         ),
                         React.createElement('label', { style: { display: 'flex', alignItems: 'center', gap: '0.5rem' } },
-                            'M',  // <- Texto antes del input
+                            'M',
                             React.createElement('input', {
                                 type: 'radio',
                                 name: 'sexo',
-                                value: 'M',
-                                checked: formData.sexo === 'M',
-                                onChange: () => {
-                                    // Si ya está seleccionado, lo desmarcamos
-                                    if (formData.sexo === 'M') {
-                                        handleInputChange('sexo', '');
+                                style: styles.radio,
+                                checked: radioSelections['sexo'] === 'M',
+                                onChange: () => {},
+                                onClick: () => {
+                                    if (radioSelections['sexo'] === 'M') {
+                                        handleRadioClick('sexo', '');
                                     } else {
-                                        handleInputChange('sexo', 'M');
+                                        handleRadioClick('sexo', 'M');
                                     }
-                                },
-                                style: styles.radio
+                                }
                             })
                         )
                     )
