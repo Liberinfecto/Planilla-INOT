@@ -134,25 +134,6 @@ const handleAntecedentesChange = (campo, valor, parteFecha, campoFecha = 'fractu
 const [radioSelections, setRadioSelections] = React.useState({});
 
 const hoy = new Date().toISOString().split('T')[0]; 
-const [paraclinicaData, setParaclinicaData] = React.useState({
-    columnas: [], // Aquí guardaremos las fechas de las columnas
-    datos: {
-        'Hb (g/dL)': {},
-        'GB (x10³/µL)': {},
-        'PCR (mg/L)': {},
-        'VES (mm/h)': {},
-        'Azo (mg/dL)': {},
-        'Cr (mg/dL)': {},
-        'BT (mg/dL)': {},
-        'BD (mg/dL)': {},
-        'BI (mg/dL)': {},
-        'Alb (g/dL)': {},
-        'FA (UI/L)': {},
-        'GTO (UI/L)': {},
-        'GTP (UI/L)': {},
-        'GGT (UI/L)': {}
-    }
-});
 
     const handleInputChange = (fieldName, value) => {
         setFormData(prevData => ({
@@ -174,30 +155,7 @@ const [paraclinicaData, setParaclinicaData] = React.useState({
             };
         });
     };
-const handleParaclinicaChange = (variable, fecha, valor) => {
-    setParaclinicaData(prevData => ({
-        ...prevData,
-        datos: {
-            ...prevData.datos,
-            [variable]: {
-                ...prevData.datos[variable],
-                [fecha]: valor
-            }
-        }
-    }));
-};
-const handleParaclinicaNumericoChange = (variable, fecha, valor) => {
-    // Permite números, punto decimal y signo negativo
-    if (valor === '' || /^-?\d*\.?\d*$/.test(valor)) {
-        handleParaclinicaChange(variable, fecha, valor);
-    }
-};
-const agregarColumnaParaclinica = () => {
-    setParaclinicaData(prevData => ({
-        ...prevData,
-        columnas: [...prevData.columnas, hoy]
-    }));
-};
+
 const calcularClasificacionTsukayama = (fechaColocacion, fechaSintomas) => {
     if (!fechaColocacion || !fechaSintomas) return '';
     const colocacion = new Date(fechaColocacion);
@@ -2664,101 +2622,7 @@ React.createElement('tr', null,
                    )
                )
            )      // cierre del tbody
-      ),          // cierre de la tabla
-      React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
-          React.createElement('h2', { 
-              style: { 
-                  fontSize: '1.2rem', 
-                  fontWeight: 'bold', 
-                  marginBottom: '1rem',
-                  textAlign: 'center'
-              } 
-          }, 'Paraclínica'),
-          React.createElement('table', { style: styles.table },
-              React.createElement('thead', null,
-                  React.createElement('tr', null,
-                      React.createElement('th', { style: styles.tableHeader }, 'Variable'),
-                      React.createElement('th', { style: styles.tableHeader }, 
-                          `FI (${formData.fi || 'Sin fecha'})`
-                      ),
-                      ...paraclinicaData.columnas.map(fecha => 
-                          React.createElement('th', { 
-                              key: fecha,
-                              style: styles.tableHeader 
-                          }, fecha)
-                      ),
-                      React.createElement('th', { style: styles.tableHeader }, hoy),
-                      React.createElement('th', { style: styles.tableHeader },
-                          React.createElement('button', {
-                              onClick: agregarColumnaParaclinica,
-                              style: {
-                                  padding: '0.25rem 0.5rem',
-                                  cursor: 'pointer',
-                                  border: '1px solid #ccc',
-                                  borderRadius: '4px',
-                                  backgroundColor: '#f8f8f8'
-                              }
-                          }, '+')
-                      )
-                  )
-              ),
-              React.createElement('tbody', null,
-                  Object.keys(paraclinicaData.datos).map(variable => 
-                      React.createElement('tr', { key: variable },
-                          React.createElement('td', { 
-                              style: {
-                                  ...styles.tableCell,
-                                  fontWeight: 'bold',
-                                  backgroundColor: '#f8f8f8'
-                              } 
-                          }, variable),
-                          React.createElement('td', { style: styles.tableCell },
-                              React.createElement('input', {
-                                  type: 'text',
-                                  value: paraclinicaData.datos[variable][formData.fi] || '',
-                                  onChange: (e) => handleParaclinicaChange(variable, formData.fi, e.target.value),
-                                  style: { 
-                                      ...styles.input, 
-                                      width: '100%',
-                                      textAlign: 'center'
-                                  }
-                              })
-                          ),
-                          ...paraclinicaData.columnas.map(fecha => 
-                              React.createElement('td', { 
-                                  key: fecha,
-                                  style: styles.tableCell 
-                              },
-                                  React.createElement('input', {
-                                      type: 'text',
-                                      value: paraclinicaData.datos[variable][fecha] || '',
-                                      onChange: (e) => handleParaclinicaChange(variable, fecha, e.target.value),
-                                      style: { 
-                                          ...styles.input, 
-                                          width: '100%',
-                                          textAlign: 'center'
-                                      }
-                                  })
-                              )
-                          ),
-                          React.createElement('td', { style: styles.tableCell },
-                              React.createElement('input', {
-                                  type: 'text',
-                                  value: paraclinicaData.datos[variable][hoy] || '',
-                                  onChange: (e) => handleParaclinicaChange(variable, hoy, e.target.value),
-                                  style: { 
-                                      ...styles.input, 
-                                      width: '100%',
-                                      textAlign: 'center'
-                                  }
-                              })
-                          ),
-                          React.createElement('td', { style: styles.tableCell })
-                      )
-                  )
-              )
-          )
-      )
-  );            // cierre del return del Form
+      )          // cierre de la tabla
+  );            // cierre del div de Enfermedad Actual y el return del Form
 }                // cierre de la función Form
 root.render(React.createElement(Form));
