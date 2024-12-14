@@ -242,7 +242,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
         },
         grid: {
             display: 'grid',
-            gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '200px 1fr',
+            gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(2, 1fr)',
             gap: '1rem',
             marginBottom: '1rem'
         },
@@ -271,6 +271,12 @@ const calcularClasificacionOMA = (fechaSintomas) => {
             borderBottom: '1px solid black',
             padding: '0.25rem',
             width: '80px'
+        },
+        mediumInput: {
+        flex: 0,
+        borderBottom: '1px solid black',
+        padding: '0.25rem',
+        width: '200px'
         },
         compact: {
             marginBottom: '0.5rem'
@@ -446,7 +452,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                     type: 'text',
                     value: formData.origin,
                     onChange: (e) => handleInputChange('origin', e.target.value),
-                    style: styles.input
+                    style: styles.mediumInput
                 })
             ),
             
@@ -468,7 +474,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                     type: 'text',
                     value: formData.ci,
                     onChange: (e) => handleInputChange('ci', e.target.value),
-                    style: styles.input
+                    style: styles.mediumInput
                 })
             )
         ),
