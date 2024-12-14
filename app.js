@@ -198,6 +198,26 @@ const agregarColumnaParaclinica = () => {
         columnas: [...prevData.columnas, hoy]
     }));
 };
+
+const eliminarColumnaParaclinica = (fecha) => {
+    setParaclinicaData(prevData => {
+        const nuevasColumnas = prevData.columnas.filter(f => f !== fecha);
+        const nuevosDatos = { ...prevData.datos };
+        
+        // Eliminar los valores de esa fecha para todas las variables
+        Object.keys(nuevosDatos).forEach(variable => {
+            const { [fecha]: eliminado, ...resto } = nuevosDatos[variable];
+            nuevosDatos[variable] = resto;
+        });
+
+        return {
+            ...prevData,
+            columnas: nuevasColumnas,
+            datos: nuevosDatos
+        };
+    });
+};
+    
 const calcularClasificacionTsukayama = (fechaColocacion, fechaSintomas) => {
     if (!fechaColocacion || !fechaSintomas) return '';
     const colocacion = new Date(fechaColocacion);
