@@ -174,7 +174,7 @@ const [paraclinicaData, setParaclinicaData] = React.useState({
             };
         });
     };
-const handleParaclinicaNumericoChange = (variable, fecha, valor) => {
+const handleParaclinicaChange = (variable, fecha, valor) => {
     setParaclinicaData(prevData => ({
         ...prevData,
         datos: {
@@ -189,7 +189,7 @@ const handleParaclinicaNumericoChange = (variable, fecha, valor) => {
 const handleParaclinicaNumericoChange = (variable, fecha, valor) => {
     // Permite números, punto decimal y signo negativo
     if (valor === '' || /^-?\d*\.?\d*$/.test(valor)) {
-        handleParaclinicaNumericoChange(variable, fecha, valor);
+        handleParaclinicaChange(variable, fecha, valor);
     }
 };
 const agregarColumnaParaclinica = () => {
@@ -198,26 +198,6 @@ const agregarColumnaParaclinica = () => {
         columnas: [...prevData.columnas, hoy]
     }));
 };
-
-const eliminarColumnaParaclinica = (fecha) => {
-    setParaclinicaData(prevData => {
-        const nuevasColumnas = prevData.columnas.filter(f => f !== fecha);
-        const nuevosDatos = { ...prevData.datos };
-        
-        // Eliminar los valores de esa fecha para todas las variables
-        Object.keys(nuevosDatos).forEach(variable => {
-            const { [fecha]: eliminado, ...resto } = nuevosDatos[variable];
-            nuevosDatos[variable] = resto;
-        });
-
-        return {
-            ...prevData,
-            columnas: nuevasColumnas,
-            datos: nuevosDatos
-        };
-    });
-};
-    
 const calcularClasificacionTsukayama = (fechaColocacion, fechaSintomas) => {
     if (!fechaColocacion || !fechaSintomas) return '';
     const colocacion = new Date(fechaColocacion);
@@ -2705,33 +2685,8 @@ React.createElement('tr', null,
                           React.createElement('th', { 
                               key: fecha,
                               style: styles.tableHeader 
-                         },
-                                React.createElement('div', {
-                                    style: {
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '0.5rem'
-                                    }
-                                },
-                                    React.createElement('span', null, fecha),
-                                    React.createElement('button', {
-                                        onClick: () => eliminarColumnaParaclinica(fecha),
-                                        style: {
-                                            padding: '0.25rem 0.5rem',
-                                            cursor: 'pointer',
-                                            border: '1px solid #dc3545',
-                                            borderRadius: '4px',
-                                            backgroundColor: '#fff',
-                                            color: '#dc3545',
-                                            fontSize: '0.875rem'
-                                        }
-                                    }, '×')
-                                )
-                            ),
-                          
-
-
-                          
+                          }, fecha)
+                      ),
                       React.createElement('th', { style: styles.tableHeader }, hoy),
                       React.createElement('th', { style: styles.tableHeader },
                           React.createElement('button', {
@@ -2761,7 +2716,7 @@ React.createElement('tr', null,
                               React.createElement('input', {
                                   type: 'text',
                                   value: paraclinicaData.datos[variable][formData.fi] || '',
-                                  onChange: (e) => handleParaclinicaNumericoChange(variable, formData.fi, e.target.value),
+                                  onChange: (e) => handleParaclinicaChange(variable, formData.fi, e.target.value),
                                   style: { 
                                       ...styles.input, 
                                       width: '100%',
@@ -2777,7 +2732,7 @@ React.createElement('tr', null,
                                   React.createElement('input', {
                                       type: 'text',
                                       value: paraclinicaData.datos[variable][fecha] || '',
-                                      onChange: (e) => handleParaclinicaNumericoChange(variable, fecha, e.target.value),
+                                      onChange: (e) => handleParaclinicaChange(variable, fecha, e.target.value),
                                       style: { 
                                           ...styles.input, 
                                           width: '100%',
@@ -2790,7 +2745,7 @@ React.createElement('tr', null,
                               React.createElement('input', {
                                   type: 'text',
                                   value: paraclinicaData.datos[variable][hoy] || '',
-                                  onChange: (e) => handleParaclinicaNumericoChange(variable, hoy, e.target.value),
+                                  onChange: (e) => handleParaclinicaChange(variable, hoy, e.target.value),
                                   style: { 
                                       ...styles.input, 
                                       width: '100%',
