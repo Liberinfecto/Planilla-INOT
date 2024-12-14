@@ -137,20 +137,20 @@ const hoy = new Date().toISOString().split('T')[0];
 const [paraclinicaData, setParaclinicaData] = React.useState({
     columnas: [], // Aquí guardaremos las fechas de las columnas
     datos: {
-        Hb: {},
-        GB: {},
-        PCR: {},
-        VES: {},
-        Azo: {},
-        Cr: {},
-        BT: {},
-        BD: {},
-        BI: {},
-        Alb: {},
-        FA: {},
-        GTO: {},
-        GTP: {},
-        GGT: {}
+        'Hb (g/dL)': {},
+        'GB (x10³/µL)': {},
+        'PCR (mg/L)': {},
+        'VES (mm/h)': {},
+        'Azo (mg/dL)': {},
+        'Cr (mg/dL)': {},
+        'BT (mg/dL)': {},
+        'BD (mg/dL)': {},
+        'BI (mg/dL)': {},
+        'Alb (g/dL)': {},
+        'FA (UI/L)': {},
+        'GTO (UI/L)': {},
+        'GTP (UI/L)': {},
+        'GGT (UI/L)': {}
     }
 });
 
@@ -186,7 +186,12 @@ const handleParaclinicaChange = (variable, fecha, valor) => {
         }
     }));
 };
-
+const handleParaclinicaNumericoChange = (variable, fecha, valor) => {
+    // Permite números, punto decimal y signo negativo
+    if (valor === '' || /^-?\d*\.?\d*$/.test(valor)) {
+        handleParaclinicaChange(variable, fecha, valor);
+    }
+};
 const agregarColumnaParaclinica = () => {
     setParaclinicaData(prevData => ({
         ...prevData,
