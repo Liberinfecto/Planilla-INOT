@@ -414,7 +414,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                             })
                         )
                     )
-                )
+                ),
             
             // Fila de campos numéricos (Edad, Peso, Talla)
             React.createElement('div', { style: { display: 'flex', gap: '1rem', marginBottom: '0.5rem' } },
