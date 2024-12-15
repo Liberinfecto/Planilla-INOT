@@ -150,7 +150,7 @@ valores: {
         azo: { unidad: 'mg/dL', valores: [] },
         cr: { unidad: 'mg/dL', valores: [] },
         // Ionograma en una sola línea
-        naKCl: { unidad: 'Na/K/Cl (mEq/L)', valores: [] },
+        Ionograma: { unidad: 'Na/K/Cl (mEq/L)', valores: [] },
         // FYEH al final
         bt: { unidad: 'mg/dL', valores: [], isGroup: true }, // Marcador de grupo FYEH
         bd: { unidad: 'mg/dL', valores: [], visible: false },
