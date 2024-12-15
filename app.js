@@ -171,6 +171,20 @@ const hoy = new Date().toISOString().split('T')[0];
             [fieldName]: value
         }));
     };
+    // Si el campo que se está modificando es 'fi', actualizamos paraclinicaData
+    if (fieldName === 'fi') {
+        setParaclinicaData(prev => ({
+            ...prev,
+            columnas: prev.columnas.map(col => 
+                col.tipo === 'fi' 
+                    ? { ...col, fecha: value }
+                    : col
+            )
+        }));
+    }
+};
+
+
     
     const handleRadioClick = (name, value) => {
         setRadioSelections(prev => {
