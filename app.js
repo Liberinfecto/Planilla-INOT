@@ -140,10 +140,6 @@ const [paraclinicaData, setParaclinicaData] = React.useState({
         {
             fecha: formData.fi || '',  // Usamos formData.fi si existe
             tipo: 'fi'
-        },
-        {
-            fecha: new Date().toISOString().split('T')[0],
-            tipo: 'actual'
         }
     ],
     valores: {
@@ -2770,6 +2766,7 @@ React.createElement('tr', null,
                    React.createElement('h3', { style: { margin: 0 } }, 'Paraclínica'),
                    React.createElement('button', {
                        onClick: () => {
+                           const fechaActual = new Date().toISOString().split('T')[0];
                            setParaclinicaData(prev => ({
                                ...prev,
                                columnas: [...prev.columnas, {
@@ -2836,6 +2833,7 @@ React.createElement('tr', null,
                                       React.createElement('input', {
                                           type: 'date',
                                           value: columna.fecha || '',
+                                          max: new Date().toISOString().split('T')[0],
                                           onChange: (e) => {
                                               setParaclinicaData(prev => ({
                                                   ...prev,
