@@ -3070,7 +3070,7 @@ React.createElement('tr', null,
                                                       setParaclinicaData(prev => {
                                                           const newValores = { ...prev.valores };
                                                           if (!newValores['Na/K'].valores[colIndex]) {
-                                                              newValores['Na/K'].valores[colIndex] = {};
+                                                              newValores['Na/K'].valores[colIndex] = { na: '', k: '' };
                                                           }
                                                           newValores['Na/K'].valores[colIndex] = {
                                                               ...newValores['Na/K'].valores[colIndex],
