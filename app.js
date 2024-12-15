@@ -138,7 +138,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
 const [paraclinicaData, setParaclinicaData] = React.useState({
     columnas: [
         {
-            fecha: formData.fi || '',  // Usamos formData.fi si existe
+            fecha: formData.fi || '',  // Solo la columna FI
             tipo: 'fi'
         }
     ],
@@ -159,6 +159,24 @@ const [paraclinicaData, setParaclinicaData] = React.useState({
         ggt: { unidad: 'UI/L', valores: [] }
     }
 });
+
+const rangosNormales = {
+    hb: { min: 12, max: 16 },  // g/dL
+    gb: { min: 4, max: 11 },   // x10³/µL
+    pcr: { min: 0, max: 10 },  // mg/L
+    ves: { min: 0, max: 20 },  // mm/h
+    azo: { min: 10, max: 50 }, // mg/dL
+    cr: { min: 0.5, max: 1.2 },// mg/dL
+    bt: { min: 0.3, max: 1.2 },// mg/dL
+    bd: { min: 0, max: 0.3 },  // mg/dL
+    bi: { min: 0, max: 0.9 },  // mg/dL
+    alb: { min: 3.5, max: 5.2 },// g/dL
+    fa: { min: 35, max: 104 }, // UI/L
+    gto: { min: 10, max: 40 }, // UI/L
+    gtp: { min: 10, max: 40 }, // UI/L
+    ggt: { min: 5, max: 55 }   // UI/L
+};
+
 const hoy = new Date().toISOString().split('T')[0]; 
 
     const handleInputChange = (fieldName, value) => {
@@ -2873,29 +2891,42 @@ React.createElement('tr', null,
                                        style: styles.tableCell
                                    },
                                        React.createElement('input', {
-                                           type: 'text',
+                                           type: 'number',
+                                           step: 'any',
                                            value: datos.valores[colIndex] || '',
                                            onChange: (e) => {
                                                const newValue = e.target.value;
-                                               setParaclinicaData(prev => {
-                                                   const newValores = { ...prev.valores };
-                                                   if (!newValores[variable].valores[colIndex]) {
-                                                       newValores[variable].valores = [
-                                                           ...newValores[variable].valores
-                                                       ];
-                                                   }
-                                                   newValores[variable].valores[colIndex] = newValue;
-                                                   return {
-                                                       ...prev,
-                                                       valores: newValores
-                                                   };
-                                               });
+                                               // Solo permitir números y punto decimal
+                                               if (newValue === '' || /^\d*\.?\d*$/.test(newValue)) {
+                                                   setParaclinicaData(prev => {
+                                                       const newValores = { ...prev.valores };
+                                                       if (!newValores[variable].valores[colIndex]) {
+                                                           newValores[variable].valores = [
+                                                               ...newValores[variable].valores
+                                                           ];
+                                                       }
+                                                       newValores[variable].valores[colIndex] = newValue;
+                                                       return {
+                                                           ...prev,
+                                                           valores: newValores
+                                                       };
+                                                   });
+                                               }
                                            },
                                            style: {
                                                width: '100%',
                                                border: 'none',
                                                padding: '0.25rem',
-                                               textAlign: 'center'
+                                               textAlign: 'center',
+                                               backgroundColor: (() => {
+                                                   const valor = parseFloat(datos.valores[colIndex]);
+                                                   if (!valor) return 'white';
+                                                   const rango = rangosNormales[variable];
+                                                   if (valor < rango.min || valor > rango.max) {
+                                                       return '#ffebee'; // rojo suave para valores anormales
+                                                   }
+                                                   return '#e8f5e9'; // verde suave para valores normales
+                                               })()
                                            }
                                        })
                                    )
