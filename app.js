@@ -2993,7 +2993,7 @@ React.createElement('tr', null,
                                       key: colIndex,
                                       style: styles.tableCell
                                   },
-                                      variable === 'naK' ?
+                                      variable === 'Na/K' ?
                                       // Render especial para Na/K
                                       React.createElement('div', {
                                           style: {
