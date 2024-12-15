@@ -149,15 +149,15 @@ valores: {
         ves: { unidad: 'mm/h', valores: [] },
         azo: { unidad: 'mg/dL', valores: [] },
         cr: { unidad: 'mg/dL', valores: [] },
-        bt: { unidad: 'mg/dL', valores: [] },
-        bd: { unidad: 'mg/dL', valores: [] },
-        bi: { unidad: 'mg/dL', valores: [] },
-        alb: { unidad: 'g/dL', valores: [] },
-        fa: { unidad: 'UI/L', valores: [] },
-        gto: { unidad: 'UI/L', valores: [] },
-        gtp: { unidad: 'UI/L', valores: [] },
-        ggt: { unidad: 'UI/L', valores: [] },
-        ionograma: { unidad: '', valores: [], visible: false, isGroup: true }, // Marcador de grupo
+        bt: { unidad: 'mg/dL', valores: [], isGroup: true }, // Marcador de grupo FYEH
+        bd: { unidad: 'mg/dL', valores: [], visible: false },
+        bi: { unidad: 'mg/dL', valores: [], visible: false },
+        alb: { unidad: 'g/dL', valores: [], visible: false },
+        fa: { unidad: 'UI/L', valores: [], visible: false },
+        gto: { unidad: 'UI/L', valores: [], visible: false },
+        gtp: { unidad: 'UI/L', valores: [], visible: false },
+        ggt: { unidad: 'UI/L', valores: [], visible: false },
+        ionograma: { unidad: '', valores: [], isGroup: true, label: 'Ionograma' }, // Grupo con etiqueta
         na: { unidad: 'mEq/L', valores: [], visible: false },
         k: { unidad: 'mEq/L', valores: [], visible: false },
         cl: { unidad: 'mEq/L', valores: [], visible: false }
@@ -2882,99 +2882,127 @@ React.createElement('tr', null,
                   ),
                   
                   // Cuerpo de la tabla
-                   React.createElement('tbody', null,
-                       Object.entries(paraclinicaData.valores).map(([variable, datos]) => {
-                           // No mostrar las variables ocultas
-                           if ((variable === 'bd' || variable === 'bi') && !datos.valores.some(v => v) && !paraclinicaData.valores.bt.valores.some(v => v)) return null;
-                           if ((variable === 'na' || variable === 'k' || variable === 'cl') && !datos.valores.some(v => v) && !datos.visible) return null;
-                           if (variable === 'ionograma') return null;
+                  React.createElement('tbody', null,
+                      Object.entries(paraclinicaData.valores).map(([variable, datos]) => {
+                          // No mostrar las variables que dependen de BT si están ocultas
+                          if ((variable === 'bd' || variable === 'bi' || variable === 'alb' || 
+                               variable === 'fa' || variable === 'gto' || variable === 'gtp' || 
+                               variable === 'ggt') && !datos.visible) return null;
+                          // No mostrar las variables del ionograma si están ocultas
+                          if ((variable === 'na' || variable === 'k' || variable === 'cl') && !datos.visible) return null;
 
-                           return React.createElement('tr', { key: variable },
-                               // Columna de variable con unidad
-                               React.createElement('td', { 
-                                   style: { 
-                                       ...styles.tableCell, 
-                                       fontWeight: 'bold',
-                                       paddingLeft: (variable === 'bd' || variable === 'bi' || variable === 'na' || variable === 'k' || variable === 'cl') ? '2rem' : '0.5rem'
-                                   }
-                               }, 
-                                   React.createElement('div', {
-                                       style: {
-                                           display: 'flex',
-                                           alignItems: 'center',
-                                           gap: '0.5rem'
-                                       }
-                                   },
-                                       variable === 'bt' && React.createElement('button', {
-                                           onClick: () => {
-                                               setParaclinicaData(prev => ({
-                                                   ...prev,
-                                                   valores: {
-                                                       ...prev.valores,
-                                                       bd: { ...prev.valores.bd, visible: !prev.valores.bd.visible },
-                                                       bi: { ...prev.valores.bi, visible: !prev.valores.bi.visible }
-                                                   }
-                                               }));
-                                           },
-                                           style: {
-                                               border: 'none',
-                                               background: 'none',
-                                               cursor: 'pointer',
-                                               padding: '0.25rem'
-                                           }
-                                       }, '▶'),
-                                       variable === 'ionograma' && React.createElement('button', {
-                                           onClick: () => {
-                                               setParaclinicaData(prev => ({
-                                                   ...prev,
-                                                   valores: {
-                                                       ...prev.valores,
-                                                       na: { ...prev.valores.na, visible: !prev.valores.na.visible },
-                                                       k: { ...prev.valores.k, visible: !prev.valores.k.visible },
-                                                       cl: { ...prev.valores.cl, visible: !prev.valores.cl.visible }
-                                                   }
-                                               }));
-                                           },
-                                           style: {
-                                               border: 'none',
-                                               background: 'none',
-                                               cursor: 'pointer',
-                                               padding: '0.25rem'
-                                           }
-                                       }, '▶'),
-                                       `${variable.toUpperCase()}${datos.unidad ? ` (${datos.unidad})` : ''}`
-                                   )
-                               ),
-                               // Columnas de valores
-                               paraclinicaData.columnas.map((_, colIndex) => 
-                                   React.createElement('td', { 
-                                       key: colIndex,
-                                       style: styles.tableCell
-                                   },
-                                       React.createElement('input', {
-                                           type: 'number',
-                                           step: 'any',
-                                           value: datos.valores[colIndex] || '',
-                                           onChange: (e) => {
-                                               const newValue = e.target.value;
-                                               // Solo permitir números y punto decimal
-                                               if (newValue === '' || /^\d*\.?\d*$/.test(newValue)) {
-                                                   setParaclinicaData(prev => {
-                                                       const newValores = { ...prev.valores };
-                                                       if (!newValores[variable].valores[colIndex]) {
-                                                           newValores[variable].valores = [
-                                                               ...newValores[variable].valores
-                                                           ];
-                                                       }
-                                                       newValores[variable].valores[colIndex] = newValue;
-                                                       return {
-                                                           ...prev,
-                                                           valores: newValores
-                                                       };
-                                                   });
-                                               }
-                                           },
-                                           style: {
+                          return React.createElement('tr', { key: variable },
+                              // Columna de variable con unidad
+                              React.createElement('td', { 
+                                  style: { 
+                                      ...styles.tableCell, 
+                                      fontWeight: 'bold',
+                                      paddingLeft: (variable === 'bd' || variable === 'bi' || 
+                                                  variable === 'alb' || variable === 'fa' || 
+                                                  variable === 'gto' || variable === 'gtp' || 
+                                                  variable === 'ggt' || variable === 'na' || 
+                                                  variable === 'k' || variable === 'cl') ? '2rem' : '0.5rem',
+                                      borderLeft: (variable === 'bt' || 
+                                                 variable === 'bd' || variable === 'bi' || 
+                                                 variable === 'alb' || variable === 'fa' || 
+                                                 variable === 'gto' || variable === 'gtp' || 
+                                                 variable === 'ggt') ? '3px solid #4a5568' : '1px solid #333'
+                                  }
+                              }, 
+                                  React.createElement('div', {
+                                      style: {
+                                          display: 'flex',
+                                          alignItems: 'center',
+                                          gap: '0.5rem'
+                                      }
+                                  },
+                                      // Botón flecha para BT
+                                      variable === 'bt' && React.createElement('button', {
+                                          onClick: () => {
+                                              setParaclinicaData(prev => ({
+                                                  ...prev,
+                                                  valores: {
+                                                      ...prev.valores,
+                                                      bd: { ...prev.valores.bd, visible: !prev.valores.bd.visible },
+                                                      bi: { ...prev.valores.bi, visible: !prev.valores.bi.visible },
+                                                      alb: { ...prev.valores.alb, visible: !prev.valores.alb.visible },
+                                                      fa: { ...prev.valores.fa, visible: !prev.valores.fa.visible },
+                                                      gto: { ...prev.valores.gto, visible: !prev.valores.gto.visible },
+                                                      gtp: { ...prev.valores.gtp, visible: !prev.valores.gtp.visible },
+                                                      ggt: { ...prev.valores.ggt, visible: !prev.valores.ggt.visible }
+                                                  }
+                                              }));
+                                          },
+                                          style: {
+                                              border: 'none',
+                                              background: 'none',
+                                              cursor: 'pointer',
+                                              padding: '0.25rem'
+                                          }
+                                      }, '▶'),
+                                      // Botón flecha y etiqueta para Ionograma
+                                      variable === 'ionograma' && React.createElement('div', {
+                                          style: {
+                                              display: 'flex',
+                                              alignItems: 'center',
+                                              gap: '0.5rem'
+                                          }
+                                      },
+                                          React.createElement('button', {
+                                              onClick: () => {
+                                                  setParaclinicaData(prev => ({
+                                                      ...prev,
+                                                      valores: {
+                                                          ...prev.valores,
+                                                          na: { ...prev.valores.na, visible: !prev.valores.na.visible },
+                                                          k: { ...prev.valores.k, visible: !prev.valores.k.visible },
+                                                          cl: { ...prev.valores.cl, visible: !prev.valores.cl.visible }
+                                                      }
+                                                  }));
+                                              },
+                                              style: {
+                                                  border: 'none',
+                                                  background: 'none',
+                                                  cursor: 'pointer',
+                                                  padding: '0.25rem'
+                                              }
+                                          }, '▶'),
+                                          datos.label
+                                      ),
+                                      // Nombre de la variable y unidad
+                                      !datos.isGroup && `${variable.toUpperCase()}${datos.unidad ? ` (${datos.unidad})` : ''}`
+                                  )
+                              ),
+                              // Columnas de valores
+                              paraclinicaData.columnas.map((_, colIndex) => 
+                                  React.createElement('td', { 
+                                      key: colIndex,
+                                      style: styles.tableCell
+                                  },
+                                      React.createElement('input', {
+                                          type: 'number',
+                                          step: 'any',
+                                          value: datos.valores[colIndex] || '',
+                                          onChange: (e) => {
+                                              const newValue = e.target.value;
+                                              // Solo permitir números y punto decimal
+                                              if (newValue === '' || /^\d*\.?\d*$/.test(newValue)) {
+                                                  setParaclinicaData(prev => {
+                                                      const newValores = { ...prev.valores };
+                                                      if (!newValores[variable].valores[colIndex]) {
+                                                          newValores[variable].valores = [
+                                                              ...newValores[variable].valores
+                                                          ];
+                                                      }
+                                                      newValores[variable].valores[colIndex] = newValue;
+                                                      return {
+                                                          ...prev,
+                                                          valores: newValores
+                                                      };
+                                                  });
+                                              }
+                                          },
+                                          style: {
                                               width: '100%',
                                               border: 'none',
                                               padding: '0.25rem',
