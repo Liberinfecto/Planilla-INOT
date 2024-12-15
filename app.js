@@ -2770,7 +2770,7 @@ React.createElement('tr', null,
                            setParaclinicaData(prev => ({
                                ...prev,
                                columnas: [...prev.columnas, {
-                                   fecha: new Date().toISOString().split('T')[0],
+                                   fecha: fechaActual,
                                    tipo: 'normal'
                                }]
                            }));
