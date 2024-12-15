@@ -3007,16 +3007,24 @@ React.createElement('tr', null,
                                               step: 'any',
                                               placeholder: 'Na',
                                               value: datos.valores[colIndex]?.na || '',
+                                              onKeyPress: (e) => {
+                                                  if (!/[\d.]/.test(e.key)) {
+                                                      e.preventDefault();
+                                                  }
+                                                  if (e.key === '.' && datos.valores[colIndex]?.na?.includes('.')) {
+                                                      e.preventDefault();
+                                                  }
+                                              },
                                               onChange: (e) => {
                                                   const newValue = e.target.value;
                                                   if (newValue === '' || /^\d*\.?\d*$/.test(newValue)) {
                                                       setParaclinicaData(prev => {
                                                           const newValores = { ...prev.valores };
-                                                          if (!newValores.naK.valores[colIndex]) {
-                                                              newValores.naK.valores[colIndex] = {};
+                                                          if (!newValores['Na/K'].valores[colIndex]) {
+                                                              newValores['Na/K'].valores[colIndex] = {};
                                                           }
-                                                          newValores.naK.valores[colIndex] = {
-                                                              ...newValores.naK.valores[colIndex],
+                                                          newValores['Na/K'].valores[colIndex] = {
+                                                              ...newValores['Na/K'].valores[colIndex],
                                                               na: newValue
                                                           };
                                                           return {
@@ -3048,16 +3056,24 @@ React.createElement('tr', null,
                                               step: 'any',
                                               placeholder: 'K',
                                               value: datos.valores[colIndex]?.k || '',
+                                              onKeyPress: (e) => {
+                                                  if (!/[\d.]/.test(e.key)) {
+                                                      e.preventDefault();
+                                                  }
+                                                  if (e.key === '.' && datos.valores[colIndex]?.k?.includes('.')) {
+                                                      e.preventDefault();
+                                                  }
+                                              },
                                               onChange: (e) => {
                                                   const newValue = e.target.value;
                                                   if (newValue === '' || /^\d*\.?\d*$/.test(newValue)) {
                                                       setParaclinicaData(prev => {
                                                           const newValores = { ...prev.valores };
-                                                          if (!newValores.naK.valores[colIndex]) {
-                                                              newValores.naK.valores[colIndex] = {};
+                                                          if (!newValores['Na/K'].valores[colIndex]) {
+                                                              newValores['Na/K'].valores[colIndex] = {};
                                                           }
-                                                          newValores.naK.valores[colIndex] = {
-                                                              ...newValores.naK.valores[colIndex],
+                                                          newValores['Na/K'].valores[colIndex] = {
+                                                              ...newValores['Na/K'].valores[colIndex],
                                                               k: newValue
                                                           };
                                                           return {
