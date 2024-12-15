@@ -2993,13 +2993,105 @@ React.createElement('tr', null,
                                       key: colIndex,
                                       style: styles.tableCell
                                   },
+                                      variable === 'naK' ?
+                                      // Render especial para Na/K
+                                      React.createElement('div', {
+                                          style: {
+                                              display: 'flex',
+                                              alignItems: 'center',
+                                              gap: '4px'
+                                          }
+                                      },
+                                          React.createElement('input', {
+                                              type: 'number',
+                                              step: 'any',
+                                              placeholder: 'Na',
+                                              value: datos.valores[colIndex]?.na || '',
+                                              onChange: (e) => {
+                                                  const newValue = e.target.value;
+                                                  if (newValue === '' || /^\d*\.?\d*$/.test(newValue)) {
+                                                      setParaclinicaData(prev => {
+                                                          const newValores = { ...prev.valores };
+                                                          if (!newValores.naK.valores[colIndex]) {
+                                                              newValores.naK.valores[colIndex] = {};
+                                                          }
+                                                          newValores.naK.valores[colIndex] = {
+                                                              ...newValores.naK.valores[colIndex],
+                                                              na: newValue
+                                                          };
+                                                          return {
+                                                              ...prev,
+                                                              valores: newValores
+                                                          };
+                                                      });
+                                                  }
+                                              },
+                                              style: {
+                                                  width: '45%',
+                                                  border: 'none',
+                                                  padding: '0.25rem',
+                                                  textAlign: 'center',
+                                                  backgroundColor: (() => {
+                                                      const valor = parseFloat(datos.valores[colIndex]?.na);
+                                                      if (!valor) return 'white';
+                                                      const rango = rangosNormales.na;
+                                                      if (valor < rango.min || valor > rango.max) {
+                                                          return '#ffebee';
+                                                      }
+                                                      return '#e8f5e9';
+                                                  })()
+                                              }
+                                          }),
+                                          React.createElement('span', null, '/'),
+                                          React.createElement('input', {
+                                              type: 'number',
+                                              step: 'any',
+                                              placeholder: 'K',
+                                              value: datos.valores[colIndex]?.k || '',
+                                              onChange: (e) => {
+                                                  const newValue = e.target.value;
+                                                  if (newValue === '' || /^\d*\.?\d*$/.test(newValue)) {
+                                                      setParaclinicaData(prev => {
+                                                          const newValores = { ...prev.valores };
+                                                          if (!newValores.naK.valores[colIndex]) {
+                                                              newValores.naK.valores[colIndex] = {};
+                                                          }
+                                                          newValores.naK.valores[colIndex] = {
+                                                              ...newValores.naK.valores[colIndex],
+                                                              k: newValue
+                                                          };
+                                                          return {
+                                                              ...prev,
+                                                              valores: newValores
+                                                          };
+                                                      });
+                                                  }
+                                              },
+                                              style: {
+                                                  width: '45%',
+                                                  border: 'none',
+                                                  padding: '0.25rem',
+                                                  textAlign: 'center',
+                                                  backgroundColor: (() => {
+                                                      const valor = parseFloat(datos.valores[colIndex]?.k);
+                                                      if (!valor) return 'white';
+                                                      const rango = rangosNormales.k;
+                                                      if (valor < rango.min || valor > rango.max) {
+                                                          return '#ffebee';
+                                                      }
+                                                      return '#e8f5e9';
+                                                  })()
+                                              }
+                                          })
+                                      )
+                                      :
+                                      // Render normal para otros campos
                                       React.createElement('input', {
                                           type: 'number',
                                           step: 'any',
                                           value: datos.valores[colIndex] || '',
                                           onChange: (e) => {
                                               const newValue = e.target.value;
-                                              // Solo permitir números y punto decimal
                                               if (newValue === '' || /^\d*\.?\d*$/.test(newValue)) {
                                                   setParaclinicaData(prev => {
                                                       const newValores = { ...prev.valores };
