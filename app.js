@@ -2750,7 +2750,113 @@ React.createElement('tr', null,
                        })
                    )
                )
-           )      // cierre del tbody
+           ), // cierre del tbody
+           // AQUÍ COMIENZA LA NUEVA SECCIÓN DE PARACLÍNICA
+           React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
+               React.createElement('div', { style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' } },
+                   React.createElement('h3', { style: { margin: 0 } }, 'Paraclínica'),
+                   React.createElement('button', {
+                       onClick: () => {
+                           setParaclinicaData(prev => ({
+                               ...prev,
+                               columnas: [...prev.columnas, {
+                                   fecha: new Date().toISOString().split('T')[0],
+                                   tipo: 'normal'
+                               }]
+                           }));
+                       },
+                       style: {
+                           padding: '0.5rem 1rem',
+                           cursor: 'pointer',
+                           backgroundColor: '#f0f0f0',
+                           border: '1px solid #ccc',
+                           borderRadius: '4px'
+                       }
+                   }, '+ Agregar columna')
+               ),
+               React.createElement('table', { style: styles.table },
+                   // Cabecera de la tabla
+                   React.createElement('thead', null,
+                       React.createElement('tr', null,
+                           React.createElement('th', { style: styles.tableHeader }, 'Variable'),
+                           paraclinicaData.columnas.map((columna, index) => 
+                               React.createElement('th', { 
+                                   key: index, 
+                                   style: styles.tableHeader 
+                               },
+                                   React.createElement('div', { style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' } },
+                                       columna.tipo === 'fi' ? 'FI' : (columna.tipo === 'actual' ? 'Fecha actual' : columna.fecha),
+                                       columna.tipo !== 'fi' && React.createElement('button', {
+                                           onClick: () => {
+                                               setParaclinicaData(prev => ({
+                                                   ...prev,
+                                                   columnas: prev.columnas.filter((_, i) => i !== index)
+                                               }));
+                                           },
+                                           style: {
+                                               marginLeft: '0.5rem',
+                                               cursor: 'pointer',
+                                               border: 'none',
+                                               background: 'none',
+                                               color: '#ff4444',
+                                               fontSize: '1.2rem',
+                                               padding: '0.2rem'
+                                           }
+                                       }, '×')
+                                   )
+                               )
+                           )
+                       )
+                   ),
+                   // Cuerpo de la tabla
+                   React.createElement('tbody', null,
+                       Object.entries(paraclinicaData.valores).map(([variable, datos]) => 
+                           React.createElement('tr', { key: variable },
+                               // Columna de variable con unidad
+                               React.createElement('td', { 
+                                   style: { ...styles.tableCell, fontWeight: 'bold' }
+                               }, 
+                                   `${variable.toUpperCase()} (${datos.unidad})`
+                               ),
+                               // Columnas de valores
+                               paraclinicaData.columnas.map((_, colIndex) => 
+                                   React.createElement('td', { 
+                                       key: colIndex,
+                                       style: styles.tableCell
+                                   },
+                                       React.createElement('input', {
+                                           type: 'text',
+                                           value: datos.valores[colIndex] || '',
+                                           onChange: (e) => {
+                                               const newValue = e.target.value;
+                                               setParaclinicaData(prev => {
+                                                   const newValores = { ...prev.valores };
+                                                   if (!newValores[variable].valores[colIndex]) {
+                                                       newValores[variable].valores = [
+                                                           ...newValores[variable].valores
+                                                       ];
+                                                   }
+                                                   newValores[variable].valores[colIndex] = newValue;
+                                                   return {
+                                                       ...prev,
+                                                       valores: newValores
+                                                   };
+                                               });
+                                           },
+                                           style: {
+                                               width: '100%',
+                                               border: 'none',
+                                               padding: '0.25rem',
+                                               textAlign: 'center'
+                                           }
+                                       })
+                                   )
+                               )
+                           )
+                       )
+                   )
+               )
+           )
       )          // cierre de la tabla
   );            // cierre del div de Enfermedad Actual y el return del Form
 }                // cierre de la función Form
