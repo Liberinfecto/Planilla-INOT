@@ -3090,10 +3090,21 @@ React.createElement('tr', null,
                                           type: 'number',
                                           step: 'any',
                                           value: datos.valores[colIndex] || '',
-                                          onChange: (e) => {
-                                              const newValue = e.target.value;
-                                              if (newValue === '' || /^\d*\.?\d*$/.test(newValue)) {
-                                                  setParaclinicaData(prev => {
+                                          onKeyPress: (e) => {
+                                                // Permitir solo números y punto decimal
+                                                if (!/[\d.]/.test(e.key)) {
+                                                    e.preventDefault();
+                                                }
+                                                // Evitar múltiples puntos decimales
+                                                if (e.key === '.' && datos.valores[colIndex]?.includes('.')) {
+                                                    e.preventDefault();
+                                                }
+                                            },
+                                            onChange: (e) => {
+                                                const newValue = e.target.value;
+                                                // Solo permitir números y un punto decimal
+                                                if (newValue === '' || /^\d*\.?\d*$/.test(newValue)) {
+                                                    setParaclinicaData(prev => {
                                                       const newValores = { ...prev.valores };
                                                       if (!newValores[variable].valores[colIndex]) {
                                                           newValores[variable].valores = [
