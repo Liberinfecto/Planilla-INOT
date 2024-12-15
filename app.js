@@ -2893,8 +2893,6 @@ React.createElement('tr', null,
                             if ((variable === 'bd' || variable === 'bi' || variable === 'alb' || 
                                  variable === 'fa' || variable === 'gto' || variable === 'gtp' || 
                                  variable === 'ggt') && !datos.visible && !paraclinicaData.valores.bt.valores.some(v => v)) return null;
-                          // No mostrar las variables del ionograma si están ocultas
-                          if ((variable === 'na' || variable === 'k' || variable === 'cl') && !datos.visible) return null;
 
                           return React.createElement('tr', { key: variable },
                               // Columna de variable con unidad
@@ -2903,10 +2901,9 @@ React.createElement('tr', null,
                                       ...styles.tableCell, 
                                       fontWeight: 'bold',
                                       paddingLeft: (variable === 'bd' || variable === 'bi' || 
-                                                  variable === 'alb' || variable === 'fa' || 
-                                                  variable === 'gto' || variable === 'gtp' || 
-                                                  variable === 'ggt' || variable === 'na' || 
-                                                  variable === 'k' || variable === 'cl') ? '2rem' : '0.5rem',
+                                                    variable === 'alb' || variable === 'fa' || 
+                                                    variable === 'gto' || variable === 'gtp' || 
+                                                    variable === 'ggt') ? '2rem' : '0.5rem',
                                       borderLeft: (variable === 'bt' || 
                                                  variable === 'bd' || variable === 'bi' || 
                                                  variable === 'alb' || variable === 'fa' || 
@@ -2954,35 +2951,7 @@ React.createElement('tr', null,
                                            }, '▶'),
                                            `${variable.toUpperCase()} (${datos.unidad})`
                                        ),
-                                      // Botón flecha y etiqueta para Ionograma
-                                      variable === 'ionograma' && React.createElement('div', {
-                                          style: {
-                                              display: 'flex',
-                                              alignItems: 'center',
-                                              gap: '0.5rem'
-                                          }
-                                      },
-                                          React.createElement('button', {
-                                              onClick: () => {
-                                                  setParaclinicaData(prev => ({
-                                                      ...prev,
-                                                      valores: {
-                                                          ...prev.valores,
-                                                          na: { ...prev.valores.na, visible: !prev.valores.na.visible },
-                                                          k: { ...prev.valores.k, visible: !prev.valores.k.visible },
-                                                          cl: { ...prev.valores.cl, visible: !prev.valores.cl.visible }
-                                                      }
-                                                  }));
-                                              },
-                                              style: {
-                                                  border: 'none',
-                                                  background: 'none',
-                                                  cursor: 'pointer',
-                                                  padding: '0.25rem'
-                                              }
-                                          }, '▶'),
-                                          datos.label
-                                      ),
+                                         
                                       // Nombre de la variable y unidad
                                       !datos.isGroup && `${variable.toUpperCase()}${datos.unidad ? ` (${datos.unidad})` : ''}`
                                   )
