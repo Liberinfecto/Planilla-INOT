@@ -149,10 +149,10 @@ valores: {
         ves: { unidad: 'mm/h', valores: [] },
         azo: { unidad: 'mg/dL', valores: [] },
         cr: { unidad: 'mg/dL', valores: [] },
-        // Ionograma en una sola línea
-        Ionograma: { unidad: 'Na/K/Cl (mEq/L)', valores: [] },
+        // Na/K en una sola línea
+        naK: { unidad: 'Na/K (mEq/L)', valores: [] },
         // FYEH al final
-        bt: { unidad: 'mg/dL', valores: [], isGroup: true }, // Marcador de grupo FYEH
+        bt: { unidad: 'mg/dL', valores: [], isGroup: true },
         bd: { unidad: 'mg/dL', valores: [], visible: false },
         bi: { unidad: 'mg/dL', valores: [], visible: false },
         alb: { unidad: 'g/dL', valores: [], visible: false },
@@ -173,7 +173,6 @@ const rangosNormales = {
     // Rangos para Na, K, Cl
     na: { min: 135, max: 145 },// mEq/L
     k: { min: 3.5, max: 5.0 }, // mEq/L
-    cl: { min: 98, max: 106 }, // mEq/L
     // FYEH
     bt: { min: 0.3, max: 1.2 },// mg/dL
     bd: { min: 0, max: 0.3 },  // mg/dL
@@ -2837,7 +2836,7 @@ React.createElement('tr', null,
                                               width: '100%'
                                           }
                                       },
-                                          columna.tipo === 'fi' ? 'FI' : (columna.tipo === 'actual' ? 'Fecha actual' : 'Fecha'),
+                                          columna.tipo === 'fi' ? 'FI' : '',
                                           columna.tipo !== 'fi' && React.createElement('button', {
                                               onClick: () => {
                                                   setParaclinicaData(prev => ({
