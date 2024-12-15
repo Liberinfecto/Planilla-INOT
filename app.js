@@ -136,7 +136,7 @@ const handleAntecedentesChange = (campo, valor, parteFecha, campoFecha = 'fractu
 
 const [radioSelections, setRadioSelections] = React.useState({});
 const [paraclinicaData, setParaclinicaData] = React.useState({
-    columnas: [
+columnas: [
         {
             fecha: formData.fi || '',  // Solo la columna FI
             tipo: 'fi'
@@ -149,6 +149,9 @@ valores: {
         ves: { unidad: 'mm/h', valores: [] },
         azo: { unidad: 'mg/dL', valores: [] },
         cr: { unidad: 'mg/dL', valores: [] },
+        // Ionograma en una sola línea
+        naKCl: { unidad: 'Na/K/Cl (mEq/L)', valores: [] },
+        // FYEH al final
         bt: { unidad: 'mg/dL', valores: [], isGroup: true }, // Marcador de grupo FYEH
         bd: { unidad: 'mg/dL', valores: [], visible: false },
         bi: { unidad: 'mg/dL', valores: [], visible: false },
@@ -156,11 +159,7 @@ valores: {
         fa: { unidad: 'UI/L', valores: [], visible: false },
         gto: { unidad: 'UI/L', valores: [], visible: false },
         gtp: { unidad: 'UI/L', valores: [], visible: false },
-        ggt: { unidad: 'UI/L', valores: [], visible: false },
-        ionograma: { unidad: '', valores: [], isGroup: true, label: 'Ionograma' }, // Grupo con etiqueta
-        na: { unidad: 'mEq/L', valores: [], visible: false },
-        k: { unidad: 'mEq/L', valores: [], visible: false },
-        cl: { unidad: 'mEq/L', valores: [], visible: false }
+        ggt: { unidad: 'UI/L', valores: [], visible: false }
     }
 });
 
@@ -171,6 +170,11 @@ const rangosNormales = {
     ves: { min: 0, max: 20 },  // mm/h
     azo: { min: 10, max: 50 }, // mg/dL
     cr: { min: 0.5, max: 1.2 },// mg/dL
+    // Rangos para Na, K, Cl
+    na: { min: 135, max: 145 },// mEq/L
+    k: { min: 3.5, max: 5.0 }, // mEq/L
+    cl: { min: 98, max: 106 }, // mEq/L
+    // FYEH
     bt: { min: 0.3, max: 1.2 },// mg/dL
     bd: { min: 0, max: 0.3 },  // mg/dL
     bi: { min: 0, max: 0.9 },  // mg/dL
@@ -178,10 +182,7 @@ const rangosNormales = {
     fa: { min: 35, max: 104 }, // UI/L
     gto: { min: 10, max: 40 }, // UI/L
     gtp: { min: 10, max: 40 }, // UI/L
-    ggt: { min: 5, max: 55 },  // UI/L
-    na: { min: 135, max: 145 },// mEq/L
-    k: { min: 3.5, max: 5.0 }, // mEq/L
-    cl: { min: 98, max: 106 }  // mEq/L
+    ggt: { min: 5, max: 55 }   // UI/L
 };
 
 const hoy = new Date().toISOString().split('T')[0]; 
@@ -2884,10 +2885,10 @@ React.createElement('tr', null,
                   // Cuerpo de la tabla
                   React.createElement('tbody', null,
                       Object.entries(paraclinicaData.valores).map(([variable, datos]) => {
-                          // No mostrar las variables que dependen de BT si están ocultas
-                          if ((variable === 'bd' || variable === 'bi' || variable === 'alb' || 
-                               variable === 'fa' || variable === 'gto' || variable === 'gtp' || 
-                               variable === 'ggt') && !datos.visible) return null;
+                          // No mostrar las variables que dependen de BT si están ocultas y no hay valor en BT
+                            if ((variable === 'bd' || variable === 'bi' || variable === 'alb' || 
+                                 variable === 'fa' || variable === 'gto' || variable === 'gtp' || 
+                                 variable === 'ggt') && !datos.visible && !paraclinicaData.valores.bt.valores.some(v => v)) return null;
                           // No mostrar las variables del ionograma si están ocultas
                           if ((variable === 'na' || variable === 'k' || variable === 'cl') && !datos.visible) return null;
 
