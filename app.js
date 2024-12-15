@@ -2812,71 +2812,79 @@ React.createElement('tr', null,
                React.createElement('table', { style: styles.table },
                   
                   // Cabecera de la tabla
-                  React.createElement('thead', null,
-                      React.createElement('tr', null,
-                          React.createElement('th', { style: styles.tableHeader }, 'Variable'),
-                          paraclinicaData.columnas.map((columna, index) => 
-                              React.createElement('th', { 
-                                  key: index, 
-                                  style: styles.tableHeader 
-                              },
-                                  React.createElement('div', {
-                                        style: {
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                            alignItems: 'center',
-                                            width: '100%'
-                                        }
+                        React.createElement('thead', null,
+                            React.createElement('tr', null,
+                                React.createElement('th', { style: styles.tableHeader }, 'Variable'),
+                                paraclinicaData.columnas.map((columna, index) => 
+                                    React.createElement('th', { 
+                                        key: index, 
+                                        style: styles.tableHeader 
                                     },
-                                        React.createElement('span', null, columna.tipo === 'fi' ? 'FI' : ''),
-                                        React.createElement('span', { 
+                                        React.createElement('div', { 
                                             style: { 
-                                                visibility: columna.tipo === 'fi' ? 'hidden' : 'visible' 
+                                                display: 'flex', 
+                                                flexDirection: 'column',
+                                                gap: '0.5rem',
+                                                alignItems: 'center' 
                                             } 
                                         },
-                                            React.createElement('button', {
-                                                onClick: () => {
+                                            React.createElement('div', {
+                                                style: {
+                                                    display: 'flex',
+                                                    justifyContent: 'space-between',
+                                                    alignItems: 'center',
+                                                    width: '100%'
+                                                }
+                                            },
+                                                React.createElement('span', null, columna.tipo === 'fi' ? 'FI' : ''),
+                                                React.createElement('span', { 
+                                                    style: { 
+                                                        visibility: columna.tipo === 'fi' ? 'hidden' : 'visible' 
+                                                    } 
+                                                },
+                                                    React.createElement('button', {
+                                                        onClick: () => {
+                                                            setParaclinicaData(prev => ({
+                                                                ...prev,
+                                                                columnas: prev.columnas.filter((_, i) => i !== index)
+                                                            }));
+                                                        },
+                                                        style: {
+                                                            cursor: 'pointer',
+                                                            border: 'none',
+                                                            background: 'none',
+                                                            color: '#ff4444',
+                                                            fontSize: '1.2rem',
+                                                            padding: '0.2rem'
+                                                        }
+                                                    }, '×')
+                                                )
+                                            ),
+                                            React.createElement('input', {
+                                                type: 'date',
+                                                value: columna.fecha || '',
+                                                max: new Date().toISOString().split('T')[0],
+                                                onChange: (e) => {
                                                     setParaclinicaData(prev => ({
                                                         ...prev,
-                                                        columnas: prev.columnas.filter((_, i) => i !== index)
+                                                        columnas: prev.columnas.map((col, i) => 
+                                                            i === index ? { ...col, fecha: e.target.value } : col
+                                                        )
                                                     }));
                                                 },
                                                 style: {
-                                                    cursor: 'pointer',
-                                                    border: 'none',
-                                                    background: 'none',
-                                                    color: '#ff4444',
-                                                    fontSize: '1.2rem',
-                                                    padding: '0.2rem'
+                                                    ...styles.dateInput,
+                                                    width: '140px',
+                                                    border: '1px solid #ccc',
+                                                    borderRadius: '4px',
+                                                    padding: '0.25rem'
                                                 }
-                                            }, '×')
+                                            })
                                         )
-                                    ),
-                                      React.createElement('input', {
-                                          type: 'date',
-                                          value: columna.fecha || '',
-                                          max: new Date().toISOString().split('T')[0],
-                                          onChange: (e) => {
-                                              setParaclinicaData(prev => ({
-                                                  ...prev,
-                                                  columnas: prev.columnas.map((col, i) => 
-                                                      i === index ? { ...col, fecha: e.target.value } : col
-                                                  )
-                                              }));
-                                          },
-                                          style: {
-                                              ...styles.dateInput,
-                                              width: '140px',
-                                              border: '1px solid #ccc',
-                                              borderRadius: '4px',
-                                              padding: '0.25rem'
-                                          }
-                                      })
-                                  )
-                              )
-                          )
-                      )
-                  ),
+                                    )
+                                )
+                            )
+                        ),
                   
                   // Cuerpo de la tabla
                   React.createElement('tbody', null,
