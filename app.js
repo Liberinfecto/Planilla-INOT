@@ -142,7 +142,7 @@ const [paraclinicaData, setParaclinicaData] = React.useState({
             tipo: 'fi'
         }
     ],
-    valores: {
+valores: {
         hb: { unidad: 'g/dL', valores: [] },
         gb: { unidad: 'x10³/µL', valores: [] },
         pcr: { unidad: 'mg/L', valores: [] },
@@ -156,7 +156,11 @@ const [paraclinicaData, setParaclinicaData] = React.useState({
         fa: { unidad: 'UI/L', valores: [] },
         gto: { unidad: 'UI/L', valores: [] },
         gtp: { unidad: 'UI/L', valores: [] },
-        ggt: { unidad: 'UI/L', valores: [] }
+        ggt: { unidad: 'UI/L', valores: [] },
+        ionograma: { unidad: '', valores: [], visible: false, isGroup: true }, // Marcador de grupo
+        na: { unidad: 'mEq/L', valores: [], visible: false },
+        k: { unidad: 'mEq/L', valores: [], visible: false },
+        cl: { unidad: 'mEq/L', valores: [], visible: false }
     }
 });
 
@@ -174,7 +178,10 @@ const rangosNormales = {
     fa: { min: 35, max: 104 }, // UI/L
     gto: { min: 10, max: 40 }, // UI/L
     gtp: { min: 10, max: 40 }, // UI/L
-    ggt: { min: 5, max: 55 }   // UI/L
+    ggt: { min: 5, max: 55 },  // UI/L
+    na: { min: 135, max: 145 },// mEq/L
+    k: { min: 3.5, max: 5.0 }, // mEq/L
+    cl: { min: 98, max: 106 }  // mEq/L
 };
 
 const hoy = new Date().toISOString().split('T')[0]; 
@@ -2876,13 +2883,67 @@ React.createElement('tr', null,
                   
                   // Cuerpo de la tabla
                    React.createElement('tbody', null,
-                       Object.entries(paraclinicaData.valores).map(([variable, datos]) => 
-                           React.createElement('tr', { key: variable },
+                       Object.entries(paraclinicaData.valores).map(([variable, datos]) => {
+                           // No mostrar las variables ocultas
+                           if ((variable === 'bd' || variable === 'bi') && !datos.valores.some(v => v) && !paraclinicaData.valores.bt.valores.some(v => v)) return null;
+                           if ((variable === 'na' || variable === 'k' || variable === 'cl') && !datos.valores.some(v => v) && !datos.visible) return null;
+                           if (variable === 'ionograma') return null;
+
+                           return React.createElement('tr', { key: variable },
                                // Columna de variable con unidad
                                React.createElement('td', { 
-                                   style: { ...styles.tableCell, fontWeight: 'bold' }
+                                   style: { 
+                                       ...styles.tableCell, 
+                                       fontWeight: 'bold',
+                                       paddingLeft: (variable === 'bd' || variable === 'bi' || variable === 'na' || variable === 'k' || variable === 'cl') ? '2rem' : '0.5rem'
+                                   }
                                }, 
-                                   `${variable.toUpperCase()} (${datos.unidad})`
+                                   React.createElement('div', {
+                                       style: {
+                                           display: 'flex',
+                                           alignItems: 'center',
+                                           gap: '0.5rem'
+                                       }
+                                   },
+                                       variable === 'bt' && React.createElement('button', {
+                                           onClick: () => {
+                                               setParaclinicaData(prev => ({
+                                                   ...prev,
+                                                   valores: {
+                                                       ...prev.valores,
+                                                       bd: { ...prev.valores.bd, visible: !prev.valores.bd.visible },
+                                                       bi: { ...prev.valores.bi, visible: !prev.valores.bi.visible }
+                                                   }
+                                               }));
+                                           },
+                                           style: {
+                                               border: 'none',
+                                               background: 'none',
+                                               cursor: 'pointer',
+                                               padding: '0.25rem'
+                                           }
+                                       }, '▶'),
+                                       variable === 'ionograma' && React.createElement('button', {
+                                           onClick: () => {
+                                               setParaclinicaData(prev => ({
+                                                   ...prev,
+                                                   valores: {
+                                                       ...prev.valores,
+                                                       na: { ...prev.valores.na, visible: !prev.valores.na.visible },
+                                                       k: { ...prev.valores.k, visible: !prev.valores.k.visible },
+                                                       cl: { ...prev.valores.cl, visible: !prev.valores.cl.visible }
+                                                   }
+                                               }));
+                                           },
+                                           style: {
+                                               border: 'none',
+                                               background: 'none',
+                                               cursor: 'pointer',
+                                               padding: '0.25rem'
+                                           }
+                                       }, '▶'),
+                                       `${variable.toUpperCase()}${datos.unidad ? ` (${datos.unidad})` : ''}`
+                                   )
                                ),
                                // Columnas de valores
                                paraclinicaData.columnas.map((_, colIndex) => 
@@ -2914,29 +2975,29 @@ React.createElement('tr', null,
                                                }
                                            },
                                            style: {
-                                               width: '100%',
-                                               border: 'none',
-                                               padding: '0.25rem',
-                                               textAlign: 'center',
-                                               backgroundColor: (() => {
-                                                   const valor = parseFloat(datos.valores[colIndex]);
-                                                   if (!valor) return 'white';
-                                                   const rango = rangosNormales[variable];
-                                                   if (valor < rango.min || valor > rango.max) {
-                                                       return '#ffebee'; // rojo suave para valores anormales
-                                                   }
-                                                   return '#e8f5e9'; // verde suave para valores normales
-                                               })()
-                                           }
-                                       })
-                                   )
-                               )
-                           )
-                       )
-                   )
-               )
-           )
-      )          // cierre de la tabla
-  );            // cierre del div de Enfermedad Actual y el return del Form
+                                              width: '100%',
+                                              border: 'none',
+                                              padding: '0.25rem',
+                                              textAlign: 'center',
+                                              backgroundColor: (() => {
+                                                  const valor = parseFloat(datos.valores[colIndex]);
+                                                  if (!valor) return 'white';
+                                                  const rango = rangosNormales[variable];
+                                                  if (valor < rango.min || valor > rango.max) {
+                                                      return '#ffebee'; // rojo suave para valores anormales
+                                                  }
+                                                  return '#e8f5e9'; // verde suave para valores normales
+                                              })()
+                                          }
+                                      })
+                                  )
+                              )
+                          )
+                      })
+                  )
+              )
+          )
+     )          // cierre de la tabla
+ );            // cierre del div de Enfermedad Actual y el return del Form
 }                // cierre de la función Form
 root.render(React.createElement(Form));
