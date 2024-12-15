@@ -138,7 +138,7 @@ const [radioSelections, setRadioSelections] = React.useState({});
 const [paraclinicaData, setParaclinicaData] = React.useState({
     columnas: [
         {
-            fecha: '',
+            fecha: formData.fi || '',  // Usamos formData.fi si existe
             tipo: 'fi'
         },
         {
