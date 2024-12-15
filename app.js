@@ -150,7 +150,7 @@ valores: {
         azo: { unidad: 'mg/dL', valores: [] },
         cr: { unidad: 'mg/dL', valores: [] },
         // Na/K en una sola línea
-       'Na/K': { unidad: 'mEq/L', valores: [] },
+       'Na/K': { unidad: 'mEq/L', valores: [], visible: true },
         // FYEH al final
         bt: { unidad: 'mg/dL', valores: [], isGroup: true },
         bd: { unidad: 'mg/dL', valores: [], visible: false },
@@ -3021,7 +3021,7 @@ React.createElement('tr', null,
                                                       setParaclinicaData(prev => {
                                                           const newValores = { ...prev.valores };
                                                           if (!newValores['Na/K'].valores[colIndex]) {
-                                                              newValores['Na/K'].valores[colIndex] = {};
+                                                                 newValores['Na/K'].valores[colIndex] = { na: '', k: '' };
                                                           }
                                                           newValores['Na/K'].valores[colIndex] = {
                                                               ...newValores['Na/K'].valores[colIndex],
