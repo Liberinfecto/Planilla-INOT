@@ -150,7 +150,7 @@ valores: {
         azo: { unidad: 'mg/dL', valores: [] },
         cr: { unidad: 'mg/dL', valores: [] },
         // Na/K en una sola línea
-        naK: { unidad: 'Na/K (mEq/L)', valores: [] },
+       'Na/K': { unidad: 'mEq/L', valores: [] },
         // FYEH al final
         bt: { unidad: 'mg/dL', valores: [], isGroup: true },
         bd: { unidad: 'mg/dL', valores: [], visible: false },
