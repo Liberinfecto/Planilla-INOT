@@ -2917,29 +2917,38 @@ React.createElement('tr', null,
                                       }
                                   },
                                       // Botón flecha para BT
-                                      variable === 'bt' && React.createElement('button', {
-                                          onClick: () => {
-                                              setParaclinicaData(prev => ({
-                                                  ...prev,
-                                                  valores: {
-                                                      ...prev.valores,
-                                                      bd: { ...prev.valores.bd, visible: !prev.valores.bd.visible },
-                                                      bi: { ...prev.valores.bi, visible: !prev.valores.bi.visible },
-                                                      alb: { ...prev.valores.alb, visible: !prev.valores.alb.visible },
-                                                      fa: { ...prev.valores.fa, visible: !prev.valores.fa.visible },
-                                                      gto: { ...prev.valores.gto, visible: !prev.valores.gto.visible },
-                                                      gtp: { ...prev.valores.gtp, visible: !prev.valores.gtp.visible },
-                                                      ggt: { ...prev.valores.ggt, visible: !prev.valores.ggt.visible }
-                                                  }
-                                              }));
-                                          },
-                                          style: {
-                                              border: 'none',
-                                              background: 'none',
-                                              cursor: 'pointer',
-                                              padding: '0.25rem'
-                                          }
-                                      }, '▶'),
+                                       variable === 'bt' && React.createElement('div', {
+                                           style: {
+                                               display: 'flex',
+                                               alignItems: 'center',
+                                               gap: '0.5rem'
+                                           }
+                                       },
+                                           React.createElement('button', {
+                                               onClick: () => {
+                                                   setParaclinicaData(prev => ({
+                                                       ...prev,
+                                                       valores: {
+                                                           ...prev.valores,
+                                                           bd: { ...prev.valores.bd, visible: !prev.valores.bd.visible },
+                                                           bi: { ...prev.valores.bi, visible: !prev.valores.bi.visible },
+                                                           alb: { ...prev.valores.alb, visible: !prev.valores.alb.visible },
+                                                           fa: { ...prev.valores.fa, visible: !prev.valores.fa.visible },
+                                                           gto: { ...prev.valores.gto, visible: !prev.valores.gto.visible },
+                                                           gtp: { ...prev.valores.gtp, visible: !prev.valores.gtp.visible },
+                                                           ggt: { ...prev.valores.ggt, visible: !prev.valores.ggt.visible }
+                                                       }
+                                                   }));
+                                               },
+                                               style: {
+                                                   border: 'none',
+                                                   background: 'none',
+                                                   cursor: 'pointer',
+                                                   padding: '0.25rem'
+                                               }
+                                           }, '▶'),
+                                           `${variable.toUpperCase()} (${datos.unidad})`
+                                       ),
                                       // Botón flecha y etiqueta para Ionograma
                                       variable === 'ionograma' && React.createElement('div', {
                                           style: {
