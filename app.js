@@ -607,7 +607,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                         style: styles.dateInput
                     })
                 )
-            ),
+            )),
 
 // Sección de Factores de Riesgo
                 React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
