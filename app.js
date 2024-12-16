@@ -325,8 +325,8 @@ const styles = {
         },
         grid: {
             display: 'grid',
-            gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '1fr 4fr',
-            gap: '1.5rem',
+            gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '0.6fr 4.4fr',
+            gap: '1rem',
             marginBottom: '1.5rem'
         },
         inputGroup: {
@@ -351,14 +351,14 @@ const styles = {
             flex: 0,
             borderBottom: '2px solid #333',
             padding: '0.5rem',
-            width: '70px',
+            width: '100px',  // Aumentado de 70px a 100px
             transition: 'border-color 0.2s'
         },
         mediumInput: {
             flex: 0,
             borderBottom: '2px solid #333',
             padding: '0.5rem',
-            width: '300px',
+            width: '250px',
             transition: 'border-color 0.2s'
         },
         compact: {
