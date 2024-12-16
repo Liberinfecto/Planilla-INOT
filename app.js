@@ -581,6 +581,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                         type: 'date',
                         value: formData.fi,
                         onChange: (e) => handleInputChange('fi', e.target.value),
+                        max: new Date().toISOString().split('T')[0],
                         style: styles.dateInput
                     })
                 ),
@@ -591,6 +592,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                         type: 'date',
                         value: formData.fConsult,
                         onChange: (e) => handleInputChange('fConsult', e.target.value),
+                        max: new Date().toISOString().split('T')[0],
                         style: styles.dateInput
                     })
                 ),
@@ -601,11 +603,11 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                         type: 'date',
                         value: formData.fe,
                         onChange: (e) => handleInputChange('fe', e.target.value),
+                        max: new Date().toISOString().split('T')[0],
                         style: styles.dateInput
                     })
                 )
-            )
-        ),
+            ),
 
 // Sección de Factores de Riesgo
                 React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
