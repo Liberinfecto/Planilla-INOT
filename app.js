@@ -1280,6 +1280,7 @@ React.createElement('tr', null,
             radioSelections['fractura'] === 'si' && React.createElement('input', {
                 type: 'date',
                 value: formData.fracturaFecha || '',
+                max: new Date().toISOString().split('T')[0],
                 onChange: (e) => {
                     const nuevaFechaFractura = new Date(e.target.value);
                     
