@@ -325,7 +325,7 @@ const styles = {
         },
         grid: {
             display: 'grid',
-            gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '2fr 3fr',
+            gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '1fr 4fr',
             gap: '1.5rem',
             marginBottom: '1.5rem'
         },
@@ -337,7 +337,7 @@ const styles = {
         },
         label: {
             fontWeight: 'bold',
-            minWidth: '100px',
+            minWidth: '90px',
             marginRight: '1rem'
         },
         input: {
@@ -351,14 +351,14 @@ const styles = {
             flex: 0,
             borderBottom: '2px solid #333',
             padding: '0.5rem',
-            width: '60px',
+            width: '50px',
             transition: 'border-color 0.2s'
         },
         mediumInput: {
             flex: 0,
             borderBottom: '2px solid #333',
             padding: '0.5rem',
-            width: '250px',
+            width: '300px',
             transition: 'border-color 0.2s'
         },
         compact: {
