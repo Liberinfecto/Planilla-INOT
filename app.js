@@ -2199,14 +2199,15 @@ React.createElement('tr', null,
                                React.createElement('input', {
                                     type: 'date',
                                     value: formData.osteomielitisFecha || '',
+                                    max: new Date().toISOString().split('T')[0],
                                     onChange: (e) => {
-                                            const fechaSintomas = new Date(e.target.value);
-                                            const fechaActual = new Date();
-                                            
-                                            if (fechaSintomas > fechaActual) {
-                                                alert('La fecha de inicio de síntomas no puede ser posterior a la fecha actual');
-                                                return;
-                                            }
+                                        const fechaSintomas = new Date(e.target.value);
+                                        const fechaActual = new Date();
+                                        
+                                        if (fechaSintomas > fechaActual) {
+                                            alert('La fecha de inicio de síntomas no puede ser posterior a la fecha actual');
+                                            return;
+                                        }
                                         handleInputChange('osteomielitisFecha', e.target.value);
                                         const nuevaClasificacion = calcularClasificacionOMA(e.target.value);
                                         if (nuevaClasificacion) {
