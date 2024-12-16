@@ -454,8 +454,7 @@ const styles = {
         
     // Formulario principal (datos del paciente)
     React.createElement('div', { style: styles.formContainer },
-        // Campos en grid
-        React.createElement('div', { style: styles.grid },
+        React.createElement('div', null,  // Eliminamos el estilo grid para el nuevo layout
             // Primera fila - Piso/Cama, Edad, Peso, Talla
             React.createElement('div', { style: { display: 'flex', gap: '2rem', marginBottom: '1rem' } },
                 // Piso/Cama
