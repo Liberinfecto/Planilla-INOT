@@ -631,10 +631,11 @@ const styles = {
                         value: formData.fe,
                         onChange: (e) => handleInputChange('fe', e.target.value),
                         max: new Date().toISOString().split('T')[0],
-                        style: styles.dateInput
+                       style: styles.dateInput
                     })
                 )
-            )),
+            ),  // Cierre del dateContainer
+        ),      // Cierre del div que reemplazó al grid
 
 // Sección de Factores de Riesgo
                 React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
