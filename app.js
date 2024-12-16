@@ -2466,6 +2466,7 @@ React.createElement('tr', null,
                                     React.createElement('input', {
                                         type: 'date',
                                         value: formData.ippSintomasFecha || '',
+                                        max: new Date().toISOString().split('T')[0],
                                         onChange: (e) => {
                                             const fechaSintomas = new Date(e.target.value);
                                             const fechaActual = new Date();
