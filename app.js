@@ -2084,6 +2084,7 @@ React.createElement('tr', null,
                                 React.createElement('input', {
                                     type: 'date',
                                     value: formData.isqFecha || '',
+                                    max: new Date().toISOString().split('T')[0],
                                     onChange: (e) => handleInputChange('isqFecha', e.target.value),
                                     style: styles.dateInputStyle
                                 })
