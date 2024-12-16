@@ -366,7 +366,7 @@ const styles = {
             marginBottom: '1rem',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.1rem',
+            gap: '0.05rem',
             minWidth: '140px'  // Asegura espacio para el input y la unidad
         },
         smallLabel: {
