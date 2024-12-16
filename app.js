@@ -351,7 +351,7 @@ const styles = {
             flex: 0,
             borderBottom: '2px solid #333',
             padding: '0.5rem',
-            width: '50px',
+            width: '70px',
             transition: 'border-color 0.2s'
         },
         mediumInput: {
@@ -365,7 +365,8 @@ const styles = {
             marginBottom: '1rem',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.5rem'
+            gap: '1rem',
+            minWidth: '140px'  // Asegura espacio para el input y la unidad
         },
         smallLabel: {
             fontWeight: 'bold',
