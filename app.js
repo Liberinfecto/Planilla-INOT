@@ -325,8 +325,8 @@ const styles = {
         },
         grid: {
             display: 'grid',
-            gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '0.6fr 4.4fr',
-            gap: '1rem',
+            gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '0.8fr 4.2fr',
+            gap: '0.5rem',
             marginBottom: '1.5rem'
         },
         inputGroup: {
@@ -337,28 +337,29 @@ const styles = {
         },
         label: {
             fontWeight: 'bold',
-            minWidth: '90px',
-            marginRight: '1rem'
+            minWidth: '70px',  // Reducido de 90px a 70px
+            marginRight: '0.5rem'  // Reducido de 1rem a 0.5rem
         },
         input: {
             flex: 1,
             borderBottom: '2px solid #333',
             padding: '0.5rem',
             minWidth: 0,
+            maxWidth: '400px',  // Agregado para limitar el ancho del campo nombre
             transition: 'border-color 0.2s'
         },
         smallInput: {
             flex: 0,
             borderBottom: '2px solid #333',
             padding: '0.5rem',
-            width: '100px',  // Aumentado de 70px a 100px
+            width: '70px',
             transition: 'border-color 0.2s'
         },
         mediumInput: {
             flex: 0,
             borderBottom: '2px solid #333',
             padding: '0.5rem',
-            width: '250px',
+            width: '200px',  // Reducido de 250px a 200px
             transition: 'border-color 0.2s'
         },
         compact: {
