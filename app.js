@@ -2708,9 +2708,10 @@ React.createElement('tr', null,
                            },
                                React.createElement('span', null, 'Fecha de Colocación'),
                                React.createElement('input', {
-                                   type: 'date',
-                                   value: formData.espondilodiscitisOSFecha || '',
-                                   onChange: (e) => {
+                                    type: 'date',
+                                    value: formData.espondilodiscitisOSFecha || '',
+                                    max: new Date().toISOString().split('T')[0],
+                                    onChange: (e) => {
                                         const fechaOS = new Date(e.target.value);
                                         const fechaActual = new Date();
                                         
@@ -2740,7 +2741,7 @@ React.createElement('tr', null,
                                             }
                                         }
                                     },
-                                   style: styles.dateInputStyle
+                                    style: styles.dateInputStyle
                                })
                            ),
                            '↳ Osteosíntesis'
