@@ -2585,6 +2585,7 @@ React.createElement('tr', null,
                                             React.createElement('input', {
                                                 type: 'date',
                                                 value: formData.espondilodiscitisFecha || '',
+                                                max: new Date().toISOString().split('T')[0],
                                                 onChange: (e) => {
                                                     const fechaSintomas = new Date(e.target.value);
                                                     const fechaActual = new Date();
@@ -2593,15 +2594,15 @@ React.createElement('tr', null,
                                                         alert('La fecha de inicio de síntomas no puede ser posterior a la fecha actual');
                                                         return;
                                                     }
-                                                        // Si hay OS y fecha de OS, validar que los síntomas sean posteriores
-                                                        if (radioSelections['espondilodiscitisOS'] === 'si' && formData.espondilodiscitisOSFecha) {
-                                                            const fechaOS = new Date(formData.espondilodiscitisOSFecha);
-                                                            if (fechaSintomas < fechaOS) {
-                                                                alert('La fecha de inicio de síntomas no puede ser anterior a la fecha de colocación de OS');
-                                                                return;
-                                                            }
+                                                    // Si hay OS y fecha de OS, validar que los síntomas sean posteriores
+                                                    if (radioSelections['espondilodiscitisOS'] === 'si' && formData.espondilodiscitisOSFecha) {
+                                                        const fechaOS = new Date(formData.espondilodiscitisOSFecha);
+                                                        if (fechaSintomas < fechaOS) {
+                                                            alert('La fecha de inicio de síntomas no puede ser anterior a la fecha de colocación de OS');
+                                                            return;
                                                         }
-
+                                                    }
+                                            
                                                     handleInputChange('espondilodiscitisFecha', e.target.value);
                                                     const nuevaClasificacion = calcularClasificacionEspondilodiscitis(
                                                         formData.espondilodiscitisOSFecha, 
