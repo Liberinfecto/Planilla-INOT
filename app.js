@@ -274,6 +274,27 @@ const calcularClasificacionOMA = (fechaSintomas) => {
         return 'cronica';
     }
 };
+
+        const calcularFiltradoGlomerular = (cr, edad, peso, talla, sexo) => {
+            if (!cr || !edad || !peso || !talla || !sexo) return '';
+            
+            // Calcular superficie corporal (fórmula de Mosteller)
+            const sc = Math.sqrt((peso * talla) / 3600);
+            
+            // Calcular filtrado base
+            let fg = (140 - edad) * peso / (72 * cr);
+            
+            // Ajuste por sexo
+            if (sexo === 'M') {
+                fg *= 0.85;
+            }
+            
+            // Ajuste por superficie corporal
+            fg = fg * (1.73 / sc);
+            
+            // Redondear a 2 decimales
+            return fg.toFixed(2);
+        };
     
     const styles = {
         container: {
@@ -2888,22 +2909,22 @@ React.createElement('tr', null,
                   
                   // Cuerpo de la tabla
                   React.createElement('tbody', null,
-                      Object.entries(paraclinicaData.valores).map(([variable, datos]) => {
+                      Object.entries(paraclinicaData.valores).flatMap(([variable, datos]) => {
                           // No mostrar las variables que dependen de BT si están ocultas y no hay valor en BT
-                            if ((variable === 'bd' || variable === 'bi' || variable === 'alb' || 
-                                 variable === 'fa' || variable === 'gto' || variable === 'gtp' || 
-                                 variable === 'ggt') && !datos.visible && !paraclinicaData.valores.bt.valores.some(v => v)) return null;
+                          if ((variable === 'bd' || variable === 'bi' || variable === 'alb' || 
+                               variable === 'fa' || variable === 'gto' || variable === 'gtp' || 
+                               variable === 'ggt') && !datos.visible && !paraclinicaData.valores.bt.valores.some(v => v)) return [];
 
-                          return React.createElement('tr', { key: variable },
+                          const filaNormal = React.createElement('tr', { key: variable },
                               // Columna de variable con unidad
                               React.createElement('td', { 
                                   style: { 
                                       ...styles.tableCell, 
                                       fontWeight: 'bold',
                                       paddingLeft: (variable === 'bd' || variable === 'bi' || 
-                                                    variable === 'alb' || variable === 'fa' || 
-                                                    variable === 'gto' || variable === 'gtp' || 
-                                                    variable === 'ggt') ? '2rem' : '0.5rem',
+                                                  variable === 'alb' || variable === 'fa' || 
+                                                  variable === 'gto' || variable === 'gtp' || 
+                                                  variable === 'ggt') ? '2rem' : '0.5rem',
                                       borderLeft: (variable === 'bt' || 
                                                  variable === 'bd' || variable === 'bi' || 
                                                  variable === 'alb' || variable === 'fa' || 
@@ -2919,39 +2940,39 @@ React.createElement('tr', null,
                                       }
                                   },
                                       // Botón flecha para BT
-                                       variable === 'bt' && React.createElement('div', {
-                                           style: {
-                                               display: 'flex',
-                                               alignItems: 'center',
-                                               gap: '0.5rem'
-                                           }
-                                       },
-                                           React.createElement('button', {
-                                               onClick: () => {
-                                                   setParaclinicaData(prev => ({
-                                                       ...prev,
-                                                       valores: {
-                                                           ...prev.valores,
-                                                           bd: { ...prev.valores.bd, visible: !prev.valores.bd.visible },
-                                                           bi: { ...prev.valores.bi, visible: !prev.valores.bi.visible },
-                                                           alb: { ...prev.valores.alb, visible: !prev.valores.alb.visible },
-                                                           fa: { ...prev.valores.fa, visible: !prev.valores.fa.visible },
-                                                           gto: { ...prev.valores.gto, visible: !prev.valores.gto.visible },
-                                                           gtp: { ...prev.valores.gtp, visible: !prev.valores.gtp.visible },
-                                                           ggt: { ...prev.valores.ggt, visible: !prev.valores.ggt.visible }
-                                                       }
-                                                   }));
-                                               },
-                                               style: {
-                                                   border: 'none',
-                                                   background: 'none',
-                                                   cursor: 'pointer',
-                                                   padding: '0.25rem'
-                                               }
-                                           }, '▶'),
-                                           `${variable.toUpperCase()} (${datos.unidad})`
-                                       ),
-                                         
+                                      variable === 'bt' && React.createElement('div', {
+                                          style: {
+                                              display: 'flex',
+                                              alignItems: 'center',
+                                              gap: '0.5rem'
+                                          }
+                                      },
+                                          React.createElement('button', {
+                                              onClick: () => {
+                                                  setParaclinicaData(prev => ({
+                                                      ...prev,
+                                                      valores: {
+                                                          ...prev.valores,
+                                                          bd: { ...prev.valores.bd, visible: !prev.valores.bd.visible },
+                                                          bi: { ...prev.valores.bi, visible: !prev.valores.bi.visible },
+                                                          alb: { ...prev.valores.alb, visible: !prev.valores.alb.visible },
+                                                          fa: { ...prev.valores.fa, visible: !prev.valores.fa.visible },
+                                                          gto: { ...prev.valores.gto, visible: !prev.valores.gto.visible },
+                                                          gtp: { ...prev.valores.gtp, visible: !prev.valores.gtp.visible },
+                                                          ggt: { ...prev.valores.ggt, visible: !prev.valores.ggt.visible }
+                                                      }
+                                                  }));
+                                              },
+                                              style: {
+                                                  border: 'none',
+                                                  background: 'none',
+                                                  cursor: 'pointer',
+                                                  padding: '0.25rem'
+                                              }
+                                          }, '▶'),
+                                          `${variable.toUpperCase()} (${datos.unidad})`
+                                      ),
+                                      
                                       // Nombre de la variable y unidad
                                       !datos.isGroup && `${variable.toUpperCase()}${datos.unidad ? ` (${datos.unidad})` : ''}`
                                   )
@@ -2990,7 +3011,7 @@ React.createElement('tr', null,
                                                       setParaclinicaData(prev => {
                                                           const newValores = { ...prev.valores };
                                                           if (!newValores['Na/K'].valores[colIndex]) {
-                                                                 newValores['Na/K'].valores[colIndex] = { na: '', k: '' };
+                                                              newValores['Na/K'].valores[colIndex] = { na: '', k: '' };
                                                           }
                                                           newValores['Na/K'].valores[colIndex] = {
                                                               ...newValores['Na/K'].valores[colIndex],
@@ -3087,7 +3108,7 @@ React.createElement('tr', null,
                                             },
                                             onChange: (e) => {
                                                 const newValue = e.target.value;
-                                                // Solo permitir números y un punto decimal
+                                                // Solo permitir números y punto decimal
                                                 if (newValue === '' || /^\d*\.?\d*$/.test(newValue)) {
                                                     setParaclinicaData(prev => {
                                                       const newValores = { ...prev.valores };
@@ -3122,7 +3143,44 @@ React.createElement('tr', null,
                                       })
                                   )
                               )
-                          )
+                          );
+
+                          // Si es Cr, agregar la fila del FG
+                          if (variable === 'cr') {
+                              const filaFG = React.createElement('tr', { key: 'fg' },
+                                  // Columna de etiqueta FG
+                                  React.createElement('td', {
+                                      style: {
+                                          ...styles.tableCell,
+                                          fontWeight: 'bold',
+                                          paddingLeft: '2rem',
+                                          backgroundColor: '#f8f9fa'
+                                      }
+                                  }, 'FG (mL/min/1.73m²)'),
+                                  // Columnas de valores calculados
+                                  paraclinicaData.columnas.map((_, colIndex) => {
+                                      const crValue = datos.valores[colIndex];
+                                      const fgValue = calcularFiltradoGlomerular(
+                                          crValue,
+                                          formData.age,
+                                          formData.peso,
+                                          formData.talla,
+                                          radioSelections['sexo']
+                                      );
+                                      return React.createElement('td', {
+                                          key: colIndex,
+                                          style: {
+                                              ...styles.tableCell,
+                                              backgroundColor: '#f8f9fa',
+                                              color: fgValue < 60 ? '#dc3545' : '#198754'  // rojo si < 60, verde si ≥ 60
+                                          }
+                                      }, fgValue);
+                                  })
+                              );
+                              return [filaNormal, filaFG];
+                          }
+
+                          return [filaNormal];
                       })
                   )
               )
