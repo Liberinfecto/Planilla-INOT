@@ -1672,6 +1672,7 @@ React.createElement('tr', null,
                                     React.createElement('input', {
                                         type: 'date',
                                         value: formData.osteosinesisFecha || '',
+                                        max: new Date().toISOString().split('T')[0],
                                         onChange: (e) => {
                                             const fechaOS = new Date(e.target.value);
                                             
