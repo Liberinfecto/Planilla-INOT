@@ -1960,32 +1960,33 @@ React.createElement('tr', null,
                            },
                                React.createElement('span', null, 'Inicio de síntomas'),
                                React.createElement('input', {
-                                   type: 'date',
-                                   value: formData.irfFecha || '',
-                                   onChange: (e) => {
-                                       const fechaSintomas = new Date(e.target.value);
-                                       
-                                       if (formData.fracturaFecha) {
-                                           const fechaFractura = new Date(formData.fracturaFecha);
-                                           if (fechaSintomas < fechaFractura) {
-                                               alert('La fecha de inicio de síntomas no puede ser anterior a la fecha de fractura');
-                                               return;
-                                           }
-                                       } else {
-                                           // En lugar de establecer la fecha, solo mostramos el recordatorio
+                                    type: 'date',
+                                    value: formData.irfFecha || '',
+                                    max: new Date().toISOString().split('T')[0],
+                                    onChange: (e) => {
+                                        const fechaSintomas = new Date(e.target.value);
+                                        
+                                        if (formData.fracturaFecha) {
+                                            const fechaFractura = new Date(formData.fracturaFecha);
+                                            if (fechaSintomas < fechaFractura) {
+                                                alert('La fecha de inicio de síntomas no puede ser anterior a la fecha de fractura');
+                                                return;
+                                            }
+                                        } else {
+                                            // En lugar de establecer la fecha, solo mostramos el recordatorio
                                             if (radioSelections['fractura'] !== 'si') {
-                                            handleRadioClick('fractura', 'si');
+                                                handleRadioClick('fractura', 'si');
                                             }
                                             alert('No se olvide de ingresar una fecha de fractura');
                                         }
-                                       
-                                       handleInputChange('irfFecha', e.target.value);
-                                       const nuevaClasificacion = calcularClasificacionIRF(formData.fracturaFecha, e.target.value);
-                                       if (nuevaClasificacion) {
-                                           handleInputChange('irfTipo', nuevaClasificacion);
-                                       }
-                                   },
-                                   style: styles.dateInputStyle
+                                        
+                                        handleInputChange('irfFecha', e.target.value);
+                                        const nuevaClasificacion = calcularClasificacionIRF(formData.fracturaFecha, e.target.value);
+                                        if (nuevaClasificacion) {
+                                            handleInputChange('irfTipo', nuevaClasificacion);
+                                        }
+                                    },
+                                    style: styles.dateInputStyle
                                })
                            ),
                            'IRF'
