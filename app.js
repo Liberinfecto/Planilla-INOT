@@ -325,12 +325,8 @@ const styles = {
         },
         grid: {
             display: 'grid',
-            gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(2, 1fr)',
+            gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '2fr 3fr',
             gap: '1.5rem',
-            marginBottom: '1.5rem'
-        },
-        fullWidth: {
-            gridColumn: '1 / -1',
             marginBottom: '1.5rem'
         },
         inputGroup: {
@@ -341,7 +337,7 @@ const styles = {
         },
         label: {
             fontWeight: 'bold',
-            minWidth: '120px',
+            minWidth: '100px',
             marginRight: '1rem'
         },
         input: {
@@ -355,14 +351,14 @@ const styles = {
             flex: 0,
             borderBottom: '2px solid #333',
             padding: '0.5rem',
-            width: '80px',
+            width: '60px',
             transition: 'border-color 0.2s'
         },
         mediumInput: {
             flex: 0,
             borderBottom: '2px solid #333',
             padding: '0.5rem',
-            width: '200px',
+            width: '250px',
             transition: 'border-color 0.2s'
         },
         compact: {
