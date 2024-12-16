@@ -296,7 +296,7 @@ const calcularClasificacionOMA = (fechaSintomas) => {
             return fg.toFixed(2);
         };
     
-    const styles = {
+const styles = {
         container: {
             maxWidth: '1024px',
             margin: '0 auto',
@@ -307,125 +307,141 @@ const calcularClasificacionOMA = (fechaSintomas) => {
         header: {
             fontSize: '1.25rem',
             fontWeight: 'bold',
-            textAlign: 'center'
+            textAlign: 'center',
+            marginBottom: '1rem'
         },
         subheader: {
             fontSize: '1rem',
             fontWeight: 'bold',
             textAlign: 'center',
-            marginBottom: '1rem'
+            marginBottom: '1.5rem'
         },
         formContainer: {
             border: '1px solid #333',
-            padding: '1rem',
+            padding: '1.5rem',
             width: '100%',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
+            backgroundColor: '#fff'
         },
         grid: {
             display: 'grid',
             gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(2, 1fr)',
-            gap: '1rem',
-            marginBottom: '1rem'
+            gap: '1.5rem',
+            marginBottom: '1.5rem'
         },
         fullWidth: {
             gridColumn: '1 / -1',
-            marginBottom: '1rem'
+            marginBottom: '1.5rem'
         },
         inputGroup: {
             display: 'flex',
             alignItems: 'center',
-            marginBottom: '0.5rem'
+            marginBottom: '1rem',
+            position: 'relative'
         },
         label: {
             fontWeight: 'bold',
-            minWidth: '100px',
-            marginRight: '0.5rem'
+            minWidth: '120px',
+            marginRight: '1rem'
         },
         input: {
             flex: 1,
-            borderBottom: '1px solid black',
-            padding: '0.25rem',
-            minWidth: 0
+            borderBottom: '2px solid #333',
+            padding: '0.5rem',
+            minWidth: 0,
+            transition: 'border-color 0.2s'
         },
         smallInput: {
             flex: 0,
-            borderBottom: '1px solid black',
-            padding: '0.25rem',
-            width: '80px'
+            borderBottom: '2px solid #333',
+            padding: '0.5rem',
+            width: '80px',
+            transition: 'border-color 0.2s'
         },
         mediumInput: {
-        flex: 0,
-        borderBottom: '1px solid black',
-        padding: '0.25rem',
-        width: '200px'
+            flex: 0,
+            borderBottom: '2px solid #333',
+            padding: '0.5rem',
+            width: '200px',
+            transition: 'border-color 0.2s'
         },
         compact: {
-            marginBottom: '0.5rem'
+            marginBottom: '1rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem'
         },
         smallLabel: {
             fontWeight: 'bold',
-            minWidth: '70px',
+            minWidth: '80px',
             marginRight: '0.5rem'
         },
         dateContainer: {
             display: 'grid',
             gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(3, 1fr)',
-            gap: '1rem',
-            marginTop: '1rem'
+            gap: '1.5rem',
+            marginTop: '1.5rem',
+            padding: '1rem',
+            backgroundColor: '#f8f9fa',
+            borderRadius: '4px'
         },
         dateGroup: {
             display: 'flex',
             alignItems: 'center',
-            gap: '0.5rem'
+            gap: '1rem'
         },
         dateLabel: {
             fontWeight: 'bold',
-            whiteSpace: 'nowrap'
+            whiteSpace: 'nowrap',
+            color: '#495057'
         },
         dateInput: {
             flex: 1,
-            padding: '0.25rem',
-            borderBottom: '1px solid black'
+            padding: '0.5rem',
+            borderBottom: '2px solid #333',
+            borderRadius: '4px'
         },
-        // Nuevos estilos para la tabla
         table: {
             width: '100%',
             borderCollapse: 'collapse',
-            marginTop: '1rem'
+            marginTop: '1.5rem'
         },
         tableHeader: {
-            backgroundColor: '#f3f4f6',
+            backgroundColor: '#f8f9fa',
             border: '1px solid #333',
-            padding: '0.5rem',
+            padding: '0.75rem',
             textAlign: 'center',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            color: '#495057'
         },
         tableCell: {
             border: '1px solid #333',
-            padding: '0.5rem'
+            padding: '0.75rem',
+            verticalAlign: 'middle'
         },
         radioGroup: {
             display: 'flex',
             justifyContent: 'center',
-            gap: '1rem'
+            gap: '1.5rem'
         },
         radio: {
             cursor: 'pointer'
         },
-         labelContainerStyle: {
+        labelContainerStyle: {
             display: 'flex',
             alignItems: 'center',
             width: '300px'
         },
         dateInputStyle: {
             marginRight: '1rem',
-            padding: '0.25rem 0.5rem',
+            padding: '0.5rem',
             borderRadius: '4px',
             fontSize: '0.875rem',
             border: '1px solid #dc3545',
             backgroundColor: '#ffebeb',
             color: '#dc3545',
-            width: '150px'
+            width: '150px',
+            transition: 'all 0.2s'
         }
     };
 
