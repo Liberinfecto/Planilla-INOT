@@ -2426,6 +2426,7 @@ React.createElement('tr', null,
                                     React.createElement('input', {
                                         type: 'date',
                                         value: formData.ippColocacionFecha || '',
+                                        max: new Date().toISOString().split('T')[0],
                                         onChange: (e) => {
                                             const fechaColocacion = new Date(e.target.value);
                                             const fechaActual = new Date();
@@ -2434,7 +2435,7 @@ React.createElement('tr', null,
                                                 alert('La fecha de colocación no puede ser posterior a la fecha actual');
                                                 return;
                                             }
-                
+                                    
                                             // Si ya existe fecha de síntomas, verificar que la nueva fecha de colocación sea anterior
                                             if (formData.ippSintomasFecha) {
                                                 const fechaSintomas = new Date(formData.ippSintomasFecha);
