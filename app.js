@@ -495,47 +495,56 @@ const calcularClasificacionOMA = (fechaSintomas) => {
                     )
                 ),
             
-            // Fila de campos numéricos (Edad, Peso, Talla)
-            React.createElement('div', { style: { display: 'flex', gap: '1rem', marginBottom: '0.5rem' } },
-                // Edad
-                React.createElement('div', { style: styles.compact },
-                    React.createElement('span', { style: styles.smallLabel }, 'Edad:'),
-                    React.createElement('input', {
-                        type: 'number',
-                        value: formData.age,
-                        onChange: (e) => handleInputChange('age', e.target.value),
-                        style: styles.smallInput,
-                        min: '0',
-                        max: '150'
-                    })
+                // Fila de campos numéricos (Edad, Peso, Talla)
+                React.createElement('div', { style: { display: 'flex', gap: '1rem', marginBottom: '0.5rem' } },
+                    // Edad
+                    React.createElement('div', { style: styles.compact },
+                        React.createElement('span', { style: styles.smallLabel }, 'Edad:'),
+                        React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
+                            React.createElement('input', {
+                                type: 'number',
+                                value: formData.age,
+                                onChange: (e) => handleInputChange('age', e.target.value),
+                                style: {...styles.smallInput, marginRight: '4px'},
+                                min: '0',
+                                max: '150'
+                            }),
+                            React.createElement('span', { style: { fontSize: '0.8rem', color: '#666' } }, 'años')
+                        )
+                    ),
+                    // Peso
+                    React.createElement('div', { style: styles.compact },
+                        React.createElement('span', { style: styles.smallLabel }, 'Peso:'),
+                        React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
+                            React.createElement('input', {
+                                type: 'number',
+                                value: formData.peso,
+                                onChange: (e) => handleInputChange('peso', e.target.value),
+                                style: {...styles.smallInput, marginRight: '4px'},
+                                min: '0',
+                                max: '500',
+                                step: '0.1'
+                            }),
+                            React.createElement('span', { style: { fontSize: '0.8rem', color: '#666' } }, 'kg')
+                        )
+                    ),
+                    // Talla
+                    React.createElement('div', { style: styles.compact },
+                        React.createElement('span', { style: styles.smallLabel }, 'Talla:'),
+                        React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
+                            React.createElement('input', {
+                                type: 'number',
+                                value: formData.talla,
+                                onChange: (e) => handleInputChange('talla', e.target.value),
+                                style: {...styles.smallInput, marginRight: '4px'},
+                                min: '0',
+                                max: '300',
+                                step: '1'
+                            }),
+                            React.createElement('span', { style: { fontSize: '0.8rem', color: '#666' } }, 'cm')
+                        )
+                    )
                 ),
-                // Peso
-                React.createElement('div', { style: styles.compact },
-                    React.createElement('span', { style: styles.smallLabel }, 'Peso:'),
-                    React.createElement('input', {
-                        type: 'number',
-                        value: formData.peso,
-                        onChange: (e) => handleInputChange('peso', e.target.value),
-                        style: styles.smallInput,
-                        min: '0',
-                        max: '500',
-                        step: '0.1'
-                    })
-                ),
-                // Talla
-                React.createElement('div', { style: styles.compact },
-                    React.createElement('span', { style: styles.smallLabel }, 'Talla:'),
-                    React.createElement('input', {
-                        type: 'number',
-                        value: formData.talla,
-                        onChange: (e) => handleInputChange('talla', e.target.value),
-                        style: styles.smallInput,
-                        min: '0',
-                        max: '300',
-                        step: '1'
-                    })
-                )
-            ),
             
             // Segunda columna (derecha)
             // Campo Procedencia
