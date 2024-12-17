@@ -485,7 +485,7 @@ const styles = {
                             min: '0',
                             max: '150'
                         }),
-                        React.createElement('span', { style: { fontSize: '0.8rem', color: '#666' } }, 'años')
+                        React.createElement('span', { style: { fontSize: '1rem', color: '#666', marginLeft: '4px' } }, 'años')
                     )
                 ),
                 // Peso
