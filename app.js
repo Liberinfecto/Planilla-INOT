@@ -324,10 +324,16 @@ const styles = {
             backgroundColor: '#fff'
         },
         grid: {
-            display: 'grid',
-            gridTemplateColumns: window.innerWidth < 768 ? '1fr' : '0.8fr 4.2fr',
-            gap: '0.5rem',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem',
             marginBottom: '1.5rem'
+        },
+        row: {
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
+            width: '100%'
         },
         inputGroup: {
             display: 'flex',
@@ -454,22 +460,71 @@ const styles = {
         
     // Formulario principal (datos del paciente)
     React.createElement('div', { style: styles.formContainer },
-        // Campos en grid
         React.createElement('div', { style: styles.grid },
-            // Primera columna (izquierda)
-            // Piso/Cama
-            React.createElement('div', { style: {...styles.inputGroup, ...styles.compact} },
-                React.createElement('span', { style: styles.smallLabel }, 'Piso/Cama:'),
-                React.createElement('input', { 
-                    type: 'text',
-                    value: formData.floor,
-                    onChange: (e) => handleInputChange('floor', e.target.value),
-                    style: styles.smallInput
-                })
-            ),
-            
-                // Campo Sexo
+            // Primera fila: Piso/Cama, Edad, Peso, Talla
+            React.createElement('div', { style: styles.row },
+                // Piso/Cama
                 React.createElement('div', { style: {...styles.inputGroup, ...styles.compact} },
+                    React.createElement('span', { style: styles.smallLabel }, 'Piso/Cama:'),
+                    React.createElement('input', { 
+                        type: 'text',
+                        value: formData.floor,
+                        onChange: (e) => handleInputChange('floor', e.target.value),
+                        style: styles.smallInput
+                    })
+                ),
+                // Edad
+                React.createElement('div', { style: styles.compact },
+                    React.createElement('span', { style: styles.smallLabel }, 'Edad:'),
+                    React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
+                        React.createElement('input', {
+                            type: 'number',
+                            value: formData.age,
+                            onChange: (e) => handleInputChange('age', e.target.value),
+                            style: {...styles.smallInput, marginRight: '4px'},
+                            min: '0',
+                            max: '150'
+                        }),
+                        React.createElement('span', { style: { fontSize: '0.8rem', color: '#666' } }, 'años')
+                    )
+                ),
+                // Peso
+                React.createElement('div', { style: styles.compact },
+                    React.createElement('span', { style: styles.smallLabel }, 'Peso:'),
+                    React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
+                        React.createElement('input', {
+                            type: 'number',
+                            value: formData.peso,
+                            onChange: (e) => handleInputChange('peso', e.target.value),
+                            style: {...styles.smallInput, marginRight: '4px'},
+                            min: '0',
+                            max: '500',
+                            step: '0.1'
+                        }),
+                        React.createElement('span', { style: { fontSize: '0.8rem', color: '#666' } }, 'kg')
+                    )
+                ),
+                // Talla
+                React.createElement('div', { style: styles.compact },
+                    React.createElement('span', { style: styles.smallLabel }, 'Talla:'),
+                    React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
+                        React.createElement('input', {
+                            type: 'number',
+                            value: formData.talla,
+                            onChange: (e) => handleInputChange('talla', e.target.value),
+                            style: {...styles.smallInput, marginRight: '4px'},
+                            min: '0',
+                            max: '300',
+                            step: '1'
+                        }),
+                        React.createElement('span', { style: { fontSize: '0.8rem', color: '#666' } }, 'cm')
+                    )
+                )
+            ),
+
+            // Segunda fila: Sexo y Procedencia
+            React.createElement('div', { style: styles.row },
+                React.createElement('div', { style: styles.inputGroup },
                     React.createElement('span', { style: styles.smallLabel }, 'Sexo:'),
                     React.createElement('div', { style: { display: 'flex', gap: '1rem' } },
                         React.createElement('label', { style: { display: 'flex', alignItems: 'center', gap: '0.5rem' } },
@@ -480,13 +535,7 @@ const styles = {
                                 style: styles.radio,
                                 checked: radioSelections['sexo'] === 'H',
                                 onChange: () => {},
-                                onClick: () => {
-                                    if (radioSelections['sexo'] === 'H') {
-                                        handleRadioClick('sexo', '');
-                                    } else {
-                                        handleRadioClick('sexo', 'H');
-                                    }
-                                }
+                                onClick: () => handleRadioClick('sexo', 'H')
                             })
                         ),
                         React.createElement('label', { style: { display: 'flex', alignItems: 'center', gap: '0.5rem' } },
@@ -497,105 +546,44 @@ const styles = {
                                 style: styles.radio,
                                 checked: radioSelections['sexo'] === 'M',
                                 onChange: () => {},
-                                onClick: () => {
-                                    if (radioSelections['sexo'] === 'M') {
-                                        handleRadioClick('sexo', '');
-                                    } else {
-                                        handleRadioClick('sexo', 'M');
-                                    }
-                                }
+                                onClick: () => handleRadioClick('sexo', 'M')
                             })
                         )
                     )
                 ),
-            
-                // Fila de campos numéricos (Edad, Peso, Talla)
-                React.createElement('div', { style: { display: 'flex', gap: '1rem', marginBottom: '0.5rem' } },
-                    // Edad
-                    React.createElement('div', { style: styles.compact },
-                        React.createElement('span', { style: styles.smallLabel }, 'Edad:'),
-                        React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
-                            React.createElement('input', {
-                                type: 'number',
-                                value: formData.age,
-                                onChange: (e) => handleInputChange('age', e.target.value),
-                                style: {...styles.smallInput, marginRight: '4px'},
-                                min: '0',
-                                max: '150'
-                            }),
-                            React.createElement('span', { style: { fontSize: '0.8rem', color: '#666' } }, 'años')
-                        )
-                    ),
-                    // Peso
-                    React.createElement('div', { style: styles.compact },
-                        React.createElement('span', { style: styles.smallLabel }, 'Peso:'),
-                        React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
-                            React.createElement('input', {
-                                type: 'number',
-                                value: formData.peso,
-                                onChange: (e) => handleInputChange('peso', e.target.value),
-                                style: {...styles.smallInput, marginRight: '4px'},
-                                min: '0',
-                                max: '500',
-                                step: '0.1'
-                            }),
-                            React.createElement('span', { style: { fontSize: '0.8rem', color: '#666' } }, 'kg')
-                        )
-                    ),
-                    // Talla
-                    React.createElement('div', { style: styles.compact },
-                        React.createElement('span', { style: styles.smallLabel }, 'Talla:'),
-                        React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
-                            React.createElement('input', {
-                                type: 'number',
-                                value: formData.talla,
-                                onChange: (e) => handleInputChange('talla', e.target.value),
-                                style: {...styles.smallInput, marginRight: '4px'},
-                                min: '0',
-                                max: '300',
-                                step: '1'
-                            }),
-                            React.createElement('span', { style: { fontSize: '0.8rem', color: '#666' } }, 'cm')
-                        )
-                    )
+                React.createElement('div', { style: styles.inputGroup },
+                    React.createElement('span', { style: styles.label }, 'Procedencia:'),
+                    React.createElement('input', { 
+                        type: 'text',
+                        value: formData.origin,
+                        onChange: (e) => handleInputChange('origin', e.target.value),
+                        style: styles.mediumInput
+                    })
+                )
+            ),
+
+            // Tercera fila: Nombre y CI
+            React.createElement('div', { style: styles.row },
+                React.createElement('div', { style: {...styles.inputGroup, flex: 2} },
+                    React.createElement('span', { style: styles.label }, 'Nombre:'),
+                    React.createElement('input', { 
+                        type: 'text',
+                        value: formData.name,
+                        onChange: (e) => handleInputChange('name', e.target.value),
+                        style: styles.input
+                    })
                 ),
-            
-            // Segunda columna (derecha)
-            // Campo Procedencia
-            React.createElement('div', { style: styles.inputGroup },
-                React.createElement('span', { style: styles.label }, 'Procedencia:'),
-                React.createElement('input', { 
-                    type: 'text',
-                    value: formData.origin,
-                    onChange: (e) => handleInputChange('origin', e.target.value),
-                    style: styles.mediumInput
-                })
+                React.createElement('div', { style: styles.inputGroup },
+                    React.createElement('span', { style: styles.label }, 'CI:'),
+                    React.createElement('input', { 
+                        type: 'text',
+                        value: formData.ci,
+                        onChange: (e) => handleInputChange('ci', e.target.value),
+                        style: styles.mediumInput
+                    })
+                )
             ),
-            
-            // Campo Nombre
-            React.createElement('div', { style: styles.inputGroup },
-                React.createElement('span', { style: styles.label }, 'Nombre:'),
-                React.createElement('input', { 
-                    type: 'text',
-                    value: formData.name,
-                    onChange: (e) => handleInputChange('name', e.target.value),
-                    style: styles.input
-                })
-            ),
-            
-            // Campo CI
-            React.createElement('div', { style: styles.inputGroup },
-                React.createElement('span', { style: styles.label }, 'CI:'),
-                React.createElement('input', { 
-                    type: 'text',
-                    value: formData.ci,
-                    onChange: (e) => handleInputChange('ci', e.target.value),
-                    style: styles.mediumInput
-                })
-            )
-        ),
-        
-        // Contenedor de fechas
+            // Cuarta fila: Contenedor de fechas
             React.createElement('div', { style: styles.dateContainer },
                 // Campo FI
                 React.createElement('div', { style: styles.dateGroup },
@@ -630,8 +618,13 @@ const styles = {
                         style: styles.dateInput
                     })
                 )
-            )),
+            )
+        )
+    ),
 
+
+
+                            
 // Sección de Factores de Riesgo
                 React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
                     React.createElement('table', { style: styles.table },
