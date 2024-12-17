@@ -370,9 +370,9 @@ const styles = {
             minWidth: '140px'  // Asegura espacio para el input y la unidad
         },
         smallLabel: {
-        fontWeight: 'bold',
-        minWidth: '40px',      // Reducido de 70px a 40px
-        marginRight: '0.25rem' 
+            fontWeight: 'bold',
+            minWidth: '40px',      // Reducido de 70px a 40px
+            marginRight: '0.25rem' 
         },
         dateContainer: {
             display: 'grid',
