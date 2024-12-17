@@ -300,9 +300,10 @@ const styles = {
         container: {
             maxWidth: '1024px',
             margin: '0 auto',
-            padding: '1rem',
+            padding: window.innerWidth < 768 ? '0.5rem' : '1rem',
             width: '100%',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
+            overflowX: 'hidden' // previene scroll horizontal en móvil
         },
         header: {
             fontSize: '1.25rem',
@@ -332,8 +333,10 @@ const styles = {
         row: {
             display: 'flex',
             alignItems: 'center',
-            gap: '1rem',
-            width: '100%'
+            gap: window.innerWidth < 768 ? '0.5rem' : '1rem',
+            width: '100%',
+            flexWrap: 'wrap', // permite que los elementos se ajusten en móvil
+            padding: window.innerWidth < 768 ? '0.5rem' : '0'
         },
         inputGroup: {
             display: 'flex',
