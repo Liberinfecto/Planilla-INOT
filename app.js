@@ -297,341 +297,387 @@ const calcularClasificacionOMA = (fechaSintomas) => {
         };
     
 const styles = {
-        container: {
-            maxWidth: '1024px',
-            margin: '0 auto',
-            padding: window.innerWidth < 768 ? '0.5rem' : '1rem',
-            width: '100%',
-            boxSizing: 'border-box',
-            overflowX: 'hidden' // previene scroll horizontal en móvil
-        },
-        header: {
-            fontSize: '1.25rem',
-            fontWeight: 'bold',
-            textAlign: 'center',
-            marginBottom: '1rem'
-        },
-        subheader: {
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            textAlign: 'center',
-            marginBottom: '1.5rem'
-        },
-        formContainer: {
-            border: '1px solid #333',
-            padding: '1.5rem',
-            width: '100%',
-            boxSizing: 'border-box',
-            backgroundColor: '#fff'
-        },
-        grid: {
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1rem',
-            marginBottom: '1.5rem'
-        },
-        row: {
-            display: 'flex',
-            alignItems: 'center',
-            gap: window.innerWidth < 768 ? '0.5rem' : '1rem',
-            width: '100%',
-            flexWrap: 'wrap', // permite que los elementos se ajusten en móvil
-            padding: window.innerWidth < 768 ? '0.5rem' : '0'
-        },
-        inputGroup: {
-            display: 'flex',
-            alignItems: 'center',
-            marginBottom: '1rem',
-            position: 'relative'
-        },
-        label: {
-            fontWeight: 'bold',
-            minWidth: '70px',  // Reducido de 90px a 70px
-            marginRight: '0.5rem'  // Reducido de 1rem a 0.5rem
-        },
-        input: {
-            flex: 1,
-            borderBottom: '2px solid #333',
-            padding: '0.5rem',
-            minWidth: 0,
-            maxWidth: '400px',  // Agregado para limitar el ancho del campo nombre
-            transition: 'border-color 0.2s'
-        },
-        smallInput: {
-            flex: 0,
-            borderBottom: '2px solid #333',
-            padding: '0.5rem',
-            width: '70px',
-            transition: 'border-color 0.2s'
-        },
-        mediumInput: {
-            flex: 0,
-            borderBottom: '2px solid #333',
-            padding: '0.5rem',
-            width: '200px',  // Reducido de 250px a 200px
-            transition: 'border-color 0.2s'
-        },
-        compact: {
-            marginBottom: '1rem',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.005rem',
-            minWidth: '140px'  // Asegura espacio para el input y la unidad
-        },
-        smallLabel: {
-            fontWeight: 'bold',
-            minWidth: '40px',      // Reducido de 70px a 40px
-            marginRight: '0.25rem' 
-        },
-        dateContainer: {
-            display: 'grid',
-            gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(3, 1fr)',
-            gap: '1.5rem',
-            marginTop: '1.5rem',
-            padding: '1rem',
-            backgroundColor: '#f8f9fa',
-            borderRadius: '4px'
-        },
-        dateGroup: {
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1rem'
-        },
-        dateLabel: {
-            fontWeight: 'bold',
-            whiteSpace: 'nowrap',
-            color: '#495057'
-        },
-        dateInput: {
-            flex: 1,
-            padding: '0.5rem',
-            borderBottom: '2px solid #333',
-            borderRadius: '4px'
-        },
-        table: {
-            width: '100%',
-            borderCollapse: 'collapse',
-            marginTop: '1.5rem'
-        },
-        tableHeader: {
-            backgroundColor: '#f8f9fa',
-            border: '1px solid #333',
-            padding: '0.75rem',
-            textAlign: 'center',
-            fontWeight: 'bold',
-            color: '#495057'
-        },
-        tableCell: {
-            border: '1px solid #333',
-            padding: '0.75rem',
-            verticalAlign: 'middle'
-        },
-        radioGroup: {
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '1.5rem'
-        },
-        radio: {
-            cursor: 'pointer'
-        },
-        labelContainerStyle: {
-            display: 'flex',
-            alignItems: 'center',
-            width: '300px'
-        },
-        dateInputStyle: {
-            marginRight: '1rem',
-            padding: '0.5rem',
-            borderRadius: '4px',
-            fontSize: '0.875rem',
-            border: '1px solid #dc3545',
-            backgroundColor: '#ffebeb',
-            color: '#dc3545',
-            width: '150px',
-            transition: 'all 0.2s'
-        }
-    };
+   mainContainer: {
+       display: 'flex',
+       gap: '1rem',
+       width: '100%',
+       maxWidth: '1400px',
+       margin: '0 auto',
+       padding: window.innerWidth < 768 ? '0.5rem' : '1rem',
+       boxSizing: 'border-box',
+       overflowX: 'hidden'
+   },
+   header: {
+       fontSize: '1.25rem',
+       fontWeight: 'bold',
+       textAlign: 'center',
+       marginBottom: '1rem'
+   },
+   subheader: {
+       fontSize: '1rem',
+       fontWeight: 'bold',
+       textAlign: 'center',
+       marginBottom: '1.5rem'
+   },
+   formContainer: {
+       flex: '0 0 65%',
+       border: '1px solid #333',
+       padding: '1.5rem',
+       boxSizing: 'border-box',
+       backgroundColor: '#fff'
+   },
+   importPanel: {
+       flex: '0 0 35%',
+       border: '1px solid #333',
+       padding: '1.5rem',
+       backgroundColor: '#fff'
+   },
+   grid: {
+       display: 'flex',
+       flexDirection: 'column',
+       gap: '1rem',
+       marginBottom: '1.5rem'
+   },
+   row: {
+       display: 'flex',
+       alignItems: 'center',
+       gap: window.innerWidth < 768 ? '0.5rem' : '1rem',
+       width: '100%',
+       flexWrap: 'wrap',
+       padding: window.innerWidth < 768 ? '0.5rem' : '0'
+   },
+   inputGroup: {
+       display: 'flex',
+       alignItems: 'center',
+       marginBottom: '1rem',
+       position: 'relative'
+   },
+   label: {
+       fontWeight: 'bold',
+       minWidth: '70px',
+       marginRight: '0.5rem'
+   },
+   input: {
+       flex: 1,
+       borderBottom: '2px solid #333',
+       padding: '0.5rem',
+       minWidth: 0,
+       maxWidth: '400px',
+       transition: 'border-color 0.2s'
+   },
+   smallInput: {
+       flex: 0,
+       borderBottom: '2px solid #333',
+       padding: '0.5rem',
+       width: '70px',
+       transition: 'border-color 0.2s'
+   },
+   mediumInput: {
+       flex: 0,
+       borderBottom: '2px solid #333',
+       padding: '0.5rem',
+       width: '200px',
+       transition: 'border-color 0.2s'
+   },
+   compact: {
+       marginBottom: '1rem',
+       display: 'flex',
+       alignItems: 'center',
+       gap: '0.005rem',
+       minWidth: '140px'
+   },
+   smallLabel: {
+       fontWeight: 'bold',
+       minWidth: '40px',
+       marginRight: '0.25rem'
+   },
+   dateContainer: {
+       display: 'grid',
+       gridTemplateColumns: '1fr 1fr',
+       gap: '1rem',
+       marginTop: '1.5rem',
+       padding: '1rem',
+       backgroundColor: '#f8f9fa',
+       borderRadius: '4px'
+   },
+   dateGroup: {
+       display: 'flex',
+       alignItems: 'center',
+       gap: '1rem'
+   },
+   dateLabel: {
+       fontWeight: 'bold',
+       whiteSpace: 'nowrap',
+       color: '#495057'
+   },
+   dateInput: {
+       flex: 1,
+       padding: '0.5rem',
+       borderBottom: '2px solid #333',
+       borderRadius: '4px'
+   },
+   table: {
+       width: '100%',
+       borderCollapse: 'collapse',
+       marginTop: '1.5rem'
+   },
+   tableHeader: {
+       backgroundColor: '#f8f9fa',
+       border: '1px solid #333',
+       padding: '0.75rem',
+       textAlign: 'center',
+       fontWeight: 'bold',
+       color: '#495057'
+   },
+   tableCell: {
+       border: '1px solid #333',
+       padding: '0.75rem',
+       verticalAlign: 'middle'
+   },
+   radioGroup: {
+       display: 'flex',
+       justifyContent: 'center',
+       gap: '1.5rem'
+   },
+   radio: {
+       cursor: 'pointer'
+   },
+   labelContainerStyle: {
+       display: 'flex',
+       alignItems: 'center',
+       width: '300px'
+   },
+   dateInputStyle: {
+       marginRight: '1rem',
+       padding: '0.5rem',
+       borderRadius: '4px',
+       fontSize: '0.875rem',
+       border: '1px solid #dc3545',
+       backgroundColor: '#ffebeb',
+       color: '#dc3545',
+       width: '150px',
+       transition: 'all 0.2s'
+   }
+};
 
-    return React.createElement('div', { style: styles.container },
-        // Header
-        React.createElement('h1', { style: styles.header }, 
-            'CATEDRA DE ENFERMEDADES INFECCIOSAS'
-        ),
-        React.createElement('h2', { style: styles.subheader }, 
-            'ASISTENCIA DE PACIENTES EN INOT'
-        ),
-        
-    // Formulario principal (datos del paciente)
-    React.createElement('div', { style: styles.formContainer },
-        React.createElement('div', { style: styles.grid },
-            // Primera fila: Piso/Cama, Edad, Peso, Talla
-            React.createElement('div', { style: styles.row },
-                // Piso/Cama
-                React.createElement('div', { style: {...styles.inputGroup, ...styles.compact} },
-                    React.createElement('span', { style: styles.smallLabel }, 'Piso/Cama:'),
-                    React.createElement('input', { 
-                        type: 'text',
-                        value: formData.floor,
-                        onChange: (e) => handleInputChange('floor', e.target.value),
-                        style: styles.smallInput
-                    })
-                ),
-                // Edad
-                React.createElement('div', { style: styles.compact },
-                    React.createElement('span', { style: styles.smallLabel }, 'Edad:'),
-                    React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
-                        React.createElement('input', {
-                            type: 'number',
-                            value: formData.age,
-                            onChange: (e) => handleInputChange('age', e.target.value),
-                            style: {...styles.smallInput, marginRight: '4px'},
-                            min: '0',
-                            max: '150'
-                        }),
-                        React.createElement('span', { style: { fontSize: '1rem', color: '#666', marginLeft: '4px' } }, 'años')
-                    )
-                ),
-                // Peso
-                React.createElement('div', { style: styles.compact },
-                    React.createElement('span', { style: styles.smallLabel }, 'Peso:'),
-                    React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
-                        React.createElement('input', {
-                            type: 'number',
-                            value: formData.peso,
-                            onChange: (e) => handleInputChange('peso', e.target.value),
-                            style: {...styles.smallInput, marginRight: '4px'},
-                            min: '0',
-                            max: '500',
-                            step: '0.1'
-                        }),
-                       React.createElement('span', { style: { fontSize: '1rem', color: '#666', marginLeft: '4px' } }, 'Kg')
-                    )
-                ),
-                // Talla
-                React.createElement('div', { style: styles.compact },
-                    React.createElement('span', { style: styles.smallLabel }, 'Talla:'),
-                    React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
-                        React.createElement('input', {
-                            type: 'number',
-                            value: formData.talla,
-                            onChange: (e) => handleInputChange('talla', e.target.value),
-                            style: {...styles.smallInput, marginRight: '4px'},
-                            min: '0',
-                            max: '300',
-                            step: '1'
-                        }),
-                       React.createElement('span', { style: { fontSize: '1rem', color: '#666', marginLeft: '4px' } }, 'cm')
-                    )
-                )
-            ),
-
-            // Segunda fila: Sexo y Procedencia
-            React.createElement('div', { style: styles.row },
-                React.createElement('div', { style: styles.inputGroup },
-                    React.createElement('span', { style: styles.smallLabel }, 'Sexo:'),
-                    React.createElement('div', { style: { display: 'flex', gap: '1rem' } },
-                        React.createElement('label', { style: { display: 'flex', alignItems: 'center', gap: '0.5rem' } },
-                            'H',
-                            React.createElement('input', {
-                                type: 'radio',
-                                name: 'sexo',
-                                style: styles.radio,
-                                checked: radioSelections['sexo'] === 'H',
-                                onChange: () => {},
-                                onClick: () => handleRadioClick('sexo', 'H')
-                            })
-                        ),
-                        React.createElement('label', { style: { display: 'flex', alignItems: 'center', gap: '0.5rem' } },
-                            'M',
-                            React.createElement('input', {
-                                type: 'radio',
-                                name: 'sexo',
-                                style: styles.radio,
-                                checked: radioSelections['sexo'] === 'M',
-                                onChange: () => {},
-                                onClick: () => handleRadioClick('sexo', 'M')
-                            })
-                        )
-                    )
-                ),
-                React.createElement('div', { style: styles.inputGroup },
-                    React.createElement('span', { style: styles.label }, 'Procedencia:'),
-                    React.createElement('input', { 
-                        type: 'text',
-                        value: formData.origin,
-                        onChange: (e) => handleInputChange('origin', e.target.value),
-                        style: styles.mediumInput
-                    })
-                )
-            ),
-
-            // Tercera fila: Nombre y CI
+    return React.createElement('div', { style: styles.mainContainer },
+   // Header - ahora fuera del formContainer
+   React.createElement('div', { style: { width: '100%', marginBottom: '1rem' } },
+       React.createElement('h1', { style: styles.header }, 
+           'CATEDRA DE ENFERMEDADES INFECCIOSAS'
+       ),
+       React.createElement('h2', { style: styles.subheader }, 
+           'ASISTENCIA DE PACIENTES EN INOT'
+       )
+   ),
+   
+   // Panel Principal (65%)
+   React.createElement('div', { style: styles.formContainer },
+       React.createElement('div', { style: styles.grid },
+           // Primera fila: Piso/Cama, Edad, Peso, Talla
            React.createElement('div', { style: styles.row },
-                React.createElement('div', { style: {...styles.inputGroup, width: '100%'} },
-                    React.createElement('span', { style: styles.label }, 'Nombre:'),
-                    React.createElement('input', { 
-                        type: 'text',
-                        value: formData.name,
-                        onChange: (e) => handleInputChange('name', e.target.value),
-                        style: {...styles.input, width: '100%'}
-                    })
-                )
-            ),
-            // Cuarta fila para CI
-            React.createElement('div', { style: styles.row },
-                React.createElement('div', { style: {...styles.inputGroup, width: '50%'} },
-                    React.createElement('span', { style: styles.label }, 'CI:'),
-                    React.createElement('input', { 
-                        type: 'text',
-                        value: formData.ci,
-                        onChange: (e) => handleInputChange('ci', e.target.value),
-                        style: styles.mediumInput
-                    })
-                )
-            ),
-            // Quinta fila: Contenedor de fechas
-            React.createElement('div', { style: styles.dateContainer },
-                // Campo FI
-                React.createElement('div', { style: styles.dateGroup },
-                    React.createElement('span', { style: styles.dateLabel }, 'FI:'),
-                    React.createElement('input', { 
-                        type: 'date',
-                        value: formData.fi,
-                        onChange: (e) => handleInputChange('fi', e.target.value),
-                        max: new Date().toISOString().split('T')[0],
-                        style: styles.dateInput
-                    })
-                ),
-                // Campo F consulta infecto
-                React.createElement('div', { style: styles.dateGroup },
-                    React.createElement('span', { style: styles.dateLabel }, 'F consulta infecto:'),
-                    React.createElement('input', { 
-                        type: 'date',
-                        value: formData.fConsult,
-                        onChange: (e) => handleInputChange('fConsult', e.target.value),
-                        max: new Date().toISOString().split('T')[0],
-                        style: styles.dateInput
-                    })
-                ),
-                // Campo FE
-                React.createElement('div', { style: styles.dateGroup },
-                    React.createElement('span', { style: styles.dateLabel }, 'FE:'),
-                    React.createElement('input', { 
-                        type: 'date',
-                        value: formData.fe,
-                        onChange: (e) => handleInputChange('fe', e.target.value),
-                        max: new Date().toISOString().split('T')[0],
-                        style: styles.dateInput
-                    })
-                )
-            )
-        )
-    ),
+               // Piso/Cama
+               React.createElement('div', { style: {...styles.inputGroup, ...styles.compact} },
+                   React.createElement('span', { style: styles.smallLabel }, 'Piso/Cama:'),
+                   React.createElement('input', { 
+                       type: 'text',
+                       value: formData.floor,
+                       onChange: (e) => handleInputChange('floor', e.target.value),
+                       style: styles.smallInput
+                   })
+               ),
+               // Edad
+               React.createElement('div', { style: styles.compact },
+                   React.createElement('span', { style: styles.smallLabel }, 'Edad:'),
+                   React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
+                       React.createElement('input', {
+                           type: 'number',
+                           value: formData.age,
+                           onChange: (e) => handleInputChange('age', e.target.value),
+                           style: {...styles.smallInput, marginRight: '4px'},
+                           min: '0',
+                           max: '150'
+                       }),
+                       React.createElement('span', { style: { fontSize: '1rem', color: '#666', marginLeft: '4px' } }, 'años')
+                   )
+               ),
+               // Peso
+               React.createElement('div', { style: styles.compact },
+                   React.createElement('span', { style: styles.smallLabel }, 'Peso:'),
+                   React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
+                       React.createElement('input', {
+                           type: 'number',
+                           value: formData.peso,
+                           onChange: (e) => handleInputChange('peso', e.target.value),
+                           style: {...styles.smallInput, marginRight: '4px'},
+                           min: '0',
+                           max: '500',
+                           step: '0.1'
+                       }),
+                       React.createElement('span', { style: { fontSize: '1rem', color: '#666', marginLeft: '4px' } }, 'Kg')
+                   )
+               ),
+               // Talla
+               React.createElement('div', { style: styles.compact },
+                   React.createElement('span', { style: styles.smallLabel }, 'Talla:'),
+                   React.createElement('div', { style: { display: 'flex', alignItems: 'center' } },
+                       React.createElement('input', {
+                           type: 'number',
+                           value: formData.talla,
+                           onChange: (e) => handleInputChange('talla', e.target.value),
+                           style: {...styles.smallInput, marginRight: '4px'},
+                           min: '0',
+                           max: '300',
+                           step: '1'
+                       }),
+                       React.createElement('span', { style: { fontSize: '1rem', color: '#666', marginLeft: '4px' } }, 'cm')
+                   )
+               )
+           ),
 
+           // Segunda fila: Sexo y Procedencia
+           React.createElement('div', { style: styles.row },
+               React.createElement('div', { style: styles.inputGroup },
+                   React.createElement('span', { style: styles.smallLabel }, 'Sexo:'),
+                   React.createElement('div', { style: { display: 'flex', gap: '1rem' } },
+                       React.createElement('label', { style: { display: 'flex', alignItems: 'center', gap: '0.5rem' } },
+                           'H',
+                           React.createElement('input', {
+                               type: 'radio',
+                               name: 'sexo',
+                               style: styles.radio,
+                               checked: radioSelections['sexo'] === 'H',
+                               onChange: () => {},
+                               onClick: () => handleRadioClick('sexo', 'H')
+                           })
+                       ),
+                       React.createElement('label', { style: { display: 'flex', alignItems: 'center', gap: '0.5rem' } },
+                           'M',
+                           React.createElement('input', {
+                               type: 'radio',
+                               name: 'sexo',
+                               style: styles.radio,
+                               checked: radioSelections['sexo'] === 'M',
+                               onChange: () => {},
+                               onClick: () => handleRadioClick('sexo', 'M')
+                           })
+                       )
+                   )
+               ),
+               React.createElement('div', { style: styles.inputGroup },
+                   React.createElement('span', { style: styles.label }, 'Procedencia:'),
+                   React.createElement('input', { 
+                       type: 'text',
+                       value: formData.origin,
+                       onChange: (e) => handleInputChange('origin', e.target.value),
+                       style: styles.mediumInput
+                   })
+               )
+           ),
 
+           // Tercera fila: Nombre
+           React.createElement('div', { style: styles.row },
+               React.createElement('div', { style: {...styles.inputGroup, width: '100%'} },
+                   React.createElement('span', { style: styles.label }, 'Nombre:'),
+                   React.createElement('input', { 
+                       type: 'text',
+                       value: formData.name,
+                       onChange: (e) => handleInputChange('name', e.target.value),
+                       style: {...styles.input, width: '100%'}
+                   })
+               )
+           ),
+           
+           // Cuarta fila: CI
+           React.createElement('div', { style: styles.row },
+               React.createElement('div', { style: {...styles.inputGroup, width: '50%'} },
+                   React.createElement('span', { style: styles.label }, 'CI:'),
+                   React.createElement('input', { 
+                       type: 'text',
+                       value: formData.ci,
+                       onChange: (e) => handleInputChange('ci', e.target.value),
+                       style: styles.mediumInput
+                   })
+               )
+           ),
 
-                            
-// Sección de Factores de Riesgo
+           // Quinta fila: Contenedor de fechas
+           React.createElement('div', { style: styles.dateContainer },
+               // Campo FI y FE
+               React.createElement('div', { style: styles.dateGroup },
+                   React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '1rem' } },
+                       // FI
+                       React.createElement('div', { style: styles.dateGroup },
+                           React.createElement('span', { style: styles.dateLabel }, 'FI:'),
+                           React.createElement('input', { 
+                               type: 'date',
+                               value: formData.fi,
+                               onChange: (e) => handleInputChange('fi', e.target.value),
+                               max: new Date().toISOString().split('T')[0],
+                               style: styles.dateInput
+                           })
+                       ),
+                       // FE
+                       React.createElement('div', { style: styles.dateGroup },
+                           React.createElement('span', { style: styles.dateLabel }, 'FE:'),
+                           React.createElement('input', { 
+                               type: 'date',
+                               value: formData.fe,
+                               onChange: (e) => handleInputChange('fe', e.target.value),
+                               max: new Date().toISOString().split('T')[0],
+                               style: styles.dateInput
+                           })
+                       )
+                   )
+               ),
+               // Campo F consulta infecto
+               React.createElement('div', { style: styles.dateGroup },
+                   React.createElement('span', { style: styles.dateLabel }, 'F consulta infecto:'),
+                   React.createElement('input', { 
+                       type: 'date',
+                       value: formData.fConsult,
+                       onChange: (e) => handleInputChange('fConsult', e.target.value),
+                       max: new Date().toISOString().split('T')[0],
+                       style: styles.dateInput
+                   })
+               )
+           )
+       )
+   ),
+
+   // Panel de Importación (35%)
+   React.createElement('div', { style: styles.importPanel },
+       React.createElement('h3', { style: { margin: '0 0 1rem 0' } }, 'Importar Datos'),
+       React.createElement('textarea', {
+           placeholder: 'Pegar datos aquí...',
+           style: {
+               width: '100%',
+               minHeight: '150px',
+               marginBottom: '1rem',
+               padding: '0.5rem',
+               boxSizing: 'border-box'
+           }
+       }),
+       React.createElement('div', {
+           style: {
+               border: '2px dashed #ccc',
+               borderRadius: '4px',
+               padding: '2rem',
+               textAlign: 'center',
+               backgroundColor: '#f9f9f9',
+               marginBottom: '1rem'
+           }
+       }, 'Arrastrar archivos aquí'),
+       React.createElement('div', {
+           style: {
+               padding: '1rem',
+               backgroundColor: '#f8f9fa',
+               borderRadius: '4px'
+           }
+       }, 'Estado: Esperando datos...')
+   ),
+
+    // Sección de Factores de Riesgo
                 React.createElement('div', { style: { marginTop: '2rem', border: '1px solid #333', padding: '1rem' } },
                     React.createElement('table', { style: styles.table },
                         React.createElement('thead', null,
