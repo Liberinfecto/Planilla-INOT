@@ -501,7 +501,7 @@ const styles = {
                             max: '500',
                             step: '0.1'
                         }),
-                        React.createElement('span', { style: { fontSize: '0.8rem', color: '#666' } }, 'kg')
+                       React.createElement('span', { style: { fontSize: '1rem', color: '#666', marginLeft: '4px' } }, 'Kg')
                     )
                 ),
                 // Talla
@@ -517,7 +517,7 @@ const styles = {
                             max: '300',
                             step: '1'
                         }),
-                        React.createElement('span', { style: { fontSize: '0.8rem', color: '#666' } }, 'cm')
+                       React.createElement('span', { style: { fontSize: '1rem', color: '#666', marginLeft: '4px' } }, 'cm')
                     )
                 )
             ),
