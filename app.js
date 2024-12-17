@@ -563,17 +563,20 @@ const styles = {
             ),
 
             // Tercera fila: Nombre y CI
-            React.createElement('div', { style: styles.row },
-                React.createElement('div', { style: {...styles.inputGroup, flex: 2} },
+           React.createElement('div', { style: styles.row },
+                React.createElement('div', { style: {...styles.inputGroup, width: '100%'} },
                     React.createElement('span', { style: styles.label }, 'Nombre:'),
                     React.createElement('input', { 
                         type: 'text',
                         value: formData.name,
                         onChange: (e) => handleInputChange('name', e.target.value),
-                        style: styles.input
+                        style: {...styles.input, width: '100%'}
                     })
-                ),
-                React.createElement('div', { style: styles.inputGroup },
+                )
+            ),
+            // Cuarta fila para CI
+            React.createElement('div', { style: styles.row },
+                React.createElement('div', { style: {...styles.inputGroup, width: '50%'} },
                     React.createElement('span', { style: styles.label }, 'CI:'),
                     React.createElement('input', { 
                         type: 'text',
@@ -583,7 +586,7 @@ const styles = {
                     })
                 )
             ),
-            // Cuarta fila: Contenedor de fechas
+            // Quinta fila: Contenedor de fechas
             React.createElement('div', { style: styles.dateContainer },
                 // Campo FI
                 React.createElement('div', { style: styles.dateGroup },
