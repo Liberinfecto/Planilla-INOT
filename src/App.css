@@ -1,0 +1,1147 @@
+/* ===================== VARIABLES GLOBALES ===================== */
+:root {
+  --primary-bg: #fff;
+  --secondary-bg: #f5f5f5;
+  --border-color: #ccc;
+  --text-color-dark: #333;
+  --text-color-light: #555;
+}
+
+/* ===================== ESTILOS GLOBALES ===================== */
+body {
+  background-color: var(--secondary-bg);
+  color: var(--text-color-dark);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  padding-bottom: 2rem;
+}
+
+input[type="date"] {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+input {
+  border: 1px solid var(--border-color);
+}
+
+.antibiotics-input {
+  color: #333;
+}
+/* ===================== CONTENEDOR PRINCIPAL ===================== */
+.container {
+  margin: 2rem auto;
+  padding: 2rem;
+  max-width: 1000px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Encabezados */
+.header, .subheader {
+  text-align: center;
+  color: #333;
+}
+
+.header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.subheader {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+/* ===================== FORMULARIO GENERAL ===================== */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.input-group input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #333;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.input-group input[type="number"] {
+  text-align: left;
+}
+/* ===================== CAMPOS COMPACTOS ===================== */
+.row {
+  display: flex;
+  justify-content: space-between; /* Distribuye los elementos uniformemente */
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  width: 100%; /* Asegura que la fila ocupe todo el ancho */
+}
+
+.input-group {
+  flex: 1; /* Hace que cada input-group crezca y ocupe espacio equitativamente */
+  min-width: 0; /* Permite que los elementos se reduzcan si es necesario */
+}
+.input-group.compact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.input-group.compact input {
+  width: 90px;
+  padding: 0.25rem;
+  text-align: center;
+}
+
+.small-input {
+  width: 100px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  height: auto;
+  box-sizing: border-box;
+}
+
+/* ===================== RADIO BUTTONS ===================== */
+.radio-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.radio-button {
+  width: 50px;
+  padding: 0.15rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+.radio-button:hover {
+  background-color: #f0f0f0;
+}
+
+.radio-button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #0056b3;
+}
+
+.unit {
+  font-size: 1rem;  /* Aumentar de 0.9rem a 1rem */
+  color: #555;
+  margin-left: 0.5rem;
+  font-weight: normal;  /* Opcional: para darle un poco más de peso visual */
+}
+
+/* ===================== FECHAS ===================== */
+.date-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.date-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.date-group label {
+  font-weight: bold;
+  color: #555;
+}
+
+.date-group input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* ===================== RESPONSIVIDAD ===================== */
+@media (max-width: 600px) {
+  .small-input,
+  .radio-button {
+    width: 80px;
+    padding: 0.4rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ===================== ESTILOS PARA LAS TABLAS DE FACTORES Y ANTECEDENTES ===================== */
+.flex-container {
+  display: flex;
+  gap: 2rem;
+}
+
+.section-container {
+  flex: 1;
+}
+
+.risk-row {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.risk-row.active {
+  background-color: orange;
+  color: white;
+}
+
+.risk-table,
+.trauma-table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 0.5rem;
+}
+
+/* Ajustar el ancho de las columnas en la tabla de Factores de Riesgo */
+.risk-table th:first-child,
+.risk-table td:first-child {
+width: 20%;  /* Primera columna más angosta */
+}
+
+.risk-table th:nth-child(2),
+.risk-table td:nth-child(2),
+.risk-table th:nth-child(3),
+.risk-table td:nth-child(3) {
+width: 10%;  /* Columnas SI/NO más angostas */
+}
+
+.risk-table th:last-child,
+.risk-table td:last-child {
+width: 60%;  /* Columna de detalles más ancha */
+}
+
+.risk-table th,
+.trauma-table th,
+.risk-table td,
+.trauma-table td {
+border: 1px solid #333;
+padding: 0.3rem;
+text-align: left;
+}
+
+.risk-table th,
+.trauma-table th {
+background-color: #f8f9fa;
+font-weight: bold;
+color: #495057;
+}
+
+.risk-table textarea,
+.trauma-table textarea {
+width: 90%;
+min-height: 1.5rem;
+padding: 0.25rem;
+border: 1px solid #ccc;
+border-radius: 4px;
+resize: vertical;
+background-color: white;
+font-size: 0.9rem;
+line-height: 1.2;
+color: #333;
+display: block;
+margin: 0 auto;
+}
+
+/* Estilos para selectores en tablas */
+.risk-table select,
+.trauma-table select {
+padding: 0.5rem;  /* Aumentamos el padding */
+border: 1px solid #ccc;
+border-radius: 4px;
+background-color: white;
+font-size: 0.9rem;
+width: 100%;      /* Aseguramos que tome todo el ancho disponible */
+min-height: 2rem; /* Cambiamos height por min-height */
+cursor: pointer;
+color: #333;      /* Aseguramos color del texto */
+display: block;   /* Aseguramos que sea block */
+}
+
+/* Ajustar el contenedor del select y textarea */
+.risk-table td > div,
+.trauma-table td > div {
+display: flex;
+gap: 0.5rem;
+align-items: center;
+width: 100%;     /* Aseguramos que tome todo el ancho */
+}
+
+.risk-table optgroup,
+.trauma-table optgroup {
+font-weight: bold;
+color: #495057;
+background-color: #f8f9fa;
+}
+
+.risk-table option,
+.trauma-table option {
+padding: 0.5rem;
+color: #333;
+background-color: white;
+}
+
+.risk-table option:hover,
+.trauma-table option:hover {
+background-color: #f0f0f0;
+}
+
+.radio-cell {
+text-align: center;
+}
+
+/* Ajustes para radio buttons en tablas */
+.radio-cell input[type="checkbox"] {
+appearance: none;
+width: 16px;
+height: 16px;
+border: 2px solid #ccc;
+border-radius: 50%;
+background-color: white;
+cursor: pointer;
+}
+
+.radio-cell input[type="checkbox"]:checked {
+border-color: #007bff;
+background-color: white;
+box-shadow: inset 0 0 0 4px #007bff;
+}
+
+/* ===================== ESTILOS PARA LAS TABLAS DE ENFERMEDAD ACTUAL ===================== */
+.enfermedad-container {
+  width: 97%;
+  padding: 1rem;
+  margin-top: 1rem;
+  box-sizing: border-box;
+}
+
+.enfermedad-container .risk-table {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Media Query para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+  .form-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .container {
+    padding: 2rem;
+  }
+
+  .risk-table,
+  .trauma-table {
+    font-size: 0.9rem;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .risk-table th,
+  .trauma-table th,
+  .risk-table td,
+  .trauma-table td {
+    padding: 0.5rem;
+  }
+
+  .risk-table textarea,
+  .trauma-table textarea {
+    width: 95%;
+    min-height: 2.5rem;
+  }
+
+  .risk-table select,
+  .trauma-table select {
+    width: 95%;
+    max-width: none;
+  }
+}
+
+/* ===================== ESTILOS PARA FILAS ANIDADAS ===================== */
+/* Filas anidadas dentro de las tablas de factores y antecedentes */
+.nested-row td:first-child {
+  padding-left: 2rem; /* Indentación para mostrar jerarquía */
+}
+
+/* Contenedor para controles múltiples en una celda */
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Estilos para botones de agregar/quitar */
+.action-button {
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  width: fit-content;
+  color: #333;
+}
+
+/* Grupo de selectores y campos anidados */
+.nested-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  margin: 0.5rem 0;
+}
+
+/* Agregar después de la sección de ESTILOS PARA LAS TABLAS DE ENFERMEDAD ACTUAL */
+
+/* Estilos para celdas clickeables */
+.clickable-cell {
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.clickable-cell:hover {
+  background-color: #f8f8f8;
+}
+
+.clickable-cell.active {
+  background-color: #ffebee;
+}
+
+/* Estilos para inputs de fecha dentro de celdas */
+.date-input-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.date-input-container input[type="date"] {
+  min-width: 130px;
+  padding: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.fracture-radio-button {
+  width: 80px;  /* Más ancho que el radio-button normal */
+  height: 35px; /* Más alto que el radio-button normal */
+  padding: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  font-size: 0.95rem; /* Letra un poco más grande */
+}
+
+.fracture-radio-button:hover {
+  background-color: #f0f0f0;
+}
+
+.fracture-radio-button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #0056b3;
+}
+
+/* Agregar al App.css */
+.enfermedad-container .fecha-input {
+  height: 32px;
+  min-width: 130px;
+  padding: 4px 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  color: #333;
+}
+
+.enfermedad-container .fecha-input::-webkit-calendar-picker-indicator {
+  margin-bottom: 3px;
+}
+
+
+/* ===================== ESTILOS PARA DESCRIPCIÓN OPERATORIA ===================== */
+.descripcion-operatoria {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Contenedor de sección */
+.seccion-operatoria {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+/* Header de sección */
+.seccion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Área de texto */
+.operatoria-textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-family: inherit;
+  margin-bottom: 1rem;
+}
+
+/* Contenedor de archivos */
+.archivos-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+/* Botones de archivo */
+.archivo-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  color: #333; /* Agregar color de texto oscuro */
+}
+
+.archivo-btn:hover {
+  background-color: #e9ecef;
+}
+
+/* Preview de archivos */
+.archivo-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+/* Contador de archivos */
+.contador-archivos {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-left: auto;
+}
+
+/* Secciones desplegables */
+.seccion-desplegable {
+  margin-top: 1rem;
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+/* Botón desplegable */
+.btn-desplegable {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  color: #495057;
+  color: #333;
+}
+
+/* Ícono de flecha para desplegable */
+.flecha-desplegable {
+  transition: transform 0.3s ease;
+}
+
+.flecha-desplegable.abierto {
+  transform: rotate(90deg);
+}
+
+/* Contenedor de fotos */
+.fotos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Preview de imagen */
+.imagen-preview {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.imagen-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Botón de eliminar archivo */
+.btn-eliminar {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #dc3545;
+}
+
+.btn-eliminar:hover {
+  background-color: #fff;
+  color: #c82333;
+}
+
+/* === ESTILOS PARA los botones de navegacion de la tabla de Paraclínica === */
+
+.scrollable-column::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scrollable-column::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.scrollable-column::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.scrollable-column::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ===================== ESTILOS PARA SECCIÓN DE IMÁGENES ===================== */
+.imagenes-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Fila de imágenes */
+.imagenes-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+/* Contenedor individual de imagen */
+.imagen-box {
+  flex: 1;
+  min-height: 250px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Header del box de imagen */
+.imagen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Área de preview de imagen */
+.imagen-preview-area {
+  flex: 1;
+  min-height: 200px;
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.imagen-preview-area:hover {
+  border-color: #007bff;
+  background-color: #f8f9fa;
+}
+
+.imagen-preview-area img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Controles de imagen */
+.imagen-controls {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.imagen-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #333;
+}
+
+.imagen-button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Área de informe */
+.informe-area {
+  width: 100%;
+  min-height: 100px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+/* Modal de timeline */
+.timeline-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.timeline-content {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+}
+
+/* Botón para agregar nuevo estudio */
+.add-estudio-button {
+  align-self: flex-end;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.add-estudio-button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .imagenes-row {
+      flex-direction: column;
+  }
+
+  .imagen-box {
+      width: 100%;
+  }
+}
+
+/* ===================== SECCIÓN ANTIBIOTICOTERAPIA ===================== */
+
+/* Cápsulas individuales */
+.capsulas-ATB {
+  width: 44px !important;
+  height: 25px !important;
+  border-radius: 12px;
+  border: 2px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.capsulas-ATB:hover {
+  transform: scale(1.3); /* Efecto de agrandamiento */
+}
+
+/* Contenedor de combinaciones de Biterapia */
+.combinacion-container {
+  display: flex;
+  gap: 0.1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background-color: #dddbe7;
+  cursor: pointer;
+  transition: transform 0.3s ease; /* Efecto de agrandamiento suave */
+}
+
+.combinacion-container:hover {
+  transform: scale(1.05); /* Agrandamiento conjunto */
+}
+
+/* Inclinación para cápsulas en combinaciones */
+.combinacion-container .capsulas-ATB:not(.vo-active) {
+  transform: rotate(315deg); /* Inclinación de 45 grados solo cuando no está en VO */
+}
+
+/* Deshabilitar el hover individual dentro de combinaciones */
+.combinacion-container .capsulas-ATB:hover {
+  transform: rotate(360deg); /* Mantiene la inclinación sin efecto individual adicional */
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+/* ===================== SECCIÓN DE Switch VO ===================== */
+/* Botón VO en hover */
+.vo-hover-button {
+  position: absolute;
+  top: -15px;
+  right: -20px;  /* Cambiado de left a right */
+  transform: translateX(-50%);  /* Eliminado translateX */
+  background-color: #4CAF50;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.5rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 100;
+}
+
+.capsulas-ATB:hover .vo-hover-button {
+  opacity: 1;
+}
+
+/* Etiqueta VO activa */
+.vo-label {
+  position: absolute;
+  top: -15px;
+  right: -5px;
+  background-color: #2E7D32;  /* Verde más oscuro para VO activo */
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.6rem;
+  cursor: pointer;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+/* Añadir nueva etiqueta H */
+.history-button {
+  position: absolute;
+  top: -15px;
+  left: -5px;
+  background-color: #2196F3;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 100;
+  display: flex;          /* Añadir */
+  align-items: center;    /* Añadir */
+  justify-content: center;/* Añadir */
+  width: 20px;           /* Añadir - ajusta este valor según necesites */
+  height: 20px;          /* Añadir - ajusta este valor según necesites */
+  padding: 0;            /* Modificar */
+}
+
+.capsulas-ATB:hover .history-button {
+  opacity: 1;
+}
+
+
+
+/* ===================== MENÚ Y HISTORIAL VO ===================== */
+.vo-menu {
+  padding: 0.5rem;
+}
+
+.vo-menu-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.vo-menu-options button {
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #333;
+}
+
+.vo-menu-options button:hover {
+  background-color: #f0f0f0;
+}
+
+.vo-menu-options .delete-option {
+  color: #dc3545;
+}
+
+.capsulas-ATB:hover .date-button {
+  opacity: 1;
+}
+
+.historial-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.fecha-historial {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  margin-right: 0.5rem;
+}
+
+.back-button:hover {
+  background-color: #f0f0f0;
+  border-radius: 50%;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.historial-dot {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 8px;
+  height: 8px;
+  background-color: #ff9800;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+/* Estilos para la animación de explosión */
+@keyframes explode {
+  0% {
+      transform: scale(1);
+      opacity: 1;
+  }
+  100% {
+      transform: scale(1.5);
+      opacity: 0;
+  }
+}
+
+.explode {
+  animation: explode 0.5s ease-out forwards;
+}
+
+/* Estilos para contenedor de tratamientos */
+.tratamiento-container {
+  display: flex;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+/* Estilos para antibióticos seleccionados */
+.antibioticos-seleccionados {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  flex: 2;
+}
+
+/* Estilos para controles de tratamiento */
+.controles-tratamiento {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.controles-tratamiento button {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.controles-tratamiento button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Estilos para fechas de tratamiento */
+.fechas-tratamiento {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* Estado de tratamientos */
+.tratamiento-container.no-iniciado {
+  background-color: #f0f0f0;
+}
+
+.tratamiento-container.en-curso {
+  background-color: #e6f2ff;
+}
+
+.tratamiento-container.finalizado {
+  background-color: #e6ffe6;
+  opacity: 0.7;
+}
+
+/* Botón de nuevo tratamiento */
+.nuevo-tratamiento-btn {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.nuevo-tratamiento-btn:hover {
+  background-color: #0056b3;
+}
+
+.tratamiento-container {
+  transition: background-color 0.3s ease;
+}
+
+.controles-tratamiento button {
+  transition: background-color 0.2s ease;
+}
+
+.nuevo-tratamiento-btn {
+  transition: background-color 0.2s ease;
+}
+
+
