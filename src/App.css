@@ -62,6 +62,41 @@ input {
   color: #555;
 }
 
+@media (max-width: 768px) {
+  .header {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
+  .subheader {
+    font-size: 0.9rem;
+  }
+
+  .container {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+
+  .date-container {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .radio-group {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .radio-button {
+    width: 80px;
+    height: 35px;
+  }
+
+  .input-group textarea {
+    min-height: 40px;  /* Más alto para móvil */
+    width: 100%;
+  }
+}
+
 /* ===================== FORMULARIO GENERAL ===================== */
 .input-group {
   display: flex;
@@ -126,6 +161,23 @@ input {
   text-align: center;
   height: auto;
   box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .input-group.compact {
+    width: 100%;
+    align-items: center;
+  }
+
+  .input-group.compact input {
+    width: 100%;
+    max-width: 200px;
+  }
 }
 
 /* ===================== RADIO BUTTONS ===================== */
@@ -193,6 +245,19 @@ input {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .date-container {
+    grid-template-columns: 1fr;  /* Cambia de 3 columnas a 1 */
+    padding: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .date-group input {
+    width: 100%;
+    height: 35px;  /* Mejor para tocar en móvil */
+  }
 }
 
 /* ===================== RESPONSIVIDAD ===================== */
@@ -505,7 +570,6 @@ box-shadow: inset 0 0 0 4px #007bff;
 .enfermedad-container .fecha-input::-webkit-calendar-picker-indicator {
   margin-bottom: 3px;
 }
-
 
 /* ===================== ESTILOS PARA DESCRIPCIÓN OPERATORIA ===================== */
 .descripcion-operatoria {
@@ -925,7 +989,6 @@ box-shadow: inset 0 0 0 4px #007bff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-
 /* Añadir nueva etiqueta H */
 .history-button {
   position: absolute;
@@ -951,8 +1014,6 @@ box-shadow: inset 0 0 0 4px #007bff;
 .capsulas-ATB:hover .history-button {
   opacity: 1;
 }
-
-
 
 /* ===================== MENÚ Y HISTORIAL VO ===================== */
 .vo-menu {
@@ -1143,5 +1204,3 @@ box-shadow: inset 0 0 0 4px #007bff;
 .nuevo-tratamiento-btn {
   transition: background-color 0.2s ease;
 }
-
-
